@@ -1,0 +1,13 @@
+{
+  "backgroundTextStyle": "dark",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTitleText": "仓库出库",
+  "navigationBarTextStyle": "black",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "loading": "/components/loading/loading",
+    "back-to-top": "/components/back-to-top/back-to-top",
+    "search_box": "/components/search_box/search_box",
+    "in-out-stock": "/components/in-out-stock/in-out-stock"
+  }
+}

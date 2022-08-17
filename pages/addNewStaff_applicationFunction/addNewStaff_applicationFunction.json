@@ -1,0 +1,12 @@
+{
+  "backgroundTextStyle": "dark",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTitleText": "添加新员工",
+  "navigationBarTextStyle": "black",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "loading": "/components/loading/loading",
+    "back-to-top": "/components/back-to-top/back-to-top",
+    "employees-box": "/components/employees-box/employees-box"
+  }
+}

@@ -1,0 +1,32 @@
+<view class='container'>
+  <!-- 搜索框 -->
+  <search_box skipLinks="{{skipLinks}}" searchCondition="{{searchCondition}}" whetherToDisplayAConditionBox="{{whetherToDisplayAConditionBox}}" bind:clearingSearchCallback="clearingSearchCallback" conditionalQueryTitle="{{conditionalQueryTitle}}"></search_box>
+
+  <!--订单结算列表-->
+  <view class='module-b'>
+    <view class="header">
+      <view class="title">结算记录：</view>
+      <view class="tag-box">
+        <view wx:if="{{orderSettleResponse['已发货']}}" class="tag">已发货：{{ orderSettleResponse['已发货'] }}</view>
+        <view wx:if="{{orderSettleResponse['已收款']}}" class="tag">已收款：{{ orderSettleResponse['已收款'] }}</view>
+        <view wx:if="{{orderSettleResponse['应发货']}}" class="tag">应发货：{{ orderSettleResponse['应发货'] }}</view>
+        <view wx:if="{{orderSettleResponse['应收款']}}" class="tag">应收款：{{ orderSettleResponse['应收款'] }}</view>
+      </view>
+
+    </view>
+    <block wx:for="{{listOfSettlementRecords}}" wx:for-item="orderInfo" wx:for-index="index" wx:key="index">
+      <order-item id="order-item" settlementRecordsIndex="{{index}}" orderInfo="{{orderInfo}}"orderTag="{{orderTag}}" productTag="{{productTag}}" theSettlementStatusEditableRows="{{theNumberOfEditableRowsInTheSettlementStatus}}" bind:callbackAfterEdit="callbackAfterEdit"
+        bind:settlementDataUpdate="settlementDataUpdate" bind:updateData="loadData" bind:callbacksAfterAllCommits="callbacksAfterAllCommits"></order-item>
+    </block>
+  </view>
+
+
+  <pagination max_page="{{maxPage}}" page_num="{{page_num}}" page_size="{{listOfSettlementRecords.length}}" total_count="{{total_count}}" 
+   isRequestIng="{{isRequestIng}}"  bind:selectPage="selectPage"></pagination>
+
+  <!-- 弹回顶部 -->
+  <back-to-top floorstatus="{{floorstatus}}"></back-to-top>
+
+  <!-- loading遮罩 -->
+  <loading wx:if="{{isRequestIng}}"></loading>
+</view>

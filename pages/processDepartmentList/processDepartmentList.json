@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "部门统计",
+  "navigationStyle": "default",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "process-department-info": "./components/process-department-info/process-department-info",
+    "back-to-top": "/components/back-to-top/back-to-top"
+  }
+}

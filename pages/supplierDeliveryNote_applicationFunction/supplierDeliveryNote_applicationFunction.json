@@ -1,0 +1,14 @@
+{
+  "backgroundTextStyle": "dark",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTitleText": "供应商流水单",
+  "navigationBarTextStyle": "black",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "live-nav": "/components/live-nav/live-nav",
+    "loading": "/components/loading/loading",
+    "back-to-top": "/components/back-to-top/back-to-top",
+    "search_box": "/components/search_box/search_box",
+    "item": "./components/item/item"
+  }
+}

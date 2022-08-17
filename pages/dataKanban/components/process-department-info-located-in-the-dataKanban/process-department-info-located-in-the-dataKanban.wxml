@@ -1,0 +1,17 @@
+<!--部门统计卡片组件_要在数据看板显示的-->
+<view class="process-department-info">
+	<view class='title'>
+		<image src="../../../../static/imageC/bintu.png" class="icon-a"></image>
+		<text class='text-2'>部门统计</text>
+		<text class='text-3' bindtap="processListBtnThrottleHandle">查看部门列表 ></text>
+	</view>
+
+	<view class="process-list">
+		<block wx:for="{{allProcessList}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+			<view class="{{item['是否和自身绑定']?'process-list-item-active':'process-list-item-disable'}}" data-process="{{item}}" bindtap="processBtnThrottleHandle">
+				<label class="text-a">{{item['工序名称']}}</label>
+			</view>
+		</block>
+	</view>
+
+</view>

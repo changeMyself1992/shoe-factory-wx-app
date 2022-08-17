@@ -1,0 +1,191 @@
+/* pages/salaryDetail/salaryDetail.wxss */
+
+.container {
+  /* padding: 30rpx; */
+}
+
+.module-a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-bottom: 20rpx;
+  background-color: #ffffff;
+
+}
+
+.module-a .picker {
+  background-color: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 10rpx;
+  border-radius: 20rpx;
+}
+
+.module-a .picker .text-a {
+  font-size: 24rpx;
+}
+
+.module-a .picker .text-b {
+  font-size: 24rpx;
+  font-weight: 700;
+}
+
+.module-a .picker .text-c {
+  width: 100%;
+  text-align: center;
+  font-size: 24rpx;
+}
+
+/* .module-b {
+  margin-bottom: 20rpx;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+} */
+.module-b {
+  /* padding-bottom: 20rpx; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: #ffffff;
+  padding: 0 20rpx;
+}
+
+.module-b .item {
+  /* width: 50%; */
+  padding: 0 20rpx;
+}
+
+.module-b .item .key {
+  font-size: 26rpx;
+}
+
+.module-b .item .value {
+  font-size: 28rpx;
+  color: #d4787e;
+  font-weight: 700;
+}
+
+.module-c {
+  background-color: #fff;
+  margin-bottom: 20rpx;
+  padding: 10rpx 20rpx;
+}
+
+.module-c .row-0 {
+  display: flex;
+  justify-content: flex-start;
+  padding-bottom: 10rpx;
+  height: 50rpx;
+}
+
+.module-c .row-0 .process-name {
+  font-weight: 700;
+  font-size: 30rpx;
+  margin-right: 20rpx;
+}
+
+.module-c .row-0 .time {
+  font-size: 26rpx;
+  line-height: 46rpx;
+  flex: 3;
+}
+
+.module-c .row-0 .state {
+  flex: 1;
+  text-align: right;
+  font-weight: 700;
+  font-size: 30rpx;
+}
+
+.module-c .row-0 .state.confirmed {
+  color: green;
+}
+
+.module-c .row-0 .state.unconfirmed {
+  color: red;
+}
+
+.module-c .row-1 {
+  border-bottom: 2rpx dashed #ccc;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 10rpx;
+}
+
+.module-c .row-1 .tags {
+  padding: 0 5rpx;
+}
+
+.module-c .row-1 .tags .key {
+  font-size: 26rpx;
+}
+
+.module-c .row-1 .tags .value {
+  font-size: 26rpx;
+  font-weight: 700;
+}
+
+.module-c .row-2 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: space-between;
+  padding: 10rpx 0;
+}
+
+.module-c .row-2 .item {
+  padding: 0 5rpx;
+}
+
+.module-c .row-2 .item .key {
+  font-size: 26rpx;
+}
+
+.module-c .row-2 .item .value {
+  font-size: 26rpx;
+  font-weight: 700;
+}
+
+.module-c .row-2 .item .value.salary {
+  color: #e4848c;
+  font-size: 34rpx;
+  position: relative;
+  bottom: -2rpx;
+}
+
+#h-40 {
+  height: 40rpx;
+  line-height: 40rpx;
+}
+
+.module-c .row-2 .item.complete-the-number {
+  text-align: right;
+  width: 50%;
+}
+
+.module-c .row-2 .total-the-number {
+  width: 50%;
+  text-align: left;
+}
+
+.tag {
+  width: 40%;
+  text-align: center;
+  background-color: #ecf5ff;
+  display: inline-block;
+  height: 32px;
+  padding: 0 10px;
+  line-height: 30px;
+  font-size: 28rpx;
+  color: #409eff;
+  border: 1px solid #d9ecff;
+  border-radius: 4px;
+  box-sizing: border-box;
+  white-space: nowrap;
+  margin: 5rpx 0;
+}

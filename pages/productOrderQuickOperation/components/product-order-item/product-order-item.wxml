@@ -1,0 +1,65 @@
+<!-- 搜索和心动推荐里的产品元素 -->
+<view class="item" wx:key="{{product.unique_id}}" data-product="{{product}}" bindtap="itemClickThrottleHandle">
+  <view class='row-1'>
+    <view class="item-a">
+      <view catchtap="catchtap" class="checkItem1">
+        <checkbox-group class="checkItem" bindchange="checkboxChangeItem" data-index="{{index}}">
+          <label class="checkbox">
+            <checkbox value="{{product['生产单编号']}}" checked="{{product.ischeck}}" class="checkbox" />
+          </label>
+        </checkbox-group>
+      </view>
+      <text class='key'>生产单编号:</text>
+      <text class='value'>{{product['生产单编号']}}</text>
+      <text class='scdDetail'>详情></text>
+    </view>
+    <button class="btn {{product.ischeck?'btnOn':'btnOff'}}" disabled="{{!(product.ischeck)}}" catchtap="submitItemGX">确认</button>
+  </view>
+
+  <view class='row-2'>
+    <view class="tags" wx:for="{{product['对应订单']['tags']}}" wx:for-item="value" wx:for-index="key" wx:key="key">
+      <text class='key'>{{key}}:</text>
+      <text class='value'>{{value}}</text>
+    </view>
+
+    <view class="tags" wx:for="{{product['排产产品']['产品信息']['tags']}}" wx:for-item="value" wx:for-index="key" wx:key="key">
+      <text class='key'>{{key}}:</text>
+      <text class='value'>{{value}}</text>
+    </view>
+  </view>
+  <!-- 产品信息 -->
+  <view class='product-info'>
+    <view class='global1'>
+      <text class='key'>产品编号:</text>
+      <text class='value'>{{product['排产产品']['产品信息']['产品编号']}}</text>
+    </view>
+
+    <view class='global1'>
+      <text class='key'>生产单总数:</text>
+      <text class='value'>{{product['排产产品']['排产配码数量']['总排产数']}}</text>
+    </view>
+
+    <view class='global1'>
+      <text class='key'>日期:</text>
+      <text class='value'>{{product['生产单时间']}}</text>
+    </view>
+    
+  </view>
+  <!-- 工序按钮组 -->
+  <view class="checkArr">
+    <view class="ite item1">
+      <view class="flex2">工序</view>
+      <view class="flex2">姓名</view>
+      <view class="flex3">员工编号</view>
+      <view class="flex3">实际完成量</view>
+      <view class="flex2">总工资</view>
+    </view>
+    <view class="ite item2">
+      <view class="flex2">{{product['生产单工序信息']['工序信息']['工序名称']}}</view>
+      <view class="flex2">{{product['生产单工序信息']['员工计件']['员工姓名']}}</view>
+      <view class="flex3">{{product['生产单工序信息']['员工计件']['员工手机']}}</view>
+      <view class="flex3">{{product['生产单工序信息']['员工计件']['配码计数']['总完成数']}}</view>
+      <view class="flex2">{{(product['生产单工序信息']['员工计件']['配码计数']['总完成数'])*(product['生产单工序信息']['工序工资'])}}</view>
+    </view>
+  </view>
+</view>

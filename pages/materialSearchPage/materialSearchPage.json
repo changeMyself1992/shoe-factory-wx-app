@@ -1,0 +1,11 @@
+{
+  "backgroundTextStyle": "dark",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTitleText": "条件搜索物料",
+  "navigationBarTextStyle": "black",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "back-to-main": "/components/back-to-main/back-to-main",
+    "loading": "/components/loading/loading"
+  }
+}

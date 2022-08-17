@@ -1,0 +1,112 @@
+<form bindsubmit="formSubmitThrottleHandle" bindreset="formReset">
+
+  <view class='row-1'>
+    <view class="title">订单信息</view>
+
+    <view class="item-a">
+      <text class='key'>订单编号：</text>
+      <input cursor-spacing="50" class="value" name="订单编号" placeholder="请输入订单编号" bindtap="onTap" />
+    </view>
+
+    <view style="width:100%; border-bottom: 2rpx solid #ccc;"></view>
+
+    <!--如果只搜索待排产的订单，那么该选择器不要显示-->
+    <view class="form-item">
+      <view class="key">订单状态</view>
+
+      <checkbox-group class="value" name='订单状态' bindchange="checkboxChange" bindtap="onTap" dis>
+        <label class="checkbox" wx:for="{{orderStatusOptions}}" wx:for-item="item" wx:key="index" wx:for-index="index">
+          <checkbox value="{{item.name}}" checked="{{item.checked}}" />{{item.value}}
+        </label>
+      </checkbox-group>
+    </view>
+
+    <!--结算状态 -->
+    <view wx:if="{{mode==='orderAndSettlement'}}" class="form-item">
+      <view class="key">结算状态</view>
+      <checkbox-group class="value" name='结算状态' bindchange="checkboxChange" bindtap="onTap">
+        <label class="checkbox" wx:for="{{settlementStatusOptions}}" wx:for-item="item" wx:key="index" wx:for-index="index">
+          <checkbox value="{{item.name}}" checked="{{item.checked}}" />{{item.value}}
+        </label>
+      </checkbox-group>
+    </view>
+
+    <view class="form-item">
+      <view class="key">订单开始日期</view>
+      <picker class="value" mode="date" name='订单开始日期' id="订单开始日期" bindchange="bindDateChange" bindtap="onTap">
+        <label class="value-label">{{orderStartDate}}</label>
+        <text class='iconfont icon-13 select-icon'></text>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <view class="key">订单结束日期</view>
+      <picker class="value" mode="date" name='订单结束日期' id="订单结束日期" bindchange="bindDateChange" bindtap="onTap">
+        <label class="value-label">{{orderEndDate}}</label>
+        <text class='iconfont icon-13 select-icon'></text>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <view class="key">交货开始日期</view>
+      <picker class="value" mode="date" name='交货开始日期' id="交货开始日期" bindchange="bindDateChange" bindtap="onTap">
+        <label class="value-label">{{deliveryStartDate}}</label>
+        <text class='iconfont icon-13 select-icon'></text>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <view class="key">交货结束日期</view>
+      <picker class="value" mode="date" name='交货结束日期' id="交货结束日期" bindchange="bindDateChange" bindtap="onTap">
+        <label class="value-label">{{deliveryEndDate}}</label>
+        <text class='iconfont icon-13 select-icon'></text>
+      </picker>
+    </view>
+
+    <view style="width:100%; height:20rpx;"></view>
+
+    <view class="item-a" wx:for="{{order_tag_filter}}" wx:for-item="index" wx:key="index" wx:for-index="tagKey">
+      <text class='key'>{{tagKey}}：</text>
+      <input cursor-spacing="50" class="value" type="text" data-tagname="{{tagKey}}" value="{{order_tag_filter[tagKey]}}" bindfocus="onFocusOrderTag" bindinput="orderDebouncedHandleSearch" />
+      <view wx-if='{{orderTagKeyFocus===tagKey}}' class="suggest-value-list">
+        <view class="suggestion-box">
+          <scroll-view scroll-y="{{true}}" style="height: 200rpx;">
+            <view class='tag' wx:for="{{order_suggest_value_list}}" wx:for-item="tagValue" wx:key="index" wx:for-index="index" catchtap="onOrderTagValueSelect" data-tagname="{{tagKey}}" data-tagvalue="{{tagValue}}">{{tagValue}}</view>
+          </scroll-view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+
+  <view class='row-1'>
+    <view class="title">产品信息</view>
+
+    <view class="item-a" wx:for="{{product_tag_filter}}" wx:for-item="index" wx:key="index" wx:for-index="tagKey">
+      <text class='key'>{{tagKey}}：</text>
+      <input cursor-spacing="50" class="value" type="text" data-tagname="{{tagKey}}" value="{{product_tag_filter[tagKey]}}" bindfocus="onFocusProductTag" bindinput="productDebouncedHandleSearch" />
+      <view wx-if='{{productTagKeyFocus===tagKey}}' class="suggest-value-list">
+        <view class="suggestion-box">
+          <scroll-view scroll-y="{{true}}" style="height: 200rpx;">
+            <view class='tag' wx:for="{{product_suggest_value_list}}" wx:for-item="tagValue" wx:key="index" wx:for-index="index" catchtap="onProductTagValueSelect" data-tagname="{{tagKey}}" data-tagvalue="{{tagValue}}">{{tagValue}}</view>
+          </scroll-view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+
+  <view style="width:100%; height:120rpx;"></view>
+
+
+  <view class="btn-area">
+    <button type="primary" form-type="submit">搜索</button>
+    <button form-type="reset">清空搜索条件</button>
+  </view>
+
+</form>
+
+<!-- loading遮罩 -->
+<loading wx:if="{{isRequestIng}}"></loading>
+<!--回到首页按钮-->
+<back-to-main position="{{positionStr}}" tabBarUrl="{{tabBarUrl}}"></back-to-main>

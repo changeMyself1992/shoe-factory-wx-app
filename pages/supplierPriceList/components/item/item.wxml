@@ -1,0 +1,38 @@
+<view class="box">
+  <view class="header">
+    <label class="text-a" style="display: flex;align-items: center;">名称及规格：{{info['名称及规格']}}</label>
+  </view>
+  <view class="section">
+
+    <view class="time-row">
+      <view class='item'>
+        <label class='key'>货号：</label>
+        <label class='value'>{{info['货号']}}</label>
+      </view>
+      <view class='item'>
+        <label class='key'>单价：</label>
+        <label class='value'>{{info['单价']}}</label>
+      </view>
+      <view class='item'>
+        <label class='key'>单位：</label>
+        <label class='value'>{{info['单位']}}</label>
+      </view>
+      <view class='item'>
+        <label class='key'>备注：</label>
+        <label class='value'>{{info['备注']}}</label>
+      </view>
+      <view class='item'>
+        <label class='key'>更新时间:</label>
+        <label class='value'>{{info['更新时间']}}</label>
+      </view>
+      <view class='item'>
+        <label class='key'>记录时间:</label>
+        <label class='value'>{{info['记录时间']}}</label>
+      </view>
+    </view>
+
+  </view>
+
+  <!-- loading遮罩 -->
+  <loading wx:if="{{isRequestIng}}"></loading>
+</view>

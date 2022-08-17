@@ -1,0 +1,164 @@
+<!--pages/purchaseOrderAddPage/purchaseOrderAddPage.wxml-->
+<!--采购单添加-->
+<view class='container'>
+  <form bindsubmit="formSubmit">
+    <view class='row-1'>
+      <view class="title">采购单基本信息</view>
+      <!-- 采购单基础信息 -->
+      <block>
+        <view class="form-item">
+          <view class="key">采购单编号</view>
+          <input cursor-spacing="50" class="value disabled" value="{{cgdId}}" disabled/>
+        </view>
+        <view class="form-item">
+          <view class="key">采购单日期</view>
+          <picker mode="date" value="{{thisdate}}" start="" end="" bindchange="bindDateChange">
+            <view class="picker">
+              {{thisdate}}
+            </view>
+          </picker>
+        </view>
+      </block>
+    </view>
+
+    <!-- 搜索物料 -->
+    <view class='row-2'>
+      <view class="part-box">
+        <view class="title">
+          搜索要入库的物料
+          <button bindtap="searchMaterial" class="btnn sousuo">搜索物料</button>
+        </view>
+        <view class="material-box">
+          <view class="item-material item-material1" wx:for="{{tagsOfMaterialsArr}}" wx:for-item="index" wx:key="index" wx:for-index="tagKey">
+            <view class="key">{{tagKey}}</view>
+            <input cursor-spacing="50" class="value" data-tagname="{{tagKey}}" bindinput="productDebouncedHandleSearch" bindfocus="onFocusProductTag" value="{{tagsOfMaterialsArr[tagKey]}}" placeholder="自动补全" />
+            <!-- 下拉菜单 -->
+            <view wx-if='{{materialTagKeyFocus===tagKey}}' class="suggest-value-list">
+              <view class="suggestion-box">
+                <scroll-view scroll-y="{{true}}" style="height: 200rpx;">
+                  <view class='tag' wx:for="{{material_suggest_value_list}}" wx:for-item="tagValue" wx:key="index" wx:for-index="index" catchtap="onProductTagValueSelect" data-tagname="{{tagKey}}" data-tagvalue="{{tagValue}}">{{tagValue}}</view>
+                </scroll-view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <!-- 选择物料 -->
+        <view class="title">搜索物料结果</view>
+        <view class="material-box" wx:for="{{materialsearchList}}" wx:for-item="item" wx:key="index" wx:for-index="index">
+          <checkbox-group class="value" bindchange="checkboxChange">
+            <label class="checkbox">
+              <checkbox value="{{item['物料编号']}}" checked="{{ischeck}}" class="checkbox" />
+            </label>
+          </checkbox-group>
+          <view class="item-material">
+            <view class="key">物料编号</view>
+            <input cursor-spacing="50" class="value disabled" value="{{item['物料编号']}}" disabled />
+          </view>
+          <view class="item-material">
+            <view class="key">材料类型</view>
+            <input cursor-spacing="50" class="value disabled" value="{{item.tags['材料类型']}}" disabled />
+          </view>
+          <view class="item-material">
+            <view class="key">材质</view>
+            <input cursor-spacing="50" class="value disabled" value="{{item.tags['材质']}}" disabled />
+          </view>
+          <view class="item-material">
+            <view class="key">颜色</view>
+            <input cursor-spacing="50" class="value disabled" value="{{item.tags['颜色']}}" disabled />
+          </view>
+          <view class="item-material">
+            <view class="key">物料名称</view>
+            <input cursor-spacing="50" class="value disabled" value="{{item.tags['物料名称']}}" disabled />
+          </view>
+          <view class="item-material">
+            <view class="key">剩余数量</view>
+            <input cursor-spacing="50" class="value disabled" value="{{item['仓库剩余数量']}}" disabled />
+          </view>
+        </view>
+
+        <!-- 采购单包含的物料 -->
+        <block wx:for="{{materialDetailList}}" wx:for-item="item" wx:key="index" wx:for-index="index">
+          <view class="title">采购单包含的物料
+            <button class="btnn shanchu" data-curOperationItemIndex="{{index}}" bindtap="removeElementsFromList">删除</button>
+          </view>
+          <view class="material-box">
+            <view class="item-material">
+              <view class="key">物料编号</view>
+              <input cursor-spacing="50" class="value disabled" value="{{item['物料编号']}}" disabled />
+            </view>
+            <view class="item-material">
+              <view class="key">材料类型</view>
+              <input cursor-spacing="50" class="value disabled" value="{{item.tags['材料类型']}}" disabled />
+            </view>
+            <view class="item-material">
+              <view class="key">材质</view>
+              <input cursor-spacing="50" class="value disabled" value="{{item.tags['材质']}}" disabled />
+            </view>
+            <view class="item-material">
+              <view class="key">颜色</view>
+              <input cursor-spacing="50" class="value disabled" value="{{item.tags['颜色']}}" disabled />
+            </view>
+            <view class="item-material">
+              <view class="key">物料名称</view>
+              <input cursor-spacing="50" class="value disabled" value="{{item.tags['物料名称']}}" disabled />
+            </view>
+            <view class="item-material">
+              <view class="key">剩余总数</view>
+              <input cursor-spacing="50" class="value disabled" value="{{item['仓库剩余数量']}}" disabled />
+            </view>
+          </view>
+          <!-- 对应的供应商信息 -->
+          <view class="title">对应的供应商信息</view>
+          <view class="material-box">
+            <view class="item-material item-material1">
+              <view class="key">选择切换供应商</view>
+              <input cursor-spacing="50" class="value disabled" data-supplierIndex="{{index}}" bindtap="supplierHandle" value="{{item['供应商列表'][0]['名称']}}" disabled />
+              <!-- 下拉菜单 -->
+              <view wx-if='{{keyFocus===index}}' class="suggest-value-list">
+                <view class="suggestion-box">
+                  <scroll-view scroll-y="{{true}}" style="height: 200rpx;">
+                    <view class='tag' wx:for="{{supplier_suggest_value_list}}" wx:for-item="item" wx:key="index" wx:for-index="index" catchtap="supplierHandleSelect" data-suppliername="{{item['名称']}}" data-supplieruniqueid="{{item.unique_id}}">{{item['名称']}}</view>
+                  </scroll-view>
+                </view>
+              </view>
+            </view>
+            <view class="item-material">
+              <view class="key">名称</view>
+              <input cursor-spacing="50" class="value disabled" value="{{item['供应商列表'][0]['名称']}}" disabled />
+            </view>
+            <view class="item-material">
+              <view class="key">价格</view>
+              <input cursor-spacing="50" class="value disabled" value="{{item['供应商列表'][0]['供应商价格']}}" disabled />
+            </view>
+            <view class="item-material">
+              <view class="key">物料名称</view>
+              <input cursor-spacing="50" class="value disabled" value="{{item['供应商列表'][0]['供应商物料名称']}}" disabled />
+            </view>
+            <view class="item-material">
+              <view class="key">剩余数量</view>
+              <input cursor-spacing="50" class="value disabled" value="{{item['仓库剩余数量']}}" disabled />
+            </view>
+            <!--  -->
+            <view class="item-material">
+              <view class="key">购买数量</view>
+              <input cursor-spacing="50" class="value" name="{{'buynum'+index}}" type="number" value="{{item['目标购买数量']}}" />
+            </view>
+          </view>
+        </block>
+        <!-- 备注信息 -->
+        <view class="title">备注信息</view>
+        <view class="material-box">
+          <view class="item-material item-material1">
+            <view class="key">备注</view>
+            <textarea class="value textarea1" name="产品备注" placeholder="请输入备注" value="" />
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="btn-area">
+      <button type="primary" form-type="submit">提交</button>
+      <button bindtap="formReset">重置</button>
+    </view>
+  </form>
+</view>

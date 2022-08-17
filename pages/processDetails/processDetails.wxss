@@ -1,0 +1,112 @@
+/* pages/processDetails/processDetails.wxss */
+
+.container {
+}
+
+/*product-info********start**********/
+
+.product-info {
+  background-color: #fff;
+  overflow: hidden;
+  margin-bottom: 20rpx;
+  padding: 0 30rpx;
+}
+
+.product-info .title {
+  height: 60rpx;
+  line-height: 60rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.product-info .title .key {
+  color: black;
+  margin-right: 10rpx;
+}
+
+.product-info .info {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 200rpx;
+  padding-bottom: 20rpx;
+}
+
+.product-info .info .key {
+  font-size: 24rpx;
+  color: black;
+  margin-right: 10rpx;
+}
+
+.product-info .info .value {
+  font-size: 24rpx;
+}
+
+.product-info .info .img {
+  width: 200rpx;
+  height: auto;
+  margin-right: 20rpx;
+}
+
+.product-info .info .details {
+  height: 100%;
+  overflow: hidden;
+  flex: 2;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.product-info .info .details .item-3 {
+  width: 100%;
+}
+
+/*product-info********end**********/
+
+.btn-box {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-box .entry {
+  width: 160rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  color: #fff;
+  text-align: center;
+  background-color: #dc5460;
+  font-size: 24rpx;
+}
+
+.btn-box .addEmployeeComplete {
+  width: 250rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  color: #fff;
+  text-align: center;
+  background-color: #dc5460;
+  font-size: 24rpx;
+}
+
+/*employee-completion-info-table*********start***********/
+.employee-completion-info-table .piece-btn-box {
+  display: flex;
+  margin-bottom: 20rpx;
+}
+
+.employee-completion-info-table .piece-btn-box button{
+  font-size: 24rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+}
+
+/*employee-completion-info-table*********end***********/
+
+.icon {
+  height: 40rpx;
+  width: 40rpx;
+  margin-top: 7rpx;
+}

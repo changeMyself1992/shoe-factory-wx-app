@@ -1,0 +1,122 @@
+<!--员工操作组件 注册，编辑-->
+<form bindsubmit="formSubmit" bindreset="formReset">
+  <view class="form-item">
+    <view class="key">姓名<text class="redtext"> *</text></view>
+    <input cursor-spacing="50" class="value" name="姓名" value="{{form['个人信息']['姓名']}}" placeholder="请输入姓名" />
+  </view>
+
+  <view class="form-item">
+    <view class="key">性别<text class="redtext"> *</text></view>
+    <radio-group name="性别" class="value">
+      <label style="margin-right: 20rpx;" wx:for="{{genderItems}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+        <radio value="{{item.value}}" checked="{{item.checked}}" />{{item.name}}
+      </label>
+    </radio-group>
+  </view>
+
+  <view class="form-item">
+    <view class="key">出生日期</view>
+    <picker class="value" mode="date" name='出生日期' value="{{form['个人信息']['出生日期']}}" bindchange="bindDateChange">
+      <label class="value-label">{{form['个人信息']['出生日期']}}<text class="deletedate" wx:if="{{form['个人信息']['出生日期']!==''}}" catchtap="deletedateclick">X</text></label>
+			<label class="select-des">请选择 ></label>
+    </picker>
+  </view>
+
+  <view class="form-item">
+    <view class="key">管理角色<text class="redtext"> *</text></view>
+    <picker class="value" mode="selector" name='管理角色' value="{{index}}" range="{{roleOptions}}" bindchange="bindPickerChange">
+      <label class="value-label">{{roleOptions[index]}}</label>
+			<label class="select-des">请选择 ></label>
+    </picker>
+  </view>
+
+  <view class="form-item">
+    <view class="key">手机号<text class="redtext"> *</text></view>
+    <input cursor-spacing="50" class="value" type="number" name="绑定手机号" placeholder="请输入手机号" value="{{form['绑定手机号']}}" />
+  </view>
+  <view class="form-item workingState">
+    <view class="key">工作状态</view>
+
+    <radio-group name="工作状态" class="value">
+      <label wx:for="{{workingStateOption}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+        <radio value="{{item.value}}" disabled="{{pattern==='staffRegistration'}}" checked="{{item.checked}}" />{{item.name}}
+      </label>
+    </radio-group>
+
+  </view>
+  <view class="form-item textarea">
+    <view class="key">个人住址</view>
+    <textarea class="value" name="地址" placeholder="请输入居住地址" value="{{form['个人信息']['地址']}}" />
+  </view>
+
+  <view class="form-item process-select">
+    <view class="key">负责工序<text class="redtext"> *</text></view>
+    <checkbox-group class="value" name='负责工序'>
+      <label class="checkbox" wx:for="{{processList}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+        <checkbox value="{{item.value}}" checked="{{item.checked}}" />{{item.value}}
+      </label>
+    </checkbox-group>
+  </view>
+
+  <view class="form-item">
+    <view class="key">身份证号</view>
+    <input cursor-spacing="50" class="value" name="身份证号" placeholder="请输入身份证号" bindblur="onIdNumberInputCompleted" value="{{form['个人信息']['身份证号']}}" />
+  </view>
+
+  <view class="form-item idCardFrontPhoto">
+    <view class="key">身份证正面照片</view>
+    <view class="value upload">
+      <button type='primary' size="mini" id="idCardFront" bindtap="uploadImage">上传身份证正面照片</button>
+    </view>
+    <view wx:if="{{form['个人信息']['身份证正面照片']}}" class='id-card-front-photo'>
+      <image class="card-photo" src="{{form['个人信息']['身份证正面照片']}}" mode="aspectFit" id="身份证正面照片" bindtap="previewImage" src="{{form['个人信息']['身份证正面照片']}}"></image>
+    </view>
+  </view>
+
+  <view class="form-item idCardBackPhoto">
+    <view class="key">身份证反面照片</view>
+    <view class="value upload">
+      <button type='primary' size="mini" id="idCardBack" bindtap="uploadImage">上传身份证反面照片</button>
+    </view>
+    <view wx:if="{{form['个人信息']['身份证反面照片']}}" class='id-card-back-photo'>
+      <image class="card-photo" src="{{form['个人信息']['身份证反面照片']}}" mode="aspectFit" id="身份证反面照片" bindtap="previewImage" src="{{form['个人信息']['身份证反面照片']}}"></image>
+    </view>
+  </view>
+
+  <view class="form-item">
+    <view class="key">账户开户姓名</view>
+    <input cursor-spacing="50" class="value" name="账户开户姓名" placeholder="请输入银行账户开户姓名" value="{{form['银行卡信息']['账户开户姓名']}}" />
+  </view>
+
+  <view class="form-item">
+    <view class="key">开户行</view>
+    <input cursor-spacing="50" class="value" name="开户行" placeholder="请输入开户行银行名称" value="{{form['银行卡信息']['开户行']}}" />
+  </view>
+
+  <view class="form-item">
+    <view class="key">银行账号</view>
+    <input cursor-spacing="50" class="value" name="银行账号" placeholder="请输入银行账号" value="{{form['银行卡信息']['银行账号']}}" />
+  </view>
+
+  <view class="form-item bankCardPhoto">
+    <view class="key">银行卡照片</view>
+    <view class="value upload">
+      <button type='primary' size="mini" id="bankCard" bindtap="uploadImage">上传银行卡照片</button>
+    </view>
+    <view wx:if="{{form['银行卡信息']['银行卡照片']}}" class='bank-card-photo'>
+      <image class="card-photo" src="{{form['银行卡信息']['银行卡照片']}}" mode="aspectFit" id="银行卡照片" bindtap="previewImage" src="{{form['银行卡信息']['银行卡照片']}}"></image>
+
+    </view>
+  </view>
+
+  <view class="placeholder"></view>
+
+
+  <view class="btn-area">
+    <button type="primary" form-type="submit">提交</button>
+    <button form-type="reset">重置</button>
+  </view>
+
+  <!-- loading遮罩 -->
+  <loading wx:if="{{isRequestIng}}"></loading>
+</form>

@@ -1,0 +1,13 @@
+{
+  "backgroundTextStyle": "dark",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTitleText": "",
+  "navigationBarTextStyle": "black",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "back-to-top": "/components/back-to-top/back-to-top",
+    "loading": "/components/loading/loading",
+    "back-to-main": "/components/back-to-main/back-to-main",
+    "live-nav": "/components/live-nav/live-nav"
+  }
+}

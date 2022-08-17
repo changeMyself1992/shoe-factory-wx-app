@@ -1,0 +1,86 @@
+<view class="box">
+  <scroll-view class="recommend_scroll_x_box" scroll-x="true">
+    <!-- 工序完成表 员工看到的视口 -->
+    <view class='table'>
+      <view class="tr header">
+        <view class="th item-1">尺码</view>
+        <view class="th item-2">国际</view>
+        <view class="th item-3">
+          <view>目标完成</view>
+          <view>总数</view>
+        </view>
+        <view class="th item-4">
+          <view>已提交计件</view>
+          <view>数量</view>
+
+        </view>
+        <view class="th item-5">
+          <view>实际完成</view>
+          <view>数量</view>
+        </view>
+      </view>
+
+      <block wx:for="{{processinfo['自身计件']['配码']}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+        <view class="tr body">
+          <view class="td item-1">{{item['尺码']}}</view>
+          <view class="td item-2">{{item['国标码']}}</view>
+          <view class="td item-3">{{item['目标数量']}}</view>
+          <view class="td item-4">{{item['已提交计件数量']}}</view>
+          <view class="td item-5">
+            <input cursor-spacing="50" type="number" value="{{item['完成数量']}}" data-obj="{{item}}" data-index='{{index}}' bindfocus="inputFocus" bindblur="inputedit"></input>
+          </view>
+        </view>
+
+
+        <slider class="slider" min="0" max="{{item['目标数量']}}" value="{{item['完成数量']}}" block-size="16" data-index='{{index}}' data-obj="{{item}}" bindchange="sliderChange" show-value></slider>
+      </block>
+
+      <view class="tr footer">
+        <view class="td item-1">总数</view>
+        <view class="td item-2">{{productionOrderDetails['排产产品']['排产配码数量']['总排产数']}}</view>
+        <view class="td item-2">{{processinfo['自身计件']['已提交计件数量总和']}}</view>
+        <view class="td item-3">{{processinfo['自身计件']['总完成数']}}</view>
+      </view>
+
+      <view class="tr footer">
+        <view class="td item-1">总工资</view>
+        <view class="td item-2"></view>
+        <view class="td item-2"></view>
+        <view class="td item-3">
+          {{processinfo['自身计件']['计件总额']}}
+        </view>
+      </view>
+
+
+
+      <view class="tr footer">
+        <view class="td item-4">组长是否已确认</view>
+        <view class="td item-5">
+          <icon wx:if="{{processinfo['自身计件']['组长是否已确认']}}" class="icon" type="success" />
+          <icon wx:else type="clear" class="icon" />
+        </view>
+      </view>
+
+      <view class="tr footer">
+        <view class="td item-4">自身是否已录入过</view>
+        <view class="td item-5">
+          <icon wx:if="{{isExists}}" class="icon" type="success" />
+          <icon wx:else type="clear" class="icon" />
+        </view>
+      </view>
+
+      <!-- 如果是该生产单已完成 那么应该禁用该按钮-->
+      <!---如果已经录入过显示 修改录入 如果没有里如果显示 确认录入-->
+      <view class='btn-box'>
+        <button wx:if='{{isExists}}' class="entry" bindtap="entryThrottleHandle" disabled="{{productionOrderDetails['生产单状态']=='完成'}}">
+          修改录入
+        </button>
+        <button wx:else='{{isExists}}' class="entry" bindtap="entryThrottleHandle" disabled="{{productionOrderDetails['生产单状态']=='完成'}}">
+          确认录入
+        </button>
+      </view>
+
+    </view>
+
+  </scroll-view>
+</view>

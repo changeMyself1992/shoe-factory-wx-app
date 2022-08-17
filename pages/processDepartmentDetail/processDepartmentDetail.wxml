@@ -1,0 +1,149 @@
+<view class='container'>
+
+  <view class="module-b">
+    <view class='table'>
+      <view class='header'>
+        <view class="tr">
+          <view class="th">{{title}}</view>
+        </view>
+      </view>
+
+      <view class='title'>
+        <view class='tr'>
+          <view class="td  item-1">上班人数</view>
+          <view class="td item-2">
+            <label class="text-a">总完成数</label>
+            <label class="text-b">(件)</label>
+          </view>
+          <view class="td item-2">
+            <label class="text-a">总金额</label>
+            <label class="text-b">(元)</label>
+          </view>
+          <view class="td item-4">工序人员</view>
+        </view>
+      </view>
+
+      <view class='body'>
+        <view class="tr">
+          <view class="td item-1">{{departmentalWageDetails['上班人数']}}</view>
+          <view class="td item-2">{{departmentalWageDetails['总完成数']}}</view>
+          <view class="td item-2">{{departmentalWageDetails['总金额数']}}</view>
+          <view class='td item-4' bindtap="processPeopleToggle">
+            <label class="text-a">展开</label>
+            <image class="title_icon" src="{{whetherToStartProcessPersonnel?'../../static/imageC/arrow_down.png':'../../static/imageC/arrow_up.png'}}" />
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!--工序人员表-->
+    <view wx-if="{{whetherToStartProcessPersonnel}}" class='table-1'>
+      <view class='title'>
+        <view class='tr'>
+          <view class="td">员工姓名</view>
+          <view class="td">已确认完成</view>
+          <view class="td">未确认完成</view>
+          <view class="td">金额总计</view>
+        </view>
+      </view>
+      <view class='body'>
+        <view class="tr" wx:for="{{departmentalWageDetails['工序人员']}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+          <view class="td item-1">{{item['员工姓名']}}</view>
+          <view class="td item-2">{{item['已确认完成']}}</view>
+          <view class="td item-2">{{item['未确认完成']}}</view>
+          <view class='td item-4'>{{item['金额总计']}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!--部门信息搜索组件-->
+  <process-department-search id="process-department-search" bindcallbackAfterConditionQuery="callbackAfterConditionQuery"></process-department-search>
+
+  <view class="module-c">
+    <view class='table-2'>
+      <view class='header'>
+        <view class="tr">
+          <view class="th">按生产单统计</view>
+        </view>
+      </view>
+
+      <view class='title'>
+        <view class='tr'>
+          <view class="td item-1">生产单号</view>
+          <view class="td item-2">单价</view>
+          <view class="td item-2">总件数</view>
+          <view class="td item-4">总金额</view>
+          <view class="td item-5">产品标签</view>
+        </view>
+      </view>
+
+      <view class='body'>
+        <view class="tr" wx:for="{{departmentalWageDetails['相关信息']}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+          <view class="td item-1">{{item['生产单号']}}</view>
+          <view class="td item-2">{{item['单价']}}</view>
+          <view class="td item-2">{{item['总件数']}}</view>
+          <view class='td item-4'>{{item['总金额']}}</view>
+          <view class='td item-5' data-index="{{index}}" bindtap="productTagToggle">
+            <label class="text-a">展开</label>
+            <image class="title_icon" src="{{item.whetherToExpandTheProductLabel?'../../static/imageC/arrow_down.png':'../../static/imageC/arrow_up.png'}}" />
+          </view>
+          <view wx-if="{{item.whetherToExpandTheProductLabel}}" class='td item-6'>
+            <view class="tags" wx:for="{{item['产品标签']}}" wx:for-item="value" wx:for-index="key" wx:key="key">
+              <label class="key">{{key}}：</label>
+              <label class="value">{{value}}</label>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="footer-box">
+        <view class="row-one">
+          <view class="tr footer">
+            <view class="td item-1">已完成总件数：</view>
+            <view class="td item-2">{{departmentalWageDetails['总完成数']}}</view>
+          </view>
+
+          <view class="tr footer">
+            <view class="td item-1">未完成总件数：</view>
+            <view class="td item-2">{{totalNumOfPieces-departmentalWageDetails['总完成数']?totalNumOfPieces-departmentalWageDetails['总完成数']:0}}</view>
+          </view>
+
+          <view class="tr footer">
+            <view class="td item-1">总件数：</view>
+            <view class="td item-2">{{totalNumOfPieces}}</view>
+          </view>
+        </view>
+
+        <view class="row-two">
+          <view class="tr footer">
+            <view class="td item-1">已完成总金额：</view>
+            <view class="td item-2">{{departmentalWageDetails['总金额数']}}</view>
+          </view>
+
+          <view class="tr footer">
+            <view class="td item-1">未完成总金额：</view>
+            <view class="td item-2">{{totalNumOfMoney-departmentalWageDetails['总金额数']?totalNumOfMoney-departmentalWageDetails['总金额数']:0}}</view>
+          </view>
+
+          <view class="tr footer">
+            <view class="td item-1">总金额：</view>
+            <view class="td item-2">{{totalNumOfMoney}}</view>
+          </view>
+        </view>
+
+
+      </view>
+
+
+
+    </view>
+  </view>
+
+  <!--回到首页按钮-->
+  <!-- <back-to-main position="{{positionStr}}" tabBarUrl="{{tabBarUrl}}"></back-to-main> -->
+  <!-- loading遮罩 -->
+  <loading wx:if="{{isRequestIng}}"></loading>
+  <!-- 弹回顶部 -->
+  <back-to-top floorstatus="{{floorstatus}}"></back-to-top>
+</view>

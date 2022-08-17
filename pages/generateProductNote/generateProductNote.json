@@ -1,0 +1,13 @@
+{
+  "backgroundTextStyle": "dark",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTitleText": "创建生产单",
+  "navigationBarTextStyle": "black",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "loading": "/components/loading/loading",
+    "back-to-main": "/components/back-to-main/back-to-main",
+    "back-to-top": "/components/back-to-top/back-to-top",
+    "order-item-a": "/components/order-item-a/order-item-a"
+  }
+}

@@ -1,0 +1,45 @@
+<!--pages/supplierOperationPage/supplierOperationPage.wxml-->
+<form bindsubmit="formSubmit" bindreset="formReset">
+
+  <view class='row-1'>
+    <view class="title">供应商信息</view>
+
+    <view class="item-a">
+      <text class='key'><text class="redneed">*</text>名称：</text>
+
+      <input cursor-spacing="50" name="名称" class="value" value="{{form['名称']}}" bindfocus="onFocusFactoryName" bindinput="factoryNameDebouncedHandleSearch" />
+      <view wx-if='{{factoryNmaeFocus}}' class="suggest-value-list">
+        <view class="suggestion-box">
+          <scroll-view scroll-y="{{true}}" style="height: 200rpx;">
+            <view class='tag' wx:for="{{factoryInformationList}}" wx:for-item="factory" wx:key="indexA" wx:for-index="indexA" data-factory="{{factory}}" catchtap="onFactoryNameSelect">{{factory['名称']}}</view>
+          </scroll-view>
+        </view>
+      </view>
+
+    </view>
+    <view class="item-a">
+      <text class='key'><text class="redneed">*</text>供应商地址：</text>
+      <input cursor-spacing="50" bindblur="addressblur" class="value" name="地址" value="{{form['地址']}}" placeholder="请输入地址" />
+    </view>
+    <view class="item-a">
+      <text class='key'><text class="redneed">*</text>供应商电话：</text>
+      <input cursor-spacing="50" bindblur="telblur" maxlength="11" type="number" class="value" name="联系电话" value="{{form['联系电话']}}" placeholder="请输入联系电话" />
+    </view>
+    <view class="item-a">
+      <text class='key'>备注：</text>
+      <input cursor-spacing="50" class="value" name="备注" value="{{form['备注']}}" placeholder="请输入备注" />
+    </view>
+
+
+  </view>
+
+  <view style="width:100%; height:40rpx;"></view>
+
+
+  <button class="search-btn" type="primary" form-type="submit" style="margin-bottom:20rpx;">添加供应商</button>
+  <button class="clear-btn" form-type="reset">清空条件</button>
+
+</form>
+
+<!-- loading遮罩 -->
+<loading wx:if="{{isRequestIng}}"></loading>

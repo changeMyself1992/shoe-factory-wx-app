@@ -1,0 +1,96 @@
+<!--订单操作页 添加，编辑，查看-->
+<view class='container'>
+  <form wx:if="{{form}}" bindsubmit="formSubmit" bindreset="formReset">
+    <view class='row-1'>
+      <view class="title">供应商送货单基本信息</view>
+    </view>
+
+    <view class="form-item">
+      <view class="key">货号</view>
+      <input cursor-spacing="50" class="value disabled" value="{{form['货号']}}" disabled/>
+    </view>
+
+    <view class="form-item">
+      <view class="key">名称及规格</view>
+      <input cursor-spacing="50" class="value disabled" value="{{form['名称及规格']}}" disabled/>
+    </view>
+
+    <view class="form-item">
+      <view class="key">单位</view>
+      <input cursor-spacing="50" class="value disabled" value="{{form['单位']}}" disabled/>
+    </view>
+
+    <view class="form-item">
+      <view class="key">数量</view>
+      <input cursor-spacing="50" class="value disabled" value="{{form['数量']}}" disabled/>
+    </view>
+
+    <view class="form-item">
+      <view class="key">单价</view>
+      <input cursor-spacing="50" class="value disabled" value="{{form['单价']}}" disabled/>
+    </view>
+
+    <view class="form-item">
+      <view class="key">总价格</view>
+      <input cursor-spacing="50" class="value disabled" value="{{form['总价格']}}" disabled/>
+    </view>
+
+    <view class="form-item textarea">
+      <view class="key">备注</view>
+      <textarea class="value" name="备注" placeholder="请输入流水单备注" value="{{form['备注']}}" />
+    </view>
+
+    <view class="form-item">
+      <view class="key">送货单位经手人手机</view>
+      <input cursor-spacing="50" class="value disabled" value="{{form['送货单位经手人手机']}}" disabled/>
+    </view>
+
+    <view class="form-item">
+      <view class="key">收货单位经手人手机</view>
+      <input cursor-spacing="50" class="value disabled" value="{{form['收货单位经手人手机']}}" disabled/>
+    </view>
+
+    <view class="form-item">
+      <view class="key">交易状态</view>
+      <input cursor-spacing="50" class="value disabled" value="{{form['交易状态']}}" disabled/>
+    </view>
+
+    <view class="form-item">
+      <view class="key">记录时间</view>
+      <picker class="value disabled" mode="date" value="{{form['记录时间']}}" disabled>
+        <label class="value-label">{{form['记录时间']}}</label>
+        <text class='iconfont icon-13 select-icon'></text>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <view class="key">供应商名称</view>
+      <input cursor-spacing="50" class="value disabled" value="{{form['供应商名称']}}" disabled/>
+    </view>
+
+    <view class="form-item">
+      <view class="key">供应商地址</view>
+      <input cursor-spacing="50" class="value disabled" value="{{form['供应商地址']}}" disabled/>
+    </view>
+
+    <view class="form-item">
+      <view class="key">供应商联系电话</view>
+      <input cursor-spacing="50" class="value disabled" value="{{form['供应商联系电话']}}" disabled/>
+    </view>
+
+    <view class="btn-area ">
+      <button wx:if="{{mode!=='lookOver'}}" type="primary" form-type="submit">提交</button>
+      <button wx:if="{{mode!=='lookOver'}}" bindtap="formReset">重置</button>
+    </view>
+
+  </form>
+
+  <!--回到首页按钮-->
+  <back-to-main position="{{positionStr}}" tabBarUrl="{{tabBarUrl}}"></back-to-main>
+
+  <!-- 弹回顶部 -->
+  <back-to-top floorstatus="{{floorstatus}}"></back-to-top>
+
+  <!-- loading遮罩 -->
+  <loading wx:if="{{isRequestIng}}"></loading>
+</view>

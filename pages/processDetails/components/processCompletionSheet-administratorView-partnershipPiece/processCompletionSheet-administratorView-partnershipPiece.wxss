@@ -1,0 +1,149 @@
+/*table********11111111111111**********/
+
+.table {
+  margin: 0 10rpx;
+  overflow: hidden;
+  border-radius: 10rpx;
+  background-color: #fff;
+}
+
+.table .header {
+  width: 100%;
+  background-color: #ebebeb;
+}
+
+.table .header .tr {
+  width: 100%;
+  background-color: #ebebeb;
+}
+
+.table .header .tr .th {
+  height: 70rpx;
+  line-height: 70rpx;
+  text-align: center;
+  color: black;
+}
+
+.table .title {
+  background-color: #fff;
+  border-bottom: 2rpx solid #ccc;
+}
+
+.table .title .tr {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.table .title .tr .td {
+  height: 70rpx;
+  background-color: #fff;
+  box-sizing: border-box;
+  color: black;
+  border-right: 2rpx solid #ccc;
+}
+
+.table .title .tr .td:last-child {
+  border: none;
+}
+
+.table .title .tr .td.item-1 {
+  width: 33.33333%;
+  line-height: 72rpx;
+  text-align: center;
+}
+
+.table .title .tr .td.item-2 {
+  width: 33.33333%;
+  line-height: 72rpx;
+  text-align: center;
+}
+
+.table .title .tr .td.item-3 {
+  width: 33.33333%;
+  line-height: 72rpx;
+  text-align: center;
+}
+
+.table .body {
+  padding-bottom: 10rpx;
+  background-color: #fff;
+  border-bottom: 2rpx solid #ccc;
+}
+
+.table .body .tr {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  overflow: hidden;
+}
+
+.table .body .tr .td {
+  height: 70rpx;
+  font-size: 26rpx;
+  background-color: #fff;
+  box-sizing: border-box;
+  border-right: 2rpx solid #ccc;
+}
+
+.table .body .tr .td:last-child {
+  border: none;
+}
+
+.table .body .tr .td.item-1 {
+  width: 33.33333%;
+  line-height: 70rpx;
+  text-align: center;
+}
+
+.table .body .tr .td.item-2 {
+  width: 33.33333%;
+  line-height: 70rpx;
+  text-align: center;
+}
+
+.table .body .tr .td.item-3 {
+  width: 33.33333%;
+  line-height: 70rpx;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.table .body .tr .td.item-3 input {
+  color: #d4787e;
+  border: 2rpx solid #ccc;
+  box-sizing: border-box;
+  height: 40rpx;
+  margin-top: 5rpx;
+  width: 100rpx;
+}
+
+.table .footer {
+  width: 100%;
+  background-color: #ebebeb;
+}
+
+.table .footer .tr {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  background-color: #fff;
+}
+
+.table .footer .tr .td {
+  flex: 1;
+  height: 70rpx;
+  line-height: 70rpx;
+  text-align: center;
+  font-weight: 700;
+}
+
+/*table-2********22222222222222**********/
+
+.partner-submit {
+  margin: 20rpx 20rpx 20rpx 20rpx;
+  font-size: 26rpx;
+  background-color: #dc5460;
+  color: #fff;
+}

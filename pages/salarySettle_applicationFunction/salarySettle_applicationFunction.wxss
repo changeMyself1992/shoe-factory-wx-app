@@ -1,0 +1,151 @@
+/* pages/salarySettle_applicationFunction/salarySettle_applicationFunction.wxss */
+
+.module-a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-bottom: 20rpx;
+  padding: 30rpx;
+  background-color: #ffffff;
+}
+
+.module-a .radio-group {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 10rpx;
+}
+
+.module-a .picker {
+  background-color: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 10rpx;
+  border-radius: 20rpx;
+}
+
+.module-a .picker .text-a {
+  font-size: 24rpx;
+}
+
+.module-a .picker .text-b {
+  font-size: 24rpx;
+  font-weight: 700;
+}
+
+.module-a .picker .text-c {
+  width: 100%;
+  text-align: center;
+  font-size: 24rpx;
+}
+
+.module-b {
+  display: flex;
+  justify-content: space-between;
+  background-color: #ffffff;
+  padding: 0 20rpx;
+}
+
+.module-b .tag {
+  width: 49%;
+  text-align: center;
+  background-color: #ecf5ff;
+  display: inline-block;
+  height: 32px;
+  padding: 0 10px;
+  line-height: 30px;
+  font-size: 28rpx;
+  color: #409eff;
+  border: 1px solid #d9ecff;
+  border-radius: 4px;
+  box-sizing: border-box;
+  white-space: nowrap;
+  margin: 5rpx 0;
+}
+
+.module-b .tags {
+  width: 30%;
+  text-align: center;
+  background-color: #ecf5ff;
+  display: inline-block;
+  height: 80rpx;
+  padding: 0 10px;
+  font-size: 28rpx;
+  color: #409eff;
+  border: 1px solid #d9ecff;
+  border-radius: 4px;
+  box-sizing: border-box;
+  white-space: nowrap;
+  margin: 5rpx 0;
+}
+
+.module-b .tags view {
+  height: 32rpx;
+  color: #409eff;
+  margin-top: 5rpx;
+}
+
+.list {
+  margin-bottom: 100rpx;
+
+}
+
+
+/*添加抵扣对话框*/
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.block {
+  width: 90%;
+  background-color: #fff;
+  padding: 20rpx;
+}
+
+.redneed {
+  color: red;
+}
+
+.row-1 {
+  padding: 0;
+}
+
+.row-1 .item-a .value {
+  width: 500rpx;
+}
+
+.footBtn {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  border-radius: 0;
+
+}
+
+.row-1 .item-a .suggest-value-list .suggestion-box {
+  width: 100%;
+}
+
+.row-1 .item-a .suggest-value-list .suggestion-box .tag {
+  width: auto;
+  white-space: nowrap;
+  padding: 0;
+}
+.pickerdatecosts{
+  width: 500rpx;
+  border: 1px solid #cdcdcd;
+  height: 50rpx;
+  line-height: 50rpx;
+}
+.pickerdatecosts .datecosts{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20rpx;
+}

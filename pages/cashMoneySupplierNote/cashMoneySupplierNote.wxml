@@ -1,0 +1,133 @@
+<!--pages/cashMoneySupplierNote/cashMoneySupplierNote.wxml-->
+<view class='container'>
+  <form wx:if="{{form}}" bindsubmit="formSubmit" bindreset="formReset">
+    <view class='row-1'>
+      <view class="title">① 填写现结单基本信息</view>
+      <view class="item-a">
+        <text class='key'><text class="redneed">*</text>供应商名称：</text>
+
+        <input cursor-spacing="50" name="name" class="value" value="{{form['供应商名称']}}" bindfocus="onFocusFactoryName" bindinput="factoryNameDebouncedHandleSearch" />
+        <view wx-if='{{factoryNmaeFocus}}' class="suggest-value-list">
+          <view class="suggestion-box">
+            <scroll-view scroll-y="{{true}}" style="height: 200rpx;">
+              <view class='tag' wx:for="{{factoryInformationList}}" wx:for-item="factory" wx:key="indexA" wx:for-index="indexA" data-factory="{{factory}}" catchtap="onFactoryNameSelect">{{factory['名称']}}</view>
+            </scroll-view>
+          </view>
+        </view>
+
+      </view>
+      <view class="item-a" bindtap="onTap">
+        <text class='key'>工厂名称：</text>
+        <input cursor-spacing="50" class="value disabled" value="{{form['工厂名称']}}" disabled />
+      </view>
+      <view class="item-a" bindtap="onTap">
+        <text class='key'>收货单位经手人手机：</text>
+        <input cursor-spacing="50" class="value value1 disabled" value="{{form['送货单位经手人手机']}}" disabled />
+      </view>
+      <!-- 付款人 -->
+      <view class="item-a">
+        <text class='key'>付款人姓名：</text>
+        <input cursor-spacing="50" name="name" class="value" value="{{form['付款人姓名']}}" bindfocus="onFocusUserName" bindinput="userNameDebouncedHandleSearch" />
+        <view wx-if='{{userNameFocus}}' class="suggest-value-list" style="width:80%;margin-left: 20%;">
+          <view class="suggestion-box" style="width:100%;">
+            <scroll-view scroll-y="{{true}}" style="height: 200rpx;">
+              <view class='tag' wx:for="{{userInformationList}}" wx:for-item="user" wx:key="indexU" wx:for-index="indexU" data-user="{{user}}" catchtap="onUserNameSelect">姓名:{{user['个人信息']['姓名']}},管理角色:{{user['管理角色']}}</view>
+            </scroll-view>
+          </view>
+        </view>
+      </view>
+      <view class="item-a disabled" bindtap="onTap">
+        <text class='key'>付款人手机：</text>
+        <input cursor-spacing="50" disabled class="value disabled" value="{{form['付款人手机']}}" />
+      </view>
+      <!-- 付款人 -->
+      <view class="item-a">
+        <text class='key'>现结单状态：</text>
+        <radio-group name="state" class="radio-group" bindchange="radioChange">
+          <radio class="radio" wx:for-items="{{stateitems}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
+            <text>{{item.value}}</text>
+          </radio>
+        </radio-group>
+      </view>
+    </view>
+
+    <view class='row-2'>
+      <view class="header">
+        <label class="des">② 填写现结单货物信息</label>
+      </view>
+
+      <block wx:for="{{form['送货单']}}" wx:for-item="elementsOfGoods" wx:for-index="index" wx:key="index">
+      <view style="background-color:#ffffff;padding-top: 10rpx;">
+        <view class="supplier-box">
+          <view class="clear-box">
+            <label class="label">第{{index+1}}行</label>
+            <image style="width:45rpx;height:45rpx;" src="/static/imageC/del.png" data-curOperationItemIndex="{{index}}" bindtap="removeElementsFromList"></image>
+            <!-- <button class="clear" type='warn' data-curOperationItemIndex="{{index}}" bindtap="removeElementsFromList">删除</button> -->
+          </view>
+
+          <view class="item-supplier item-b">
+            <view class="key">
+              <text class="redneed">*</text>名称及规格</view>
+
+            <input cursor-spacing="50" class="value" data-curOperationInvoiceIndex="{{index}}" value="{{elementsOfGoods['名称及规格']}}" bindfocus="onFocusNameAndSpecification" bindinput="nameAndSpecificationDebouncedHandleSearch" />
+            <view wx-if='{{nameAndSpecificationFocus && curOperationInvoiceIndex===index}}' class="suggest-value-list">
+              <view class="suggestion-box">
+                <scroll-view scroll-y="{{true}}" style="height: 200rpx;">
+                  <view class='tag' wx:for="{{nameAndSpecificationList}}" wx:for-item="item" wx:key="index" wx:for-index="index" data-name="{{item['名称及规格']}}" catchtap="onNameAndSpecificationSelect">{{item['名称及规格']}}</view>
+                </scroll-view>
+              </view>
+            </view>
+          </view>
+          <view class="item-supplier item-a">
+            <view class="key">货号</view>
+            <input cursor-spacing="50" class="value" id="货号" data-curOperationItemIndex="{{index}}" value="{{elementsOfGoods['货号']}}" bindblur="onBlurElementsInfo" bindfocus="onFocusElementsInfo" />
+          </view>
+          <view class="item-supplier item-a">
+            <view class="key">
+              <text class="redneed">*</text>单位</view>
+            <input cursor-spacing="50" class="value" id="单位" data-curOperationItemIndex="{{index}}" value="{{elementsOfGoods['单位']}}" bindblur="onBlurElementsInfo" bindfocus="onFocusElementsInfo" />
+          </view>
+
+          <view class="item-supplier item-a">
+            <view class="key">
+              <text class="redneed">*</text>请输入数量</view>
+            <input cursor-spacing="50" class="value" id="数量" type="digit" data-curOperationItemIndex="{{index}}" value="{{elementsOfGoods['数量']}}" bindblur="onBlurElementsInfo" bindfocus="onFocusElementsInfo" />
+          </view>
+
+          <view class="item-supplier item-a">
+            <view class="key">
+              <text class="redneed">*</text>单价</view>
+            <input cursor-spacing="50" class="value" id="单价" type="digit" data-curOperationItemIndex="{{index}}" value="{{elementsOfGoods['单价']}}" bindblur="onBlurElementsInfo" bindfocus="onFocusElementsInfo" />
+          </view>
+
+          <view class="item-supplier item-a">
+            <view class="key">
+              <text class="redneed">*</text>总价</view>
+            <input cursor-spacing="50" class="value" id="总价格" type="digit" data-curOperationItemIndex="{{index}}" value="{{elementsOfGoods['总价格']}}" bindblur="onBlurElementsInfo" bindfocus="onFocusElementsInfo" />
+          </view>
+
+          <view class="item-supplier item-a">
+            <view class="key">备注</view>
+            <input cursor-spacing="50" class="value" id="备注" data-curOperationItemIndex="{{index}}" value="{{elementsOfGoods['备注']}}" bindblur="onBlurElementsInfo" bindfocus="onFocusElementsInfo" />
+          </view>
+
+        </view>
+      </view>
+      </block>
+
+      <view class="add-product-btn">
+        <view class="sumPrice">总金额：{{sumPrice}}</view>
+        <image style="width:100rpx;height:100rpx;padding:20rpx;" src="/static/imageC/add.png" bindtap="addElementsOfGoods"></image>
+      </view>
+    </view>
+    <view class="btn-area">
+      <button type="primary" form-type="submit" loading="{{loading}}">提交</button>
+      <button form-type="reset">重置</button>
+    </view>
+
+  </form>
+  <!-- loading遮罩 -->
+  <loading wx:if="{{isRequestIng}}"></loading>
+  <!-- 弹回顶部 -->
+  <back-to-top floorstatus="{{floorstatus}}" location="{{'bottom: 50px;right: 50px;'}}"></back-to-top>
+</view>

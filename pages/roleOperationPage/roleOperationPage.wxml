@@ -1,0 +1,63 @@
+<!--用户操作页 添加，编辑-->
+<view class='container'>
+  <form wx:if="{{form}}" bindsubmit="formSubmit" bindreset="formReset">
+
+    <view class="form-item {{mode==='editRole'?'disabled':''}}">
+      <view class="key">名字</view>
+      <input cursor-spacing="50" disabled="{{mode==='editRole'}}" class="value" name="管理角色" value="{{form['管理角色']}}" placeholder="请输入角色名称" />
+    </view>
+
+    <view class="form-item-a">
+      <view class="key">
+        权限配置
+      </view>
+      <!-- <checkbox-group class="value" name='管理权限'>
+        <label class="checkbox" wx:for="{{administrativePrivileges}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+          <checkbox value="{{item.value}}" checked="{{item.checked}}" />{{item.value}}
+        </label>
+      </checkbox-group> -->
+
+
+      <view class="page-box" wx:for="{{administrativePrivileges}}" wx:for-item="page" wx:key="index_a" wx:for-index="index_a">
+
+        <!--配码数量(下拉列表)-->
+        <view class="kind-list__item">
+          <view class="weui-flex kind-list__item-hd {{page.isUnfold ? 'kind-list__item-hd_show' : ''}}" data-curOperationPageIndex="{{index_a}}" bindtap="kindToggle">
+            <view class="weui-flex__item">{{page.title}}</view>
+            <image class="kind-list__img" src="{{page.isUnfold?'../../static/imageC/arrow_down.png':'../../static/imageC/arrow_up.png'}}" />
+          </view>
+          <view class="kind-list__item-bd {{page.isUnfold ? 'kind-list__item-bd_show' : ''}}">
+            <view class="weui-cells {{page.isUnfold ? 'weui-cells_show' : ''}}">
+              <checkbox-group class="checkbox-group" name='{{page.title}}' data-curTitle="{{page.title}}" bindchange='checkboxChange'>
+                <label class="checkbox" wx:for="{{page.permission}}" wx:for-item="item" wx:for-index="index_b" wx:key="index_b">
+                  <checkbox value="{{item.value}}" checked="{{item.checked}}" disabled="{{!isEdit}}" />{{item.name}}
+                </label>
+              </checkbox-group>
+
+            </view>
+          </view>
+        </view>
+
+      </view>
+
+
+
+
+    </view>
+
+    <view class="btn-area">
+      <button type="primary" form-type="submit">提交</button>
+      <button bindtap="cancelBtnClick">取消</button>
+    </view>
+
+  </form>
+
+  <!--回到首页按钮-->
+  <back-to-main position="{{positionStr}}" tabBarUrl="{{tabBarUrl}}"></back-to-main>
+
+  <!-- 弹回顶部 -->
+  <back-to-top floorstatus="{{floorstatus}}"></back-to-top>
+
+  <!-- loading遮罩 -->
+  <loading wx:if="{{isRequestIng}}"></loading>
+</view>

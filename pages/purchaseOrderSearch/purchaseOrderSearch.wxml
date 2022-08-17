@@ -1,0 +1,55 @@
+<!--pages/purchaseOrderSearch/purchaseOrderSearch.wxml-->
+  <form bindsubmit="formSubmit" bindreset="formReset">
+<view class="container">
+
+  <view class='row row-1'>
+    <view class="item-a">
+      <text class='key'>采购单编号：</text>
+      <input cursor-spacing="50" class="value" name="采购单编号" bindinput="caigoudan" />
+    </view>
+    <view class="item-a">
+      <text class='key'>订单编号：</text>
+      <input cursor-spacing="50" class="value" name="订单编号" bindinput="dingdan" />
+    </view>
+    <view class="item-a">
+      <text class='key'>生产单编号：</text>
+      <input cursor-spacing="50" class="value" name="生产单编号" bindinput="shengchandan" />
+    </view>
+    <view class="item-a">
+      <text class='key'>采购单状态：</text>
+      <checkbox-group class="group" name="采购单状态" bindchange="checkboxChange">
+				<label class="checkbox" wx:for="{{items}}" wx:key="index" >
+					<checkbox value="{{item.name}}" checked="{{item.checked}}" />{{item.value}}
+				</label>
+			</checkbox-group>
+    </view>
+  </view>
+  <view style="width:100%; border-bottom: 2rpx solid #ccc;"></view>
+
+  <view class="form-item">
+    <view class="key">更新时间段开始</view>
+    <picker class="value" mode="date" name='更新时间段开始' id="更新时间段开始" bindchange="bindDateChange">
+      <label class="value-label">{{updateTimeStartDate}}</label>
+      <text class='iconfont icon-13 select-icon'></text>
+    </picker>
+  </view>
+
+  <view class="form-item">
+    <view class="key">更新时间段结束</view>
+    <picker class="value" mode="date" name='更新时间段结束' id="更新时间段结束" bindchange="bindDateChange">
+      <label class="value-label">{{updateTimeEndDate}}</label>
+      <text class='iconfont icon-13 select-icon'></text>
+    </picker>
+  </view>
+
+  <view style="width:100%; height:20rpx;"></view>
+
+  <button class="search-btn" type="primary" bindtap="onSubmit" style="margin-bottom:20rpx;">搜索</button>
+
+  <button class="clear-btn" formType="reset">清空搜索条件</button>
+
+
+  <!-- loading遮罩 -->
+  <loading wx:if="{{isRequestIng}}"></loading>
+</view>
+  </form>

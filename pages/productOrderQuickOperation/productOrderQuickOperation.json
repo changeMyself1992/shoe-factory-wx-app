@@ -1,0 +1,14 @@
+{
+  "backgroundTextStyle": "dark",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTitleText": "员工计件记录",
+  "navigationBarTextStyle": "black",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "loading": "/components/loading/loading",
+    "back-to-top": "/components/back-to-top/back-to-top",
+    "search_box": "/components/search_box/search_box",
+    "product-order-item": "./components/product-order-item/product-order-item",
+    "percentage-loading": "/components/percentage-loading/percentage-loading"
+  }
+}

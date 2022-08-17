@@ -1,0 +1,40 @@
+@import "../../static/wxss/font1.wxss";
+
+/* 直播导航栏区域 *******start*****/
+
+.live-nav {
+  height: 60rpx;
+  width: 100%;
+  left: 0;
+  background-color: #fff;
+  white-space: nowrap;
+}
+
+.live-nav .tab_item_s, .live-nav .tab_item_n {
+  display: inline-block;
+  height: 60rpx;
+  /* width:50%; */
+  text-align: center;
+  vertical-align: center;
+}
+.live-nav .tab_item_s{
+  border-bottom: 2rpx solid  #d4787e;
+}
+
+
+.navname {
+  font-weight: bold;
+  vertical-align: middle;
+}
+
+.live-nav .tab_item_s .navname {
+  color: #d4787e;
+  font-size: 32rpx;
+}
+
+.live-nav .tab_item_n .navname {
+  color: rgb(175, 175, 175);
+  font-size: 32rpx;
+}
+
+/* 直播导航栏区域 *******end*****/

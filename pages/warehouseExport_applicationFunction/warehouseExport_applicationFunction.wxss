@@ -1,0 +1,37 @@
+/* pages/warehouseExport_applicationFunction/warehouseExport_applicationFunction.wxss */
+
+.fixed-batch {
+  position: fixed;
+  width: 100%;
+  padding: 20rpx;
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  flex-wrap: wrap;
+  z-index: 10;
+}
+
+.fixed-batch .search-box {
+  width: 100%;
+}
+
+.fixed-batch .switch-view {
+  display: flex;
+  align-items: center;
+}
+
+.fixed-batch .switch-view .des {
+  margin-right: 5px;
+}
+
+.fixed-batch .switch-view .switch {
+  zoom: 0.9;
+}
+
+.fixed-batch .btn-consent {
+  font-size: 24rpx;
+}
+
+.module-b {
+  /* margin-top: 250rpx; */
+}

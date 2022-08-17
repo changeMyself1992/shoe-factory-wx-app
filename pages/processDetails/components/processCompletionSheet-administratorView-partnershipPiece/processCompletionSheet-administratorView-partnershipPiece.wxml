@@ -1,0 +1,40 @@
+<!-- 工序完成表-管理员看到的视口-合伙计件 -->
+
+<!-- 合伙人选择表-->
+<view class='table'>
+  <view class='header'>
+    <view class="tr">
+      <view class="th">合伙人选择表</view>
+    </view>
+  </view>
+
+  <view class='title'>
+    <view class='tr'>
+      <view class="td item-1">员工编号</view>
+      <view class="td item-2">员工姓名</view>
+      <view class="td item-3">合伙人选中</view>
+    </view>
+  </view>
+
+  <view class='body'>
+    <view class="tr" wx:for="{{allEmployeesUnderTheProcess}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+      <view class="td item-1">{{item['unique_id']}}</view>
+      <view class="td item-2">{{item['个人信息']['姓名']}}</view>
+      <view class="td item-3">
+        <view class="body-view">
+          <switch type="checkbox" checked="{{item.checked}}" data-unique_id="{{item['unique_id']}}" bindchange="switchChange" />
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+  <!-- 如果组长已经确认过显示xxx已确认 -->
+  <button class="partner-submit" bindtap="partnerSubmitThrottleHandle">合伙人提交</button>
+
+</view>
+
+
+
+<!-- loading遮罩 -->
+<loading wx:if="{{isRequestIng}}"></loading>

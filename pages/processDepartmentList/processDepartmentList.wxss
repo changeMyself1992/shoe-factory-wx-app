@@ -1,0 +1,34 @@
+.container{
+  padding: 30rpx;
+}
+
+.department-salary-details{
+  margin-bottom: 30rpx;
+}
+.customNav{
+  background-color: #f8f7f5;
+  position: fixed;
+  z-index: 999;
+}
+.home{
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  display: inline-block;
+  width: 50rpx;
+  z-index: 1000;
+}
+.title{
+  position: absolute;
+  margin: auto;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: inline-block;
+  width: 200rpx;
+  z-index: 1000;
+  text-align: center;
+  font-size: 26rpx;
+}

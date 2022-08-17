@@ -1,0 +1,31 @@
+<view class='container'>
+  <view class='table'>
+    <view class="tr header">
+      <view class="th item-1">角色名称</view>
+      <view class="th item-2">权限描述</view>
+      <view class="th item-3">操作</view>
+    </view>
+
+    <block wx:for="{{rolesList}}" wx:for-item="role" wx:for-index="index" wx:key="index">
+      <view class="tr body">
+        <view class="td item-1">{{role['管理角色']}}</view>
+        <view class="td item-2">
+          <label>{{role.description}}</label>
+        </view>
+        <view class="td" style="width:25%;">
+          <image src="../../static/imageC/quanxianbianji.png" data-role="{{role}}" bindtap="editThrottleHandle"></image>
+          <image src="../../static/imageC/quanxianshanchu.png" data-role="{{role}}" bindtap="handleDelete"></image>
+          <!-- <button class="btn-consent" type="primary" data-role="{{role}}" bindtap="editThrottleHandle">编辑权限</button>
+          <button class="btn-reject" type="warn" data-role="{{role}}" bindtap="handleDelete">删除</button> -->
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <view class="btn-add-box">
+    <button class="btn-add" type="primary" bindtap="addRoleThrottleHandle">添加角色</button>
+  </view>
+
+  <!-- loading遮罩 -->
+  <loading wx:if="{{isRequestIng}}"></loading>
+</view>

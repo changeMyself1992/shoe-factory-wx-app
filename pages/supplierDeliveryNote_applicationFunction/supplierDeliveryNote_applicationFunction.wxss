@@ -1,0 +1,91 @@
+/* pages/supplierDeliveryNote_applicationFunction/supplierDeliveryNote_applicationFunction.wxss */
+.ccontainer{
+  background: #EDEDED;
+}
+.fixed-batch {
+  position: fixed;
+  width: 100%;
+  /* padding: 20rpx; */
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  flex-wrap: wrap;
+  z-index: 10;
+}
+
+.fixed-batch .search-box {
+  width: 100%;
+}
+
+.fixed-batch .switch-view {
+  display: flex;
+  align-items: center;
+}
+
+.fixed-batch .switch-view .des {
+  margin-right: 5px;
+}
+
+.fixed-batch .switch-view .switch {
+  zoom: 0.9;
+}
+
+.fixed-batch .btn-consent {
+  font-size: 24rpx;
+}
+
+.module-b {
+  /* margin-top: 250rpx; */
+}
+.footBtn{
+  position: fixed;
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  display: flex;
+  align-items: center;
+  z-index: 999;
+  bottom: 0;
+  left: 0;
+}
+.footBtn span{
+  flex: 1;
+}
+.footBtn .tuihuo{
+  background: #0DA317;
+  font-size: 32rpx;
+  color: #FFFFFF;
+  text-align: center;
+}
+.on{
+background: #0DA317;
+font-size: 32rpx;
+color: #FFFFFF;
+text-align: center;
+}
+.off{
+background: #4A4A4A;
+font-size: 32rpx;
+color: #ffffff;
+text-align: center;
+}
+/* .maskCash{
+  position: fixed;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 999;
+  display: flex;
+}
+.maskCash .maskbox{
+  margin: auto;
+  width: 80%;
+  height: 40%;
+  background-color: #ffffff;
+  border-radius: 10rpx;
+} */

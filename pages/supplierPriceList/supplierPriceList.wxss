@@ -1,0 +1,16 @@
+/* pages/supplierPriceList/supplierPriceList.wxss */
+.row-1 {
+border: none;
+padding: 0 20rpx;
+background-color: #fff;
+}
+.row-1 .title {
+height: 60rpx;
+border-bottom: 1px solid #ccc;
+line-height: 60rpx;
+font-weight: 700;
+margin-bottom: 0;
+}
+
+
+

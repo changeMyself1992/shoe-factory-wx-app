@@ -1,0 +1,12 @@
+{
+  "backgroundTextStyle": "dark",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTitleText": "提交",
+  "navigationBarTextStyle": "black",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "back-to-top": "/components/back-to-top/back-to-top",
+    "back-to-main": "/components/back-to-main/back-to-main",
+    "loading": "/components/loading/loading"
+  }
+}

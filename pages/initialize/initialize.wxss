@@ -1,0 +1,12 @@
+/* pages/initialize/initialize.wxss */
+
+.box {
+  display: flex;
+  justify-content: center;
+  margin-top: 40rpx;
+}
+
+.icon {
+  width: 320px;
+  height: 320px;
+}

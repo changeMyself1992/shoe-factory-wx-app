@@ -1,0 +1,12 @@
+{
+  "backgroundTextStyle": "dark",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTitleText": "查看/编辑送货单",
+  "navigationBarTextStyle": "black",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "loading": "/components/loading/loading",
+    "back-to-main": "/components/back-to-main/back-to-main",
+    "back-to-top": "/components/back-to-top/back-to-top"
+  }
+}

@@ -1,0 +1,109 @@
+<!--pages/purchaseOrderOperationPage/purchaseOrderOperationPage.wxml-->
+<!--采购单查看-->
+<view class='container'>
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <view class='row-1'>
+      <view class="title">采购单基本信息</view>
+      <!-- 采购单基础信息 -->
+    <block>
+      <view class="form-item">
+        <view class="key">采购单编号</view>
+        <input cursor-spacing="50" class="value disabled" value="{{list1['采购单编号']}}" disabled/>
+      </view>
+      <view class="form-item">
+        <view class="key">采购单日期</view>
+        <input cursor-spacing="50" class="value disabled" value="{{list1['采购单日期']}}" disabled/>
+      </view>
+      <view class="form-item textarea">
+        <view class="key">采购单备注</view>
+        <textarea class="value disabled" value="{{list1['备注']}}" disabled />
+      </view>
+    </block>
+    </view>
+    
+    <!-- 物料信息列表 -->
+    <view class='row-2'>
+      <block wx:for="{{list2}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+        <view class="part-box">
+          <view class="title">物料信息</view>
+          <view class="material-box">
+            <view class="item-material">
+              <view class="key">物料编号</view>
+              <input cursor-spacing="50" class="value disabled" value="{{item['物料编号']}}" disabled />
+            </view>
+            <view class="item-material">
+              <view class="key">材料类型</view>
+              <input cursor-spacing="50" class="value disabled" value="{{item['材料类型']}}" disabled />
+            </view>
+            <view class="item-material">
+              <view class="key">材质</view>
+              <input cursor-spacing="50" class="value disabled" value="{{item['材质']}}" disabled />
+            </view>
+            <view class="item-material">
+              <view class="key">颜色</view>
+              <input cursor-spacing="50" class="value disabled" value="{{item['颜色']}}" disabled />
+            </view>
+            <view class="item-material">
+              <view class="key">物料名称</view>
+              <input cursor-spacing="50" class="value disabled" value="{{item['物料名称']}}" disabled />
+            </view>
+            <view class="item-material">
+              <view class="key">多余数量</view>
+              <input cursor-spacing="50" class="value1 disabled" value="{{item['仓库多余数量']}}" disabled />
+            </view>
+            <view class="item-material">
+              <view class="key">单位</view>
+              <input cursor-spacing="50" class="value disabled" value="{{item['单位']}}" disabled />
+            </view>
+          </view>
+          <view class="title">对应的供应商信息</view>
+          <view class="material-box">
+            <view class="item-material">
+              <view class="key">名称</view>
+              <input cursor-spacing="50" class="value1 disabled" value="{{item['供应商名称']}}" disabled />
+            </view>
+            <view class="item-material">
+              <view class="key">价格</view>
+              <input cursor-spacing="50" class="value1 disabled" value="{{item['供应商价格']}}" disabled />
+            </view>
+            <view class="item-material">
+              <view class="key">物料名称</view>
+              <input cursor-spacing="50" class="value1 disabled" value="{{item['供应商物料名称']}}" disabled />
+            </view>
+            <view class="item-material">
+              <view class="key">剩余数量</view>
+              <input cursor-spacing="50" class="value1 disabled" value="{{item['仓库剩余数量']}}" disabled />
+            </view>
+            <view class="item-material">
+              <view class="key">说明</view>
+              <input cursor-spacing="50" class="value disabled" value="{{item['说明']}}" disabled />
+            </view>
+            <view class="item-material">
+              <view class="key">购买数量</view>
+              <input cursor-spacing="50" class="value1 {{type=='edit'?'':'disabled'}}" value="{{item['目标购买数量']}}" name="{{'buynum'+index}}" type="digit" disabled="{{type=='edit'?false:true}}" />
+            </view>
+            <view class="item-material">
+              <view class="key">总价格</view>
+              <input cursor-spacing="50" class="value disabled" value="{{item['总价格']}}" disabled />
+            </view>
+          </view>
+        </view>
+      </block>
+
+
+    </view>
+
+    <!-- 编辑提交 -->
+    <button wx:if="{{type=='edit'}}" type="primary" form-type="submit" style="margin-bottom:20rpx;">提交</button>
+
+  </form>
+
+  <!--回到首页按钮-->
+  <back-to-main position="{{positionStr}}" tabBarUrl="{{tabBarUrl}}"></back-to-main>
+
+  <!-- 弹回顶部 -->
+  <back-to-top floorstatus="{{floorstatus}}"></back-to-top>
+
+  <!-- loading遮罩 -->
+  <loading wx:if="{{isRequestIng}}"></loading>
+</view>

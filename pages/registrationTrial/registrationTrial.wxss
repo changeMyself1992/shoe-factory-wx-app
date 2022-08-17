@@ -1,0 +1,20 @@
+.box {
+  display: flex;
+  justify-content: center;
+  margin-top: 40rpx;
+  flex-wrap: wrap;
+  padding: 0 40rpx;
+
+}
+
+.text-a {
+  text-indent: 20px;
+}
+
+.text-b {
+  color: green;
+}
+
+.picture {
+  width: 320px;
+}

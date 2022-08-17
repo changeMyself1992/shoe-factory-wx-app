@@ -1,0 +1,40 @@
+<!--工资信息卡片组件-->
+<view class='wage-info'>
+	<image class="bg" src="https://mes.westmatrix.cn/jianbian_a.png"></image>
+	<view class='title'>
+		<image src="../../static/imageC/qianbao.png" class="icon-a"></image>
+		<!-- <text class='iconfont icon-qiandai text-1'></text> -->
+		<text class='text-2'>工资信息</text>
+		<view class="detail-btn" bindtap="wageDetailThrottleHandle">
+			工资详情 <label style="color: #9B9B9B;">></label>
+		</view>
+	</view>
+	<view class="wage-brief-info">
+		<view class="left">
+			<label class="text-a">
+				本月抵扣费用（元）
+			</label>
+			<label class="text-b">
+				{{deductionMonthSalary}}
+			</label>
+			<label class="text-c">今日抵扣费用 {{todayTheDeductionSalary}}元</label>
+		</view>
+
+		<view class="right">
+			<label class="text-a">
+				本月累计工资（元）
+			</label>
+			<label class="text-b">
+				{{monthlySalary}}
+			</label>
+      <view class="wages">
+        <label class="label-a">今日工资</label>
+        <label class="label-b">{{todayTheSalary}}</label>
+      </view>
+      <view class="wages">
+        <label class="label-a">昨日工资</label>
+        <label class="label-b">{{yesterdayTheSalary}}</label>
+      </view>
+		</view>
+	</view>
+</view>

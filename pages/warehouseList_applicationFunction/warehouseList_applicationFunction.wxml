@@ -1,0 +1,22 @@
+<view class='container'>
+  <!-- 搜索框 -->
+  <search_box skipLinks="{{skipLinks}}" searchCondition="{{searchCondition}}" whetherToDisplayAConditionBox="{{whetherToDisplayAConditionBox}}" bind:clearingSearchCallback="clearingSearchCallback" conditionalQueryTitle="{{conditionalQueryTitle}}" ></search_box>
+
+  <!--物料列表-->
+  <view class='module-b'>
+    <block wx:for="{{materialList}}" wx:for-item="materialInfo" wx:for-index="index" wx:key="index">
+      <material-item materialInfo="{{materialInfo}}" bind:callbackAfterDeletion="callbackAfterDeletion"></material-item>
+    </block>
+  </view>
+
+  <!-- 底部操作栏 -->
+  <view class="footBtn">
+  <span class="button" bindtap="onAddBtnClick">添加物料</span>
+</view>
+
+  <!-- 弹回顶部 -->
+  <back-to-top floorstatus="{{floorstatus}}"></back-to-top>
+
+  <!-- loading遮罩 -->
+  <loading wx:if="{{isRequestIng}}"></loading>
+</view>

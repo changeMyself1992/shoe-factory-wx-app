@@ -1,0 +1,53 @@
+<!--pages/warehouseImportAndExportDetail/warehouseImportAndExportDetail.wxml-->
+<view class='container'>
+  <view class='row-1'>
+    <view class="title">物料基本信息</view>
+    <view class="form-item">
+      <view class="key">材料类型</view>
+      <input cursor-spacing="50" class="value disabled" value="{{importAndExportDetailInfo.tags['材料类型']}}" disabled />
+    </view>
+    <view class="form-item">
+      <view class="key">材质</view>
+      <input cursor-spacing="50" class="value disabled" value="{{importAndExportDetailInfo.tags['材质']}}" disabled />
+    </view>
+    <view class="form-item">
+      <view class="key">颜色</view>
+      <input cursor-spacing="50" class="value disabled" value="{{importAndExportDetailInfo.tags['颜色']}}" disabled />
+    </view>
+    <view class="form-item">
+      <view class="key">物料名称</view>
+      <input cursor-spacing="50" class="value disabled" value="{{importAndExportDetailInfo.tags['物料名称']}}" disabled />
+    </view>
+    <view class="form-item">
+      <view class="key">物料编号</view>
+      <input cursor-spacing="50" class="value disabled" value="{{importAndExportDetailInfo['物料编号']}}" disabled />
+    </view>
+    <view class="form-item">
+      <view class="key">单位</view>
+      <input cursor-spacing="50" class="value disabled" value="{{importAndExportDetailInfo['单位']}}" disabled />
+    </view>
+  </view>
+  <view class='row-1'>
+    <view class="title">{{type=='import'?'入':'出'}}库基本信息</view>
+    <view class="form-item">
+      <view class="key">{{type=='import'?'入':'出'}}库前数量</view>
+      <input cursor-spacing="50" class="value disabled" value="{{importAndExportDetailInfo['变更前仓库数量']}}" disabled />
+    </view>
+    <view class="form-item">
+      <view class="key">添加数量</view>
+      <input cursor-spacing="50" class="value disabled" value="{{importAndExportDetailInfo['该物料变更数量']}}" disabled />
+    </view>
+    <view class="form-item">
+      <view class="key">{{type=='import'?'入':'出'}}库时间</view>
+      <input cursor-spacing="50" class="value disabled" value="{{importAndExportDetailInfo['事件时间']}}" disabled />
+    </view>
+    <view class="form-item">
+      <view class="key">登记员</view>
+      <input cursor-spacing="50" class="value disabled" value="{{importAndExportDetailInfo['登记员']}}" disabled />
+    </view>
+    <view class="form-item">
+      <view class="key">备注</view>
+      <input cursor-spacing="50" class="value disabled" value="{{importAndExportDetailInfo['备注']}}" disabled />
+    </view>
+  </view>
+</view>

@@ -1,0 +1,311 @@
+<!--404无任何权限显示该样式-->
+<view wx:if="{{whetherToDisplay404}}" class="not-jurisdiction">
+	<image class="icon" src="../../static/imageC/notJurisdiction.png" mode="widthFix" />
+	<text>您没有任何数据看板的权限请联系管理员</text>
+</view>
+
+<view wx:else class="page1">
+	<!-- 数据 -->
+	<view class="data" wx:if="{{profits}}">
+		<view class="data-btn">
+			<view class="{{cur==1?'dataBtnOn':'dataBtnOff'}}" bindtap="onItemClick" data-cur="1">日收益</view>
+			<view class="{{cur==2?'dataBtnOn':'dataBtnOff'}}" bindtap="onItemClick" data-cur="2">月收益</view>
+			<view class="{{cur==3?'dataBtnOn':'dataBtnOff'}}" bindtap="onItemClick" data-cur="3">年收益</view>
+		</view>
+
+		<view class="num">{{cur==1?getDayProfits['日收益金额']:(cur==2?getDayProfits['月收益金额']:getDayProfits['年收益金额'])}}</view>
+		<view class="update">更新于:{{profitsUpdate}}</view>
+		<view class="detail">
+			<view class="detail-item">
+				<view>订单收入
+					<text>{{getDayProfits['订单收入']}}</text>
+				</view>
+				<view>采购支出
+					<text>{{getDayProfits['采购支出']}}</text>
+				</view>
+			</view>
+			<view class="detail-item">
+				<view>工资支出
+					<text>{{getDayProfits['工资支出']}}</text>
+				</view>
+				<view>其他支出
+					<text>{{getDayProfits['其他支出']}}</text>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view wx:if="{{profits}}" class="card-view-a1">
+		<ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec_line_a }}"></ec-canvas>
+	</view>
+	<view class='container'>
+		<!-- 数据 -->
+		
+		<view class='salary-information-card'>
+      <!--工资信息卡片-->
+			<wage-info wx:if="{{staffSelfMoney}}" id="wage-info" salaryInformation="{{salaryInformation}}"></wage-info>
+      <!-- 部门工资详情列表 -->
+      <process-department-info-located-in-the-dataKanban wx:if="{{partData}}" id="process-department-info-located-in-the-dataKanban" />
+		</view>
+		
+
+		<!--产量折线图和工序圆形进度-->
+		<view wx:if="{{productOrder}}" class="card-view-a">
+			<view class="title scdd">
+				<view style="font-size:30rpx;">产量统计
+					<text style="font-size:24rpx;" class="updateshow">(更新于：{{productUpdate}})</text>
+				</view>
+				<view style="font-size:24rpx;" bindtap="notOpen">查看全部
+					<text class="updateshow1">></text>
+				</view>
+			</view>
+			<view class="card">
+				<view class="card-item borderright {{scddcur==1?'on':'off'}}" bindtap="scddClick" data-scddcur="1">
+					<view>日产量(件)</view>
+					<view>{{getProductNoteTHISDAY}}</view>
+				</view>
+				<view class="card-item borderright {{scddcur==2?'on':'off'}}" bindtap="scddClick" data-scddcur="2">
+					<view>月产量(件)</view>
+					<view>{{getProductNoteTHISMONTH}}</view>
+				</view>
+				<view class="card-item {{scddcur==3?'on':'off'}}" bindtap="scddClick" data-scddcur="3">
+					<view>年产量(件)</view>
+					<view>{{getProductNoteTHISYEAR}}</view>
+				</view>
+			</view>
+			<ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ec_line_a }}"></ec-canvas>
+			<!-- <view class="ring-box">
+				<block wx:for="{{newProcessGetProductNote}}" wx:for-item="c_val" wx:for-index="index" wx:key="index">
+					<view class="ring">
+						<canvas-ring id="canvasRing" value="{{c_val['工序完成进度']}}" title="{{c_val.title}}" canvasWidth="{{c_val.canvasWidth}}" lineColor="{{c_val.lineColor}}" valueColor="{{c_val.valueColor}}" lineWidth="{{c_val.lineWidth}}" />
+						<label class="process-name">{{c_val['工序名称']}}</label>
+						<label class="id">{{c_val['生产单编号']}}</label>
+					</view>
+				</block>
+			</view> -->
+		</view>
+
+		<!--销售订单模块-->
+		<view wx:if="{{sellOrder}}" class="card-view-a">
+			<view class="title xsdd">
+				<view style="font-size:30rpx;">销售额统计
+					<text style="font-size:24rpx;" class="updateshow">(更新于：{{sellUpdate}})</text>
+				</view>
+				<view style="font-size:24rpx;" bindtap="notOpen">查看全部
+					<text class="updateshow1">></text>
+				</view>
+			</view>
+			<view class="card">
+				<view class="card-item borderright {{xsddcur==1?'on':'off'}}" bindtap="xsddClick" data-xsddcur="1">
+					<view>当日销售额(元)</view>
+					<view>{{getOrderNoteTHISDAY}}</view>
+				</view>
+				<view class="card-item borderright {{xsddcur==2?'on':'off'}}" bindtap="xsddClick" data-xsddcur="2">
+					<view>月销售额(元)</view>
+					<view>{{getOrderNoteTHISMONTH}}</view>
+				</view>
+				<view class="card-item {{xsddcur==3?'on':'off'}}" bindtap="xsddClick" data-xsddcur="3">
+					<view>年销售额(元)</view>
+					<view>{{getOrderNoteTHISYEAR}}</view>
+				</view>
+			</view>
+			<ec-canvas id="mychart-dom-bar1" canvas-id="mychart-bar" ec="{{ ec_line_a }}"></ec-canvas>
+			<view class="hot-sale"></view>
+		</view>
+
+		<!--本月热销产品模块-->
+		<view wx:if="{{hotProduct}}" class="card-view-a">
+			<view style="color:#06258B;padding:10rpx;">本月热销产品</view>
+			<view class="hot" wx:if="{{hotSellOne}}">
+				<view class="hot-img">
+					<image src="/static/imageC/1@2x.png"></image>
+				</view>
+				<view class="hot-txt">
+					<view class="shu"> </view>
+					<view class="hot-item1">{{hotSellOne['产品名称']}} <text style="font-size:24rpx"> 销量:{{hotSellOne['销售额']}}</text></view>
+					<view class="hot-item2">
+						<text>{{hotSellOne['楦型']}}-{{hotSellOne['款号']}}</text>
+						<text>{{hotSellOne['材质']}}|{{hotSellOne['颜色']}}</text>
+					</view>
+				</view>
+			</view>
+			<view class="hot" wx:if="{{hotSellTwo}}">
+				<view class="hot-txt">
+					<view class="shu"> </view>
+					<view class="hot-item1">{{hotSellTwo['产品名称']}} <text style="font-size:24rpx"> 销量:{{hotSellTwo['销售额']}}</text></view>
+					<view class="hot-item2">
+						<text>{{hotSellTwo['楦型']}}-{{hotSellTwo['款号']}}</text>
+						<text>{{hotSellTwo['材质']}}|{{hotSellTwo['颜色']}}</text>
+					</view>
+				</view>
+				<view class="hot-img">
+					<image style="margin-left:10rpx;" src="/static/imageC/2@2x.png"></image>
+				</view>
+			</view>
+			<view class="hot" wx:if="{{hotSellThree}}">
+				<view class="hot-img">
+					<image src="/static/imageC/3@2x.png"></image>
+				</view>
+				<view class="hot-txt">
+					<view class="shu"> </view>
+					<view class="hot-item1">{{hotSellThree['产品名称']}} <text style="font-size:24rpx"> 销量:{{hotSellThree['销售额']}}</text></view>
+					<view class="hot-item2">
+						<text>{{hotSellThree['楦型']}}-{{hotSellThree['款号']}}</text>
+						<text>{{hotSellThree['材质']}}|{{hotSellThree['颜色']}}</text>
+					</view>
+				</view>
+			</view>
+		</view>
+		<!-- 客户统计 -->
+		<view wx:if="{{hotCustom}}" class="card-view-a">
+			<view class="title khtj">
+				<view style="font-size:30rpx;">热销客户</view>
+				<view style="font-size:24rpx;" bindtap="notOpen">查看全部
+					<text class="updateshow1">></text>
+				</view>
+			</view>
+			<view class="oneone">
+				<view style="color:#06258B;padding:10rpx">本月热销客户</view>
+				<view class="one">
+					<view class="shu"> </view>
+					<image src="/static/imageC/1@2x.png"></image>
+					<view class="txt">{{(!hotCustomerOne||hotCustomerOne=='')?'暂无':hotCustomerOne}} <text style="font-size:24rpx"> 销量:{{hotCustomerOneMoney}}</text></view>
+				</view>
+			</view>
+			<view class="twothree">
+				<view class="two">
+					<view class="shu"> </view>
+					<image src="/static/imageC/2@2x.png"></image>
+					<view class="txt">{{(!hotCustomerTwo||hotCustomerTwo=='')?'暂无':hotCustomerTwo}} <text style="font-size:24rpx"> 销量:{{hotCustomerTwoMoney}}</text></view>
+				</view>
+				<view class="zzz"> </view>
+				<view class="three">
+					<view class="shu"> </view>
+					<image src="/static/imageC/3@2x.png"></image>
+					<view class="txt">{{(!hotCustomerThree||hotCustomerThree=='')?'暂无':hotCustomerThree}} <text style="font-size:24rpx"> 销量:{{hotCustomerThreeMoney}}</text></view>
+				</view>
+			</view>
+		</view>
+		<!--折线图-->
+		<view wx:if="{{supplierPurchases}}" class="card-view-a">
+			<view class="title xsdd">
+				<view style="font-size:30rpx;">采购统计
+					<text style="font-size:24rpx;" class="updateshow">(更新于：{{suppPurUpdate}})</text>
+				</view>
+				<view style="font-size:24rpx;" bindtap="notOpen">查看全部
+					<text class="updateshow1">></text>
+				</view>
+			</view>
+			<view class="card">
+				<view class="card-item borderright {{cggycur==1?'on':'off'}}" bindtap="cggyClick" data-cggycur="1">
+					<view>当日采购额(元)</view>
+					<view>{{thisDayPurchasesMoney}}</view>
+				</view>
+				<view class="card-item borderright {{cggycur==2?'on':'off'}}" bindtap="cggyClick" data-cggycur="2">
+					<view>月采购额(元)</view>
+					<view>{{thisMonthPurchasesMoney}}</view>
+				</view>
+				<view class="card-item {{cggycur==3?'on':'off'}}" bindtap="cggyClick" data-cggycur="3">
+					<view>年采购额(元)</view>
+					<view>{{thisYearPurchasesMoney}}</view>
+				</view>
+			</view>
+			<ec-canvas id="mychart-dom-smoothline" canvas-id="mychart-line" ec="{{ ec_line_a }}"></ec-canvas>
+		</view>
+
+
+		<!--圆环图-->
+		<view wx:if="{{supplierStatements}}" class="card-view-a">
+			<view class="title gysjs" style="padding:10rpx;">
+				<view style="font-size:30rpx;">供应商结算
+					<text style="font-size:24rpx;" class="updateshow">(更新于：{{suppStateUpdate}})</text>
+				</view>
+				<view style="font-size:24rpx;" bindtap="notOpen">查看全部
+					<text class="updateshow1">></text>
+				</view>
+			</view>
+			<view class="posi">
+				<ec-canvas id="mychart-dom-pie" canvas-id="mychart-pie" ec="{{ ec_line_a }}"></ec-canvas>
+				<cover-view class="sumTitle">
+					<cover-view class="txt">本月结算额</cover-view>
+					<cover-view class="sum">{{thisMonthsupplierMoney}}</cover-view>
+				</cover-view>
+				<view wx:if="{{pieSupplierStatementsInfo.length>0}}" class="detail-pie">
+					<view class="item-pie" wx:for="{{pieSupplierStatementsInfo}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+						<view>
+							<text wx:if="{{index==0}}" class="nth nth1"> </text>
+							<text wx:elif="{{index==1}}" class="nth nth2"> </text>
+							<text wx:elif="{{index==2}}" class="nth nth3"> </text>
+							<text wx:else class="nth nth4"> </text>
+							<text class="padl3">{{item['供应商名称']}}</text>
+						</view>
+						<view>
+							<text class="padl2">占比:{{item['排行占比']}}%</text>
+							<text class="padl4">¥{{item['结算总金额']}}</text>
+						</view>
+					</view>
+				</view>
+				<view wx:else class="detail-pie">
+					<view class="item-pie">
+						<view>
+							<text class="nth nth1"> </text>
+							<text class="padl3">暂无</text>
+						</view>
+						<view>
+							<text class="padl2">占比:0</text>
+							<text class="padl4">结算总金额:0</text>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+
+
+		<!-- 仓库统计 -->
+		<view wx:if="{{false}}" class="card-view-a">
+			<view class="cangku title xsdd">仓库统计</view>
+			<view class="kucun">
+				<view class="kucun-item">
+					<view>{{warehouseNum}}</view>
+					<view>库存数量</view>
+				</view>
+				<view class="kucun-item">
+					<image src="/static/imageC/kucun@2x.png"></image>
+					<view style="color:#06258B;">库存查询</view>
+				</view>
+				<view class="kucun-item">
+					<view>{{warehouseMoney}}</view>
+					<view>库存金额</view>
+				</view>
+			</view>
+		</view>
+		<!-- 出入库就统计 -->
+		<view wx:if="{{false}}" class="card-view-a">
+			<view class="title khtj">
+				<view>出入库统计</view>
+				<view bindtap="notOpen">详情></view>
+			</view>
+			<view class="btn">
+				<view class="btn-item">
+					<view class="middle">
+						<view>今日入库</view>
+						<view>¥{{inWarehouse}}</view>
+					</view>
+				</view>
+				<view class="btn-item">
+					<view class="middle">
+						<view>今日出库</view>
+						<view>¥{{outWarehouse}}</view>
+					</view>
+				</view>
+			</view>
+		</view>
+
+
+		<!-- loading遮罩 -->
+		<loading wx:if="{{isRequestIng}}"></loading>
+		<!-- 弹回顶部 -->
+		<back-to-top floorstatus="{{floorstatus}}"></back-to-top>
+
+
+	</view>
+</view>

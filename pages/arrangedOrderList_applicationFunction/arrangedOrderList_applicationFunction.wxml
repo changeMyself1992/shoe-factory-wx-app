@@ -1,0 +1,17 @@
+<view class='container'>
+  <!-- 搜索框 -->
+  <search_box skipLinks="{{skipLinks}}" searchCondition="{{searchCondition}}" whetherToDisplayAConditionBox="{{whetherToDisplayAConditionBox}}" bind:clearingSearchCallback="clearingSearchCallback" conditionalQueryTitle="{{conditionalQueryTitle}}" ></search_box>
+
+  <!--订单列表-->
+  <view class='module-b'>
+    <block wx:for="{{orderList}}" wx:for-item="orderInfo" wx:for-index="index" wx:key="index">
+      <order-item-a orderInfo="{{orderInfo}}"  whetherToShowTheButtonBox="{{true}}"></order-item-a>
+    </block>
+  </view>
+
+  <!-- 弹回顶部 -->
+  <back-to-top floorstatus="{{floorstatus}}"></back-to-top>
+
+  <!-- loading遮罩 -->
+  <loading wx:if="{{isRequestIng}}"></loading>
+</view>

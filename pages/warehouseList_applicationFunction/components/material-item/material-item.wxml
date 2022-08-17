@@ -1,0 +1,64 @@
+<view class="box">
+
+  <view class="header">
+    <label class="text-a">{{materialInfo.unique_id}}</label>
+  </view>
+
+  <view class="section">
+
+    <view class="tag-row">
+      <view class='item' wx:for="{{materialInfo['tags']}}" wx:for-item="Value" wx:key="Key" wx:for-index="Key">
+        <text class='key'>{{Key}}：</text>
+        <text class='value'>{{Value}}</text>
+      </view>
+    </view>
+
+    <view class="time-row">
+      <view class='item'>
+        <label class='key'>在库数量：</label>
+        <label class='value'>{{materialInfo['仓库剩余数量']}}</label>
+      </view>
+      <view class='item'>
+        <label class='key'>多余数量：</label>
+        <label class='value'>{{materialInfo['仓库多余数量']}}</label>
+      </view>
+      <view class='item'>
+        <label class='key'>缺少数量：</label>
+        <label class='value'>{{materialInfo['仓库缺少数量']}}</label>
+      </view>
+      <view class='item'>
+        <label class='key'>生产单已使用总数量：</label>
+        <label class='value'>{{materialInfo['生产单已使用总数量']}}</label>
+      </view>
+      <view class='item'>
+        <label class='key'>生产单已领取总数量：</label>
+        <label class='value'>{{materialInfo['生产单已领取总数量']}}</label>
+      </view>
+      <view class='item'>
+        <label class='key'>采购单预采购总数量：</label>
+        <label class='value'>{{materialInfo['采购单预采购总数量']}}</label>
+      </view>
+      <view class='item'>
+        <label class='key'>单位：</label>
+        <label class='value'>{{materialInfo['单位']}}</label>
+      </view>
+      <view class='item item-100'>
+        <label class='key'>更新时间：</label>
+        <label class='value'>{{materialInfo['更新时间']}}</label>
+      </view>
+    </view>
+
+  </view>
+
+  <view class="footer">
+    <button class="btn-reject" type="warn" bindtap="onRejectBtnClick">删除</button>
+    <button class="btn-consent" type="primary" bindtap="onLookBtnClick">查看</button>
+    <button class="btn-consent" type="primary" bindtap="onEditBtnClick">编辑</button>
+    <!-- <button class="btn-consent" type="primary" bindtap="onCopyAddBtnClick">复制添加</button> -->
+    <!-- <button class="btn-consent" type="primary" bindtap="onAddBtnClick">添加</button> -->
+  </view>
+
+
+  <!-- loading遮罩 -->
+  <loading wx:if="{{isRequestIng}}"></loading>
+</view>

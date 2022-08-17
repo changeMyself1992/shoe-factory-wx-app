@@ -1,0 +1,53 @@
+<view class='container'>
+
+	<form class="login-box" bindsubmit="formSubmitThrottleHandle">
+
+		<view class="modul-a">
+			<view class="title">快速登录</view>
+			<button wx:if="{{weChartPhoneNumber}}" class='weChat-login-btn' type="primary">
+				当前手机号：{{weChartPhoneNumber}}
+			</button>
+			<button wx:else class='weChat-login-btn' type="primary" open-type="getPhoneNumber" bindgetphonenumber="getTheWechatPhoneNumber">
+				授权微信手机号一键登录
+			</button>
+			
+		</view>
+
+
+		<view class="card">
+			<label class="card-title">或使用手机验证码登录</label>
+			<!-- 手机号 -->
+			<input class='phone' cursor-spacing="50" class='phone' name="手机号" type='number' placeholder='请输入手机号' value="{{form['手机号']}}" maxlength='11' bindinput="onPhoneInput"></input>
+
+			<!-- 验证码 -->
+			<view class='phoneCode'>
+				<input cursor-spacing="50" name="验证码" type="number" placeholder='请输入验证码' value="{{form['验证码']}}" maxlength='4' bindinput="onPhoneCodeInput"></input>
+				<button class="{{isPhoneCodeDisabled?'phoneCodeBtn cooling':'phoneCodeBtn'}}" type="number" bindtap='onGetPhoneCode'>
+					{{time?time:'获取验证码'}}
+				</button>
+			</view>
+
+			<!--企业列表-->
+			<view wx:if="{{selectWhetherTheEnterpriseModuleIsDisplayed}}" class='enterprises-list'>
+				<radio-group bindchange="checkboxChange" class="radio-group">
+					<label class="checkbox" wx:for="{{enterprises}}" wx:for-item="item" wx:key="index" wx:for-index="index">
+						<radio class="radio" value="{{index}}" checked="{{item.checked}}" />
+						<text class='name'>{{item.name}}</text>
+					</label>
+				</radio-group>
+			</view>
+			<!--登录-->
+			<button wx-if="{{whetherTheLoginButtonIsDisplayed}}" form-type="submit" class='verifyBtn'>
+				登录
+			</button>
+		</view>
+
+	</form>
+
+	<!-- <button bindtap='registrationTrial'>注册试用</button> -->
+	<view class="des">此程序为工厂内部使用，若无账号，请联系管理员注册账号登录使用。</view>
+
+
+	<!-- loading遮罩 -->
+	<loading wx:if="{{isRequestIng}}"></loading>
+</view>

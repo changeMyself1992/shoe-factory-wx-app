@@ -1,0 +1,47 @@
+<!--pages/supplierPriceList/supplierPriceList.wxml-->
+<view class='container'>
+  <!-- 搜索框 -->
+  <!-- <search_box skipLinks="{{skipLinks}}" searchCondition="{{searchCondition}}" whetherToDisplayAConditionBox="{{whetherToDisplayAConditionBox}}" bind:clearingSearchCallback="clearingSearchCallback" conditionalQueryTitle="{{conditionalQueryTitle}}" ></search_box> -->
+  <!--列表-->
+  <view class='row-1'>
+    <view class="title">
+      <view>供应商基本信息</view>
+    </view>
+    <view class="item-a">
+      <text class='key'>供应商名称：</text>
+      <input cursor-spacing="50" disabled class="value disabled" value="{{supplierinfodata['名称']}}" />
+    </view>
+    <view class="item-a">
+      <text class='key'>供应商地址：</text>
+      <input cursor-spacing="50" disabled class="value disabled" value="{{supplierinfodata['地址']}}" />
+    </view>
+    <view class="item-a">
+      <text class='key'>联系电话：</text>
+      <input cursor-spacing="50" disabled class="value disabled" value="{{supplierinfodata['联系电话']}}" />
+    </view>
+    <view class="item-a">
+      <text class='key'>供应商备注：</text>
+      <input cursor-spacing="50" disabled class="value disabled" value="{{supplierinfodata['备注']}}" />
+    </view>
+    <view class="item-a">
+      <text class='key'>更新时间：</text>
+      <input cursor-spacing="50" disabled class="value disabled" value="{{supplierinfodata['更新时间']}}" />
+    </view>
+  </view>
+  <view class='row-1'>
+    <view class="title">
+      <view>供应商报价单列表</view>
+    </view>
+  </view>
+
+    <view class='module-b'>
+      <block wx:for="{{suplierList}}" wx:for-item="info" wx:for-index="index" wx:key="index">
+        <item info="{{info}}" bind:callbackAfterDeletion="callbackAfterDeletion"></item>
+      </block>
+    </view>
+  <!-- 弹回顶部 -->
+  <back-to-top floorstatus="{{floorstatus}}"></back-to-top>
+
+  <!-- loading遮罩 -->
+  <loading wx:if="{{isRequestIng}}"></loading>
+</view>

@@ -1,0 +1,38 @@
+.key {
+  font-size: 26rpx;
+}
+
+.row-1 {
+  border-bottom: none;
+}
+
+.row-1 .title {
+  margin-bottom: 0;
+}
+
+.form-item {
+  height: 70rpx;
+}
+
+.form-item .key {
+  line-height: 60rpx;
+}
+
+.form-item .value {
+  width: 400rpx;
+  line-height: 60rpx;
+}
+.form-item.textarea{
+  height: 120rpx;
+}
+.form-item.textarea .value{
+  padding: 0;
+}
+
+.btn-area {
+
+}
+
+.btn-area button {
+
+}

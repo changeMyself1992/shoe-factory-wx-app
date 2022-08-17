@@ -1,0 +1,16 @@
+.key {
+  font-size: 26rpx;
+}
+
+.form-item {
+  padding: 5rpx 0;
+  height: auto;
+}
+
+.row-1 {
+  border-bottom: none;
+}
+
+.row-1 .item-a .radio {
+  margin-left: 20rpx;
+}

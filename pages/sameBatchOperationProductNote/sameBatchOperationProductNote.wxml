@@ -1,0 +1,105 @@
+<view class='container'>
+  <!-- 生产单子基本信息 -->
+  <view class='personal-info'>
+    <view class='title'>
+      <text class='text-2'>总计{{productNoteList.length}}个生产单</text>
+    </view>
+
+    <view class='info'>
+      <!-- 生产单图片 -->
+      <view class='row-2'>
+        <view class='item-1'>产品基本信息</view>
+
+        <view class='item'>
+          <text class='key'>产品编号:</text>
+          <text class='value'>{{productDetail['产品编号']}}</text>
+        </view>
+
+        <view class='item'>
+          <text class='key'>客户产品编号:</text>
+          <text class='value'>{{customerProductNumber}}</text>
+        </view>
+
+        <view class='item'>
+          <text class='key'>品牌:</text>
+          <text class='value'>{{brand}}</text>
+        </view>
+
+        <view class='item' wx:for="{{productDetail['tags']}}" wx:for-item="value" wx:for-index="key" wx:key="key">
+          <text class='key'>{{key}}:</text>
+          <text class='value'>{{value}}</text>
+        </view>
+
+
+      </view>
+
+      <view class='row-2'>
+        <view class='item-1'>对应订单基本信息</view>
+
+        <view class='item'>
+          <text class='key'>订单编号:</text>
+          <text class='value'>{{orderDetail['订单编号']}}</text>
+        </view>
+
+        <view class='item'>
+          <text class='key'>订单日期:</text>
+          <text class='value'>{{orderDetail['订单日期']}}</text>
+        </view>
+
+        <view class='item'>
+          <text class='key'>交货日期:</text>
+          <text class='value'>{{orderDetail['交货日期']}}</text>
+        </view>
+      </view>
+
+    </view>
+  </view>
+
+
+
+  <form bindsubmit="formSubmitThrottleHandle">
+
+    <view class="section">
+      <checkbox-group name="全部选中的生产单号" bindchange="checkboxChange">
+        <block wx:for="{{productNoteList}}" wx:for-item="productNote" wx:for-index="index" wx:key="index">
+          <view class='product-note-item'>
+            <view class="row-a">
+              <checkbox class="check-box" value="{{productNote['生产单编号']}}" checked="{{productNote.checked}}" disabled="{{productNote['实际完成排产数']>=productNote['总排产数']}}" />
+              <view class="item-1">
+                <text class='key'>生产单编号：</text>
+                <text class='value'>{{productNote['生产单编号']}}</text>
+              </view>
+            </view>
+
+
+            <view class="item-2">
+              <text class='key'>总排产数：</text>
+              <text class='value'>{{productNote['总排产数']}}</text>
+            </view>
+
+            <view class="item-2">
+              <text class='key'>生产单日期：</text>
+              <text class='value'>{{productNote['生产单日期']}}</text>
+            </view>
+
+          </view>
+        </block>
+      </checkbox-group>
+    </view>
+
+
+    <view class="btn-box">
+      <button bindtap="futureGenerationsToSwitch">
+       <icon wx:if="{{allSwitct}}" type="success" size="20"/>
+      一键全选
+      </button>
+      <button form-type="submit" type="primary">下一步(合并计件)</button>
+    </view>
+  </form>
+
+
+<!-- loading遮罩 -->
+<loading wx:if="{{isRequestIng}}"></loading>
+<!--回到首页按钮-->
+<back-to-main position="{{positionStr}}" tabBarUrl="{{tabBarUrl}}"></back-to-main>
+</view>

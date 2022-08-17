@@ -1,0 +1,216 @@
+<!--订单操作页 添加，编辑，查看-->
+<view class='container'>
+	<form wx:if="{{form}}" bindsubmit="formSubmitHandle" bindreset="formReset">
+		<view class='row-1'>
+			<view class="title">订单基本信息</view>
+			<view class="item-a" wx:for="{{form['tags']}}" wx:for-item="index" wx:key="index" wx:for-index="tagKey">
+				<text class='key'>{{tagKey}}：</text>
+				<input cursor-spacing="50" class="value {{mode==='lookOver'?'disabled':form['订单状态']==='新订单'?'':'disabled'}}" type="text" data-tagname="{{tagKey}}" value="{{form['tags'][tagKey]}}" bindfocus="onFocusOrderTag" bindinput="orderDebouncedHandleSearch" bindblur="onBlurOrderTag" disabled="{{mode==='lookOver'?true:form['订单状态']==='新订单'?false:true}}" />
+
+				<view wx-if='{{orderTagKeyFocus===tagKey}}' class="suggest-value-list">
+					<view class="suggestion-box">
+						<scroll-view scroll-y="{{true}}" style="height: 200rpx;">
+							<view class='tag' wx:for="{{order_suggest_value_list}}" wx:for-item="tagValue" wx:key="index" wx:for-index="index" catchtap="onOrderTagValueSelect" data-tagname="{{tagKey}}" data-tagvalue="{{tagValue}}">{{tagValue}}</view>
+						</scroll-view>
+					</view>
+				</view>
+			</view>
+		</view>
+
+		<view class="form-item" bindtap="onTap">
+			<view class="key">订单编号</view>
+			<input cursor-spacing="50" class="value disabled" name="订单编号" value="{{form['订单编号']}}" placeholder="编号自动生成" disabled />
+		</view>
+
+		<view class="form-item">
+			<view class="key">客户信息</view>
+			<picker class="value {{mode==='lookOver'?'disabled':form['订单状态']==='新订单'?'':'disabled'}}" mode="selector" name="客户索引" value="{{clientIndex}}" range="{{clientOptions}}" bindchange="bindPickerChangeClient" disabled="{{mode==='lookOver'?true:form['订单状态']==='新订单'?false:true}}" bindtap="onTap">
+				<label class="value-label">
+					{{clientOptions[clientIndex]}}
+					<text class="deletedate"
+          wx:if="{{clientIndex!==-1&&mode!=='lookOver'&&form['订单状态']==='新订单'}}" catchtap="deletecustompicker">X</text>
+				</label>
+				<label class="select-des">请选择 ></label>
+			</picker>
+		</view>
+
+		<view class="form-item">
+			<view class="key">
+				<label class="xin">* </label>
+				订单日期
+			</view>
+			<picker class="value {{mode==='lookOver'?'disabled':form['订单状态']==='新订单'?'':'disabled'}}" mode="date" name='订单日期' value="{{form['订单日期']}}" id="订单日期" bindchange="bindDateChange" disabled="{{mode==='lookOver'?true:form['订单状态']==='新订单'?false:true}}" bindtap="onTap">
+				<label class="value-label">{{form['订单日期']}}</label>
+				<text class='iconfont icon-13 select-icon'></text>
+			</picker>
+		</view>
+
+		<view class="form-item">
+			<view class="key">
+				<label class="xin">* </label>
+				交货日期
+			</view>
+			<picker class="value {{mode==='lookOver'?'disabled':form['订单状态']==='新订单'?'':'disabled'}}" mode="date" name='交货日期' value="{{form['交货日期']}}" id="交货日期" bindchange="bindDateChange" disabled="{{mode==='lookOver'?true:form['订单状态']==='新订单'?false:true}}" bindtap="onTap">
+				<label class="value-label"> {{form['交货日期']}}</label>
+				<text class='iconfont icon-13 select-icon'></text>
+			</picker>
+		</view>
+
+		<view class="form-item" bindtap="onTap">
+			<view class="key">订单状态</view>
+			<picker class="value disabled" mode="selector" name="订单状态索引" value="{{orderStatusIndex}}" range="{{orderOptions}}" bindchange="bindPickerChangeOrderStatus" disabled>
+				<label class="value-label">{{orderOptions[orderStatusIndex]}}</label>
+				<label class="select-des">请选择 ></label>
+			</picker>
+		</view>
+
+		<view class="form-item textarea">
+			<view class="key">订单备注</view>
+			<textarea class="value {{mode==='lookOver'?'disabled':''}}" name="订单备注" placeholder="请输入备注" value="{{form['订单备注']}}" disabled="{{mode==='lookOver'}}" bindtap="onTap" bindtap="onTap" />
+			</view>
+
+    <view class="form-item upload">
+      <view class="key">上传纸质订单</view>
+      <view class="value upload">
+        <button type='primary' size="mini" id="paperOrders" bindtap="uploadImage" disabled="{{mode==='lookOver'}}">上传纸质订单</button>
+      </view>
+      <view wx:if="{{form['上传图片列表'][0]}}" class='id-card-front-photo'>
+        <image class="card-photo" src="{{form['上传图片列表'][0]}}" mode="aspectFit" id="上传纸质订单" bindtap="previewImage"></image>
+      </view>
+    </view>
+
+    <view class="form-item upload">
+      <view class="key">上传样品图片</view>
+      <view class="value upload">
+        <button type='primary' size="mini" id="theSampleImages" bindtap="uploadImage" disabled="{{mode==='lookOver'}}">上传样品图片</button>
+      </view>
+      <view wx:if="{{form['上传图片列表'][1]}}" class='id-card-front-photo'>
+        <image class="card-photo" src="{{form['上传图片列表'][1]}}" mode="aspectFit" id="上传样品图片" bindtap="previewImage"></image>
+      </view>
+    </view>
+
+    <view class='row-2'>
+      <view class="header">
+        <label class="des">订单包含的产品列表</label>
+      </view>
+
+      <!--包含的产品列表模块-->
+      <view class="product-box" wx:for="{{productList}}" wx:for-item="product" wx:key="index" wx:for-index="index">
+        <!--产品编号-->
+        <view class="form-item first" bindtap="onTap">
+          <view class="key">产品编号</view>
+          <input cursor-spacing="50" class="value disabled" value="{{product['产品信息']['产品编号']}}" placeholder="编号自动生成" disabled/>
+          <button  class="btn-reject" type="warn" data-curOperationProcutIndex="{{index}}"
+           bindtap="removeProductFromOrder"  disabled="{{mode==='lookOver'?true:form['订单状态']==='新订单'?false:true}}">删除</button>
+
+           <button class="btn-productDetail" type="warn" bindtap="viewProductDetail" data-id="{{product['产品信息']['unique_id']}}">产品详情</button>
+        </view>
+
+        <!--产品标签-->
+        <view class="item-a" wx:for="{{product['产品信息']['tags']}}" wx:for-item="index_a" wx:key="index_a" wx:for-index="tagKey">
+          <text class='key'>{{tagKey}}：</text>
+          <input cursor-spacing="50" class="value {{mode==='lookOver'?'disabled':form['订单状态']==='新订单'?'':'disabled'}}" type="text" data-tagname="{{tagKey}}" data-tags="{{product['产品信息']['tags']}}" data-curOperationProcutIndex="{{index}}" value="{{product['产品信息']['tags'][tagKey]}}" bindfocus="onFocusProductTag" bindinput="productDebouncedHandleSearch"
+            disabled="{{mode==='lookOver'?true:form['订单状态']==='新订单'?false:true}}" />
+          <view wx-if='{{productTagKeyFocus===tagKey &&curOperationProcutIndex===index}}' class="suggest-value-list">
+            <view class="suggestion-box">
+              <scroll-view scroll-y="{{true}}" style="height: 200rpx;">
+                <view class='tag' wx:for="{{product_suggest_value_list}}" wx:for-item="tagValue" wx:key="index" wx:for-index="index" catchtap="onProductTagValueSelect" data-tagname="{{tagKey}}" data-tagvalue="{{tagValue}}">{{tagValue}}</view>
+              </scroll-view>
+            </view>
+          </view>
+        </view>
+
+        <view style="width:100%; border-bottom: 2rpx solid #ccc;"></view>
+
+        <view class="item-a" style="margin-top:20rpx;">
+          <text class='key'>品牌：</text>
+          <input cursor-spacing="50" class="value {{mode==='lookOver'?'disabled':form['订单状态']==='新订单'?'':'disabled'}}" type="text" id="品牌" data-curOperationProcutIndex="{{index}}" value="{{product['品牌']}}" bindinput="onInputBrand" bindfocus="onFocusBrand" bindblur="onBlurBrand" 
+          disabled="{{mode==='lookOver'?true:form['订单状态']==='新订单'?false:true}}" />
+          <view wx-if='{{brandFocus && curOperationProcutIndex===index}}' class="suggest-value-list">
+            <view class="suggestion-box">
+              <scroll-view scroll-y="{{true}}" style="height: 200rpx;">
+                <view class='tag' wx:for="{{brands}}" wx:for-item="item" wx:key="index" wx:for-index="index" data-brand="{{item}}" catchtap="onBrandSelect">{{item}}</view>
+              </scroll-view>
+            </view>
+          </view>
+        </view>
+
+        <view class="item-a" style="margin-top:20rpx;">
+          <text class='key'>客户产品编号：</text>
+          <input cursor-spacing="50" class="value {{mode==='lookOver'?'disabled':form['订单状态']==='新订单'?'':'disabled'}}" type="text" id="客户产品编号" data-curOperationProcutIndex="{{index}}" value="{{product['客户产品编号']}}" bindblur="onBlurCustomerProductNumber" bindtap="onTap" 
+          disabled="{{mode==='lookOver'?true:form['订单状态']==='新订单'?false:true}}"/>
+        </view>
+
+        <!--配码数量(下拉列表)-->
+        <view class="kind-list__item">
+          <view class="weui-flex kind-list__item-hd {{product['配码数量是否展开'] ? 'kind-list__item-hd_show' : ''}}" data-curOperationProcutIndex="{{index}}" bindtap="kindToggle">
+            <view class="weui-flex__item">配码数量展开</view>
+            <view class="weui-flex__item">总数：{{product['配码数量']['总数']}}</view>
+            <image class="kind-list__img" src="{{product['配码数量是否展开']?'../../static/imageC/arrow_down.png':'../../static/imageC/arrow_up.png'}}" />
+          </view>
+          <view class="kind-list__item-bd {{product['配码数量是否展开'] ? 'kind-list__item-bd_show' : ''}}">
+            <view class="weui-cells {{product['配码数量是否展开'] ? 'weui-cells_show' : ''}}">
+              <!--下拉列表内容-->
+              <view class='table'>
+                <view class="tr header">
+                  <view class="th item-1">尺码</view>
+                  <view class="th item-2">数量</view>
+                  <view class="th item-3">尺码</view>
+                  <view class="th item-4">数量</view>
+                </view>
+
+                <view class="body">
+                  <block wx:for="{{product['配码数量']['配码']}}" wx:for-item="peima" wx:for-index="index_b" wx:key="index_b">
+                    <view class="tr body">
+                      <view class="td item-1">{{peima['尺码']}}</view>
+                      <view class="td item-2">
+                        <input cursor-spacing="50" class="{{mode==='lookOver'?'disabled':form['订单状态']==='新订单'?'':'disabled'}}" type="number" value="{{peima['目标数量']}}" data-curOperationProcutIndex="{{index}}" data-peiMaIndex='{{index_b}}' bindfocus="peiMaFocus" bindblur="codeAfterTheNumberOfEditsCallback" 
+                        disabled="{{mode==='lookOver'?true:form['订单状态']==='新订单'?false:true}}"
+                        />
+                      </view>
+                    </view>
+                  </block>
+                  <view class="tr body">
+                    <view class="td item-1">件数</view>
+                    <view class="td item-2">
+                      <input cursor-spacing="50" class="{{mode==='lookOver'?'disabled':form['订单状态']==='新订单'?'':'disabled'}}" type="number" value="{{product['配码数量']['件数']}}" data-curOperationProcutIndex="{{index}}" bindfocus="numberOfPieceFocus" bindblur="numberOfPieceBlur" 
+                      disabled="{{mode==='lookOver'?true:form['订单状态']==='新订单'?false:true}}" />
+                    </view>
+                  </view>
+                </view>
+
+
+                <view class="tr footer">
+                  <view class="td item-1">总数</view>
+                  <view class="td item-2">{{product['配码数量']['总数']}}</view>
+                </view>
+              </view>
+
+            </view>
+          </view>
+        </view>
+
+      </view>
+
+      <view class="add-product-btn">
+        <button  type="primary" bindtap="addProduct" 
+          disabled="{{mode==='lookOver'?true:form['订单状态']==='新订单'?false:true}}">继续添加产品</button>
+      </view>
+    </view>
+
+    <view class="btn-area">
+      <button wx:if="{{mode!=='lookOver'}}" type="primary" form-type="submit">提交</button>
+      <button wx:if="{{mode!=='lookOver'}}" form-type="reset">重置</button>
+    </view>
+
+  </form>
+
+  <!--回到首页按钮-->
+  <back-to-main position="{{positionStr}}" tabBarUrl="{{tabBarUrl}}"></back-to-main>
+
+  <!-- 弹回顶部 -->
+  <back-to-top floorstatus="{{floorstatus}}"></back-to-top>
+
+  <!-- loading遮罩 -->
+  <loading wx:if="{{isRequestIng}}"></loading>
+</view>

@@ -1,0 +1,61 @@
+<!--pages/personalSetting /personalSetting.wxml-->
+<view class='container'>
+  <view class='personal-info'>
+    <view class='title'>
+      <text class='iconfont icon-gerenxinxi text-1'></text>
+      <text class='text-2'>个人信息</text>
+      <text class='iconfont icon-guanji text-3' bindtap="onLogout"></text>
+    </view>
+    <view class='module-a'>
+      <view class='info-a'>
+        <view class='item'>
+          <text class='left' decode="{{true}}">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名:</text>
+          <view class='right'>{{name}}</view>
+        </view>
+        <view class='item'>
+          <text class='left'>绑定手机号:</text>
+          <view class='right'>{{bindMobilePhoneNumber}}</view>
+        </view>
+        <view class='item'>
+          <text class='left' decode="{{true}}">企&nbsp;业&nbsp;任&nbsp;职:</text>
+          <text class='right'>{{role}}</text>
+        </view>
+      </view>
+
+      <!-- 有头像显示 -->
+      <view wx:if="{{avatar}}" class="avatar">
+        <image class="icon" src="{{avatar}}"></image>
+      </view>
+      <!-- 无头像显示 -->
+      <button wx:else class="avatar" open-type="getUserInfo" bindgetuserinfo="authorizeTheCallback">
+        <image class="icon" src="https://mes.westmatrix.cn/sq.png"></image>
+      </button>
+
+    </view>
+    <view class='module-b'>
+      <radio-group bindchange="checkboxChange" class="radio-group">
+        <label class="checkbox" wx:for="{{enterprises}}" wx:for-item="item" wx:key="index" wx:for-index="index">
+          <radio value="{{index}}" checked="{{item.checked}}" />
+          <text>当前选中的企业：</text>
+          <text class='name'>{{item.name}}</text>
+        </label>
+      </radio-group>
+    </view>
+    <view class='module-c'>
+      <text class="des">当前选中企业的员工注册码</text>
+      <image class='qrCodeForRegistration' id="员工注册码" bindtap="previewImage" src="{{qrCodeForRegistration}}" mode="widthFix"></image>
+    </view>
+    <view class='module-c'>
+      <text class="des">当前选中企业的送货填写码</text>
+      <image class='qrCodeForRegistration' id="送货填写码" bindtap="previewImage" src="{{supplierToEnterTheQrCode}}"></image>
+    </view>
+  </view>
+
+  <!-- loading遮罩 -->
+  <loading wx:if="{{isRequestIng}}"></loading>
+  <!-- 弹回顶部 -->
+  <back-to-top floorstatus="{{floorstatus}}"></back-to-top>
+
+
+</view>
+<text class="banben">0.3.16 </text>

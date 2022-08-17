@@ -1,0 +1,47 @@
+<!--pages/factoryLinkSupplier/factoryLinkSupplier.wxml-->
+<view class='container'>
+  <form bindsubmit="formSubmit">
+    <view class='row-1'>
+      <view class="title">方法①：供应商关联码</view>
+      <view class="item-a1" bindtap="onTap">
+        <image src="{{codeimg}}"></image>
+        <view>(供应商手机扫描该码完成关联)</view>
+      </view>
+    </view>
+    <view class='row-1'>
+      <view class="title">方法②：选择供应商关联</view>
+      <view class="item-a">
+        <text class='key'>供应商名称：</text>
+
+        <input cursor-spacing="50" name="name" class="value" value="{{form['供应商名称']}}" bindfocus="onFocusFactoryName" bindinput="factoryNameDebouncedHandleSearch" />
+        <view wx-if='{{factoryNmaeFocus}}' class="suggest-value-list">
+          <view class="suggestion-box">
+            <scroll-view scroll-y="{{true}}" style="height: 200rpx;">
+              <view class='tag' wx:for="{{factoryInformationList}}" wx:for-item="factory" wx:key="indexA" wx:for-index="indexA" data-factory="{{factory}}" catchtap="onFactoryNameSelect">{{factory['名称']}}</view>
+            </scroll-view>
+          </view>
+        </view>
+
+      </view>
+      <view class="item-a" bindtap="onTap">
+        <text class='key'>供应商电话：</text>
+        <input cursor-spacing="50" class="value disabled" value="{{form['供应商电话']}}" disabled />
+      </view>
+      <view class="item-a" bindtap="onTap">
+        <text class='key'>地址：</text>
+        <input cursor-spacing="50" class="value disabled" value="{{form['地址']}}" disabled />
+      </view>
+      <view class="item-a" bindtap="onTap">
+        <text class='key'>备注：</text>
+        <input cursor-spacing="50" class="value disabled" value="{{form['备注']}}" disabled />
+      </view>
+    </view>
+    <!-- 底部操作栏 -->
+    <view class="footBtn">
+      <span bindtap="back" class="off">返回</span>
+      <span class="tuihuo" bindtap="sureLink">确认关联</span>
+    </view>
+  </form>
+  <!-- loading遮罩 -->
+  <loading wx:if="{{isRequestIng}}"></loading>
+</view>

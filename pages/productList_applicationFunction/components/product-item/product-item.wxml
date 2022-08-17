@@ -1,0 +1,44 @@
+<view class="box">
+
+  <view class="header">
+    <label class="text-a">{{productInfo.unique_id}}</label>
+  </view>
+
+  <view class="section">
+
+    <view class="tag-row">
+      <view class='item' wx:for="{{productInfo['tags']}}" wx:for-item="Value" wx:key="Key" wx:for-index="Key">
+        <text class='key'>{{Key}}：</text>
+        <text class='value'>{{Value}}</text>
+      </view>
+    </view>
+
+    <view class="time-row">
+      <view class='item'>
+        <label class='key'>成本估算：</label>
+        <label class='value'>{{productInfo['成本估算']}}</label>
+      </view>
+      <view class='item item-100'>
+        <label class='key'>更新时间：</label>
+        <label class='value'>{{productInfo['更新时间']}}</label>
+      </view>
+    </view>
+
+  </view>
+
+  <view class="footer">
+    <button class="btn-consent" type="primary" data-employees="{{productInfo}}" bindtap="lookThrottleHandle">查看</button>
+    <button style="margin-right: 40rpx;" class="btn-consent" type="primary" data-employees="{{productInfo}}" bindtap="editThrottleHandle">编辑</button>
+    <button style="margin-right: 40rpx;" class="btn-reject" type="warn" data-productInfo="{{productInfo}}" bindtap="onRejectBtnClick">删除</button>
+  </view>
+
+
+  <!-- loading遮罩 -->
+  <loading wx:if="{{isRequestIng}}"></loading>
+</view>
+
+<wxs module="utils">
+  module.exports.format = function(value) {
+    return Number((parseFloat(value) * 100).toFixed(2))
+  }
+</wxs>

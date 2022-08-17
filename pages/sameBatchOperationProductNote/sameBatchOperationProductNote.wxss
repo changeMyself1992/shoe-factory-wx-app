@@ -1,0 +1,163 @@
+.container {
+  padding: 30rpx 30rpx;
+}
+
+/*personal-info********start**********/
+
+.personal-info {
+  background-color: #fff;
+  border-radius: 20rpx;
+  overflow: hidden;
+  margin-bottom: 30rpx;
+}
+
+.personal-info .title {
+  height: 80rpx;
+  background-color: #d4787e;
+  padding: 0 10rpx;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.personal-info .title .text-2 {
+  color: #fff;
+}
+
+.personal-info .title .batch-operation-btn {
+  margin: 0;
+  font-size: 28rpx;
+  color: #dc5460;
+  background-color: #fff;
+}
+
+.personal-info .info {
+  width: 100%;
+  overflow: hidden;
+}
+
+.personal-info .info .item {
+  /* width: 50%; */
+}
+
+.personal-info .info .item .key {
+  font-size: 24rpx;
+  margin-right: 10rpx;
+}
+
+.personal-info .info .item .value {
+  font-size: 24rpx;
+  font-weight: 700;
+}
+
+.personal-info .info .row-1 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 10rpx;
+}
+
+.personal-info .info .row-2 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 10rpx;
+}
+
+.personal-info .info .row-2 .item-1 {
+  font-size: 24rpx;
+  background: linear-gradient(to right, #939393 0%, #f2f2f2 100%);
+  color: #fff;
+  margin: 0 -10rpx;
+  width: 110%;
+  padding-left: 10rpx;
+}
+
+/*personal-info********end**********/
+
+/*section********start**********/
+
+.section {
+  margin-bottom: 124rpx;
+}
+
+.section .product-note-item {
+  display: flex;
+  background-color: #fff;
+  margin-bottom: 21rpx;
+  border-radius: 6rpx;
+  flex-wrap: wrap;
+  padding: 20rpx;
+  justify-content: space-between;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+}
+
+.section .product-note-item .row-a {
+  width: 100%;
+  display: flex;
+}
+
+.section .product-note-item .check-box {
+  margin-bottom: 10rpx;
+}
+
+.section .product-note-item .item-1 {
+}
+
+.section .product-note-item .item-1 .key {
+  font-size: 30rpx;
+  color: #000;
+}
+
+.section .product-note-item .item-1 .value {
+  font-size: 30rpx;
+  color: #000;
+}
+
+.section .product-note-item .item-2 {
+}
+
+.section .product-note-item .item-2 .key {
+  font-size: 26rpx;
+  color: #4a4a4a;
+}
+
+.section .product-note-item .item-2 .value {
+  font-size: 28rpx;
+  color: #000;
+}
+
+/*section********end**********/
+
+/*btn-box********start**********/
+
+.btn-box {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  display: flex;
+}
+
+.btn-box button {
+  margin: 0;
+  border-radius: 0;
+}
+
+.btn-box button::after {
+  border: none;
+}
+
+.btn-box button:first-child {
+  width: 50%;
+  background-color: #4a4a4a;
+  color: #fff;
+}
+
+.btn-box button:last-child {
+  width: 50%;
+}
+
+/*btn-box********end**********/

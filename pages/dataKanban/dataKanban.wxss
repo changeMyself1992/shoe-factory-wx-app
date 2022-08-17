@@ -1,0 +1,673 @@
+.page1{
+  background-color: #F0F0F0;
+  /* F8F7F5 */
+}
+.container {
+  padding: 20rpx;
+}
+
+.salary-information-card {
+  margin-bottom: 30rpx;
+}
+
+.department-salary-details {
+  margin-bottom: 30rpx;
+}
+
+/********部门统计模块**************************start*********************/
+
+.department-statistics-view {
+  margin-bottom: 30rpx;
+}
+
+/********部门统计模块**************************end*********************/
+
+.card-view-a {
+  width: 100%;
+  margin-bottom: 20rpx;
+  background-color: #fff;
+  /* padding: 20rpx; */
+  border-radius: 10rpx;
+}
+
+.card-view-a .title {
+  font-weight: 700;
+  margin-bottom: 10rpx;
+  height: 92rpx;
+  padding: 20rpx;
+  border-radius: 8rpx 8rpx 0 0;
+  line-height: 92rpx;
+}
+
+
+.card-view-a .card {
+  height: 150rpx;
+  border-radius: 10rpx;
+  width: 90%;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: #F1F5FB;
+  text-align: center;
+}
+.card-view-a .card .card-item{
+  flex: 1;
+  position: relative;
+}
+.card-view-a .card .card-item view:nth-child(1){
+  font-size: 28rpx;
+}
+.card-view-a .card .card-item view:nth-child(2){
+  font-size: 34rpx;
+  font-weight: bold;
+}
+.on{
+  color: #DC5460;
+}
+.off{
+  color: #000000;
+}
+.card-view-a .card .borderright::after{
+  content: "";
+  position: absolute;
+  margin: auto;
+  top:0;
+  bottom: 0;
+  right: 0;
+  display: inline-block;
+  width: 1px;
+  height: 80%;
+  background-color: #ffffff;
+}
+/* .card-view-a .card .text-a {
+  width: 100%;
+  text-align: center;
+}
+
+.card-view-a .card .text-b {
+  font-weight: 700;
+  font-size: 32rpx;
+}
+
+.card-view-a .card .text-c {
+  position: absolute;
+  transform: translateY(-50%);
+  right: 20rpx;
+  top: 46%;
+  color: #a6a8a9;
+  font-size: 40rpx;
+} */
+
+/********生产单统计模块**************************start*********************/
+
+#mychart-dom-line {
+  width: 100%;
+  height: 300px;
+  display: block;
+  padding: 10rpx;
+}
+
+#mychart-dom-smoothline {
+  width: 100%;
+  height: 300px;
+  display: block;
+  padding: 10rpx;
+}
+
+.card-view-a .ring-box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 10rpx;
+}
+
+.card-view-a .ring-box .ring {
+  display: flex;
+  flex-wrap: wrap;
+  width: 25%;
+  justify-content: center;
+}
+
+.card-view-a .ring-box .ring .process-name {
+  font-size: 24rpx;
+}
+
+.card-view-a .ring-box .ring .id {
+  font-size: 24rpx;
+  width: 100%;
+  text-align: center;
+}
+
+/********生产单统计模块**************************end*********************/
+
+/********销售订单模块**************************start*********************/
+
+.card-view-a .card.card-style-a {
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  border: 1px solid #ebeef5;
+}
+
+#mychart-dom-bar {
+  width: 100%;
+  height: 300px;
+  display: block;
+  border-radius: 16rpx;
+  background-color: #ffffff;
+}
+
+#mychart-dom-bar1 {
+  width: 100%;
+  height: 300px;
+  display: block;
+  padding: 10rpx;
+}
+
+/********销售订单模块**************************end*********************/
+
+/* 热销产品模块 */
+
+.hot {
+  padding: 15rpx;
+  display: flex;
+}
+
+.hot .hot-img {
+  display: inline-block;
+  width: 60rpx;
+}
+
+.hot .hot-img image {
+  width: 40rpx;
+  height: 50rpx;
+}
+
+.hot .shu {
+  display: inline-block;
+  width: 10rpx;
+  height: 147rpx;
+  background-image: linear-gradient(to bottom, #89a7e8 0%, #516ecd 100%);
+  border-radius: 8rpx;
+  position: absolute;
+}
+
+.hot .hot-txt {
+  display: inline-block;
+  width: 100%;
+  height: 150rpx;
+  background: #f1f5fb;
+  border: 1px solid #ebebeb;
+  border-radius: 10rpx;
+}
+
+.hot .hot-txt .hot-item1 {
+  padding-left: 30rpx;
+  font-size: 34rpx;
+  margin-top: 20rpx;
+}
+
+.hot .hot-txt .hot-item2 {
+  padding-left: 30rpx;
+  margin-top: 10rpx;
+}
+
+.hot .hot-txt .hot-item2 text {
+  color: #4a4a4a;
+  margin-right: 100rpx;
+}
+
+/* 热销产品模块 */
+
+/* 热销客户 */
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.card-view-a .scdd{
+  background-image: linear-gradient(to bottom, rgba(254,142,74,0.4) 0%, rgba(253,229,217,0.4)  70%,rgba(255,255,255,0.4) 100%);
+}
+.card-view-a .xsdd{
+  background-image: linear-gradient(to bottom, rgba(255,183,83,0.4) 0%, rgba(254,235,213,0.4)  70%,rgba(255,255,255,0.4) 100%);
+}
+.card-view-a .gysjs{
+  background-image: linear-gradient(to bottom, rgba(255,159,100,0.4) 0%, rgba(253,229,217,0.4)  70%,rgba(255,255,255,0.4) 100%);
+}
+.card-view-a .khtj{
+  background-image: linear-gradient(to bottom, rgba(79,110,214,0.29) 0%, rgba(146,165,225,0.29)  70%,rgba(255,255,255,0.29) 100%);
+}
+.scdd view:nth-child(1) {
+  font-size: 32rpx;
+  color: #FC5A00;
+}
+.scdd view:nth-child(2) {
+  font-size: 26rpx;
+  color: #F69865;
+  font-weight: normal;
+}
+.scdd .updateshow {
+  font-size: 26rpx;
+  color: #F95E07;
+  font-weight: normal;
+}
+.scdd .updateshow1 {
+  display: inline-block;
+  width: 31rpx;
+  height: 31rpx;
+  border-radius: 50rpx;
+  background-color: #FCBB94;
+  color: #ffffff;
+  text-align: center;
+  line-height: 31rpx;
+}
+/*  */
+.xsdd view:nth-child(1) {
+  font-size: 32rpx;
+  color: #F19F27;
+}
+.xsdd view:nth-child(2) {
+  font-size: 26rpx;
+  color: #E6A658;
+  font-weight: normal;
+}
+.xsdd .updateshow {
+  font-size: 26rpx;
+  color: #F19F27;
+  font-weight: normal;
+}
+.xsdd .updateshow1 {
+  display: inline-block;
+  width: 31rpx;
+  height: 31rpx;
+  border-radius: 50rpx;
+  background-color: #F19F27;
+  color: #ffffff;
+  text-align: center;
+  line-height: 31rpx;
+}
+/*  */
+.gysjs view:nth-child(1) {
+  font-size: 30rpx;
+  color: #FC5A00;
+}
+.gysjs view:nth-child(2) {
+  font-size: 26rpx;
+  color: #F69865;
+  font-weight: normal;
+}
+.gysjs .updateshow {
+  font-size: 24rpx;
+  color: #F95E07;
+  font-weight: normal;
+}
+.gysjs .updateshow1 {
+  display: inline-block;
+  width: 31rpx;
+  height: 31rpx;
+  border-radius: 50rpx;
+  background-color: #FCBB94;
+  color: #ffffff;
+  text-align: center;
+  line-height: 31rpx;
+}
+/*  */
+.khtj view:nth-child(1) {
+  font-size: 32rpx;
+  color: #06258B ;
+}
+.khtj view:nth-child(2) {
+  font-size: 26rpx;
+  color: #06258B;
+  font-weight: normal;
+}
+.khtj .updateshow {
+  font-size: 26rpx;
+  color: #516ECD;
+  font-weight: normal;
+}
+.khtj .updateshow1 {
+  display: inline-block;
+  width: 31rpx;
+  height: 31rpx;
+  border-radius: 50rpx;
+  background-color: #516ECD;
+  color: #ffffff;
+  text-align: center;
+  line-height: 31rpx;
+}
+
+.oneone .shu, .twothree .shu {
+  display: inline-block;
+  width: 100%;
+  height: 10rpx;
+  background-image: linear-gradient(to right, #89a7e8 0%, #516ecd 100%);
+  border-radius: 8rpx;
+  position: absolute;
+}
+
+.oneone {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.oneone .one {
+  background: #fff;
+  border: 1px solid #ebebeb;
+  box-shadow: 0 2rpx 4rpx 0 rgba(224, 224, 224, 0.50);
+  border-radius: 10rpx;
+  position: relative;
+  height: 138rpx;
+}
+
+.three, .two {
+  position: relative;
+}
+
+.oneone image {
+  height: 45rpx;
+  position: absolute;
+  width: 35.7rpx;
+  left: 0;
+  right: 0;
+  top: -10rpx;
+  margin: 0 auto;
+}
+
+.twothree image {
+  height: 45rpx;
+  position: absolute;
+  width: 35.7rpx;
+  left: 0;
+  top: -10rpx;
+}
+
+.oneone .txt, .twothree .txt {
+  position: absolute;
+  margin: auto;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  font-size: 30rpx;
+  height: 50rpx;
+  text-align: center;
+  line-height: 1.05;
+  padding: 0 10rpx;
+}
+
+.twothree {
+  display: flex;
+  width: 100%;
+  height: 138rpx;
+  margin-top: 20rpx;
+  padding: 10rpx;
+}
+
+.twothree .two, .twothree .three {
+  flex: 4.5;
+  background: #fff;
+  border: 1px solid #ebebeb;
+  box-shadow: 0 2rpx 4rpx 0 rgba(224, 224, 224, 0.50);
+  border-radius: 10rpx;
+  position: relative;
+}
+
+.zzz {
+  flex: 1;
+}
+
+/* 热销客户 */
+
+/* 仓库统计 */
+
+.cangku {
+  font-size: 36rpx;
+}
+
+.kucun {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.kucun .kucun-item {
+  flex: 1;
+  text-align: center;
+}
+
+.kucun .kucun-item view:nth-child(1) {
+  font-size: 36rpx;
+}
+
+.kucun .kucun-item view:nth-child(2) {
+  font-size: 26rpx;
+  color: #4a4a4a;
+}
+
+.kucun image {
+  width: 150rpx;
+  height: 150rpx;
+}
+
+/* 仓库统计 */
+
+/* 出入库 */
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+}
+
+.btn .btn-item {
+  flex: 1;
+  margin: 10rpx;
+  background: #f1f5fb;
+  border: 1px solid #ebebeb;
+  box-shadow: 0 2px 12px 0 rgba(219, 219, 219, 0.50);
+  border-radius: 4px;
+  text-align: center;
+  height: 146rpx;
+  position: relative;
+}
+
+.btn .btn-item view:nth-child(1) {
+  font-size: 28rpx;
+  color: #4a4a4a;
+}
+
+.btn .btn-item view:nth-child(2) {
+  font-size: 34rpx;
+}
+
+.middle {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 130rpx;
+  height: 90rpx;
+}
+
+/* 数据 */
+
+.data {
+  background-image: linear-gradient(to bottom, #DC5460 0%, #DF5C65  100%);
+}
+
+.data .data-btn, .data .detail .detail-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+}
+
+.data .data-btn view {
+  flex: 1;
+  padding: 5rpx;
+  margin: 10rpx 40rpx;
+  text-align: center;
+}
+
+.dataBtnOn {
+  background: #ffd5d9;
+  border-radius: 50rpx;
+  color: #dc5460;
+}
+
+.dataBtnOff {
+  color: #ffd5d9;
+}
+
+.data .num {
+  font-size: 80rpx;
+  color: #fff;
+  text-align: center;
+  /* margin-top: 35rpx; */
+  margin-bottom: 20rpx;
+}
+
+.data .detail {
+  border-top: 1px solid #e08d94;
+  height: 130rpx;
+  padding: 10rpx 0;
+}
+
+.data .detail .detail-item view {
+  flex: 1;
+  text-align: center;
+  font-size: 26rpx;
+  color: #ffd5d9;
+}
+
+.data .detail .detail-item view text {
+  font-size: 32rpx;
+  color: #fff;
+  margin-left: 20rpx;
+}
+
+/* detail-pie */
+
+#mychart-dom-pie {
+  width: 50%;
+  height: 400rpx;
+  display: inline-block;
+}
+
+.detail-pie {
+  width: 50%;
+  float: right;
+  height: 500rpx;
+}
+
+.detail-pie .item-pie {
+  padding: 10rpx 0;
+}
+
+.detail-pie .item-pie view:nth-child(1) {
+  display: flex;
+  align-items: center;
+}
+
+.detail-pie .item-pie view:nth-child(1) text:nth-child(2) {
+  font-size: 32rpx;
+}
+
+.nth {
+  width: 15rpx;
+  height: 15rpx;
+  display: inline-block;
+}
+
+.nth1 {
+  background-color: #2fcc71;
+}
+
+.nth2 {
+  background-color: #3298db;
+}
+
+.nth3 {
+  background-color: #f19f27;
+}
+
+.nth4 {
+  background-color: #dc5460;
+}
+
+.padl2 {
+  padding-left: 20rpx;
+}
+
+.padl3 {
+  padding-left: 30rpx;
+}
+
+.padl4 {
+  padding-left: 40rpx;
+}
+
+.sumTitle {
+  position: absolute;
+  margin: auto;
+  width: 50%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 100;
+  text-align: center;
+  padding-top: 330rpx;
+}
+
+.sumTitle .txt {
+  font-size: 26rpx;
+  color: #4a4a4a;
+}
+
+.sumTitle .sum {
+  font-size: 34rpx;
+  color: #000000;
+}
+
+.update {
+  text-align: right;
+  color: #ffd5d9;
+  margin-right: 10rpx;
+}
+
+.posi {
+  position: relative;
+  padding-bottom: 50rpx;
+}
+
+.not-jurisdiction {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-top: 200rpx;
+}
+
+.not-jurisdiction image {
+  width: 298rpx;
+}
+
+.not-jurisdiction text {
+  width: 100%;
+  text-align: center;
+  font-size: 34rpx;
+  font-weight: 700;
+  margin-top: 40rpx;
+}
+.card-view-a1{
+  background-image: linear-gradient(to bottom, #DF5C65 0%, #F0F0F0 100%);
+  padding: 20rpx;
+}
+view{
+  color: inherit;
+}

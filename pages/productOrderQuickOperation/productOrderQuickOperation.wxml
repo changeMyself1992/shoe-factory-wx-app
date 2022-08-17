@@ -1,0 +1,48 @@
+<!--pages/productOrderQuickOperation/productOrderQuickOperation.wxml-->
+<!-- 页码显示 -->
+  <view class="page">
+    <view>每页<text class="bold">16</text>条</view>
+    <view class="bold"><text class="green">{{pagination.page}}</text>/{{pageSum}}</view>
+    <view>总数<text class="bold">{{pagination.total}}</text></view>
+  </view>
+  <!-- 页码显示 -->
+<view class="container">
+  <!-- 搜索框 -->
+  <search_box skipLinks="{{skipLinks}}" searchCondition="{{searchCondition}}" 
+  whetherToDisplayAConditionBox="{{whetherToDisplayAConditionBox}}" bind:clearingSearchCallback="clearingSearchCallback"
+  conditionalQueryTitle="{{conditionalQueryTitle}}" whetherToShowScanIcon="{{whetherToShowScanIcon}}"></search_box>
+
+  <!-- 生产单子列表 -->
+  <view class="product-order-list">
+    <block wx:for="{{productionOrderList}}" wx:for-item="item" wx:for-index="index" wx:key="index" >
+      <product-order-item bind:callbackIscheck="callbackIscheck" bind:callbackAfterDeletion="callbackAfterDeletion" product="{{productionOrderList[index]}}"></product-order-item>
+    </block>
+  </view>
+
+  <!-- 弹回顶部 -->
+  <back-to-top floorstatus="{{floorstatus}}"></back-to-top>
+
+  <!-- loading遮罩 -->
+  <loading wx:if="{{isRequestIng}}"></loading>
+
+</view>
+<!-- 悬浮提示 -->
+<block wx:if="{{isSomeCheck}}">
+  <view wx:if="{{allCheckText=='取消全选'}}" class="tips">当前已选择<text class="green">{{numSum}}</text>个计件记录</view>
+  <view wx:else class="tips">当前已选择<text class="green">{{pageNumSum}}</text>个计件记录</view>
+</block>
+<!-- 悬浮提示 -->
+<view class="btnArr">
+  <span class="bor" catchtap="allCheck"><text class="{{checkText=='本页全选'?'lickCheckboxOff':'lickCheckboxOn'}}"></text>本页全选</span><span catchtap="allPageCheck"><text class="{{allCheckText=='全部全选'?'lickCheckboxOff':'lickCheckboxOn'}}"></text>全部全选</span><span class="{{isSomeCheck?'':'onAllCheck'}}" catchtap="allSubmit">批量确认</span>
+</view>
+
+<!-- 进度条 -->
+<!-- <view class="tipsProgress" wx:if="{{isProgress}}" >
+  <view>确认中...</view>
+  <progress percent="{{percentageOfProgressSubmitted}}" stroke-width="8" color="green" />
+</view> -->
+
+<!-- 百分比loading -->
+  <!--title="{{'加载中...'}}"-->
+<percentage-loading isRequestIng="{{isRequestIngIng}}" value="{{percentageOfProgressSubmitted}}" />
+<!-- 进度条 -->

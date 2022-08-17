@@ -1,0 +1,24 @@
+<view class='container'>
+<!-- 弹回顶部 -->
+  <back-to-main></back-to-main>
+
+  <view class='module-a'>
+    <label class="des">员工注册码</label>
+    <image class='qrCodeForRegistration' bindtap="previewImage" src="{{qrCodeForRegistration}}" mode="widthFix"></image>
+  </view>
+
+
+  <view class='module-b'>
+    <block wx:for="{{listOfEmployeesToBeConfirmed}}" wx:for-item="employees" wx:for-index="index" wx:key="index">
+      <employees-box employees="{{employees}}"  bind:callbackAfterDeletion="callbackAfterDeletion"></employees-box>
+    </block>
+  </view>
+
+
+
+  <!-- 弹回顶部 -->
+  <back-to-top floorstatus="{{floorstatus}}"></back-to-top>
+
+  <!-- loading遮罩 -->
+  <loading wx:if="{{isRequestIng}}"></loading>
+</view>

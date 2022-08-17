@@ -1,0 +1,61 @@
+<view class="box">
+
+	<view class="header">
+		<label class="text-a">{{info['员工姓名']}}</label>
+		<label class="text-b">{{info['员工unique_id']}}</label>
+		<label class="zuofeibtn" wx:if="{{!info['是否作废']}}" bindtap="onDelCostsBtnClick" data-info="{{info}}">作废</label>
+		<label wx:else class="text-c">已作废</label>
+	</view>
+
+	<view class="section">
+		<view wx:if="{{info['是否作废']}}" style="width:100%;">
+			<view class="time-row">
+				<view style="background: #FFEDEE" class="zuofeiInfo" bindtap="openZuofei">
+					<text>{{unfold==info.unique_id?'折叠':'展开'}}</text>
+					<image class="zhankai" src="{{unfold==info.unique_id?'../../../../static/imageC/arrow_down.png':'../../../../static/imageC/arrow_up.png'}}" />
+				</view>
+
+				<block wx:if="{{unfold==info.unique_id}}">
+					<view class='item'>
+						<label class='key'>记录发生时间：</label>
+						<label class='value'>{{info['记录发生时间']}}</label>
+					</view>
+					<view class='item'>
+						<label class='key'>抵扣金额：</label>
+						<label class='value' style="color:red;">￥{{info['抵扣金额']}}</label>
+					</view>
+					<view class='item item-100'>
+						<label class='key'>抵扣原因：</label>
+						<label class='value'>{{info['工资抵扣原因']}}</label>
+					</view>
+
+					<view class="item item-100">
+						<label class="label-a">管理人员，{{info['记录管理者姓名']}}，{{info['记录输入时间']}}录入</label>
+					</view>
+				</block>
+			</view>
+		</view>
+
+		<view wx:else style="width:100%;">
+			<view class="time-row" style="border-bottom: 2px dashed #ccc;">
+				<view class='item'>
+					<label class='key'>记录发生时间：</label>
+					<label class='value'>{{info['记录发生时间']}}</label>
+				</view>
+				<view class='item'>
+					<label class='key'>抵扣金额：</label>
+					<label class='value' style="color:red;">￥{{info['抵扣金额']}}</label>
+				</view>
+				<view class='item item-100'>
+					<label class='key'>抵扣原因：</label>
+					<label class='value'>{{info['工资抵扣原因']}}</label>
+				</view>
+
+
+			</view>
+			<view class="bottom">
+				<label class="label-a">管理人员{{info['记录管理者姓名']}} {{info['记录输入时间']}}录入</label>
+			</view>
+		</view>
+	</view>
+</view>

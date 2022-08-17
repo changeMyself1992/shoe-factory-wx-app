@@ -1,0 +1,60 @@
+<form bindsubmit="formSubmitThrottleHandle" bindreset="formReset">
+
+  <view class='row-1'>
+    <view class="title">产品信息</view>
+
+    <view class="item-a">
+      <text class='key'>产品编号：</text>
+      <input cursor-spacing="50" class="value" name="产品编号" placeholder="请输入产品编号" bindtap="onTap"/>
+    </view>
+
+    <view style="width:100%; border-bottom: 2rpx solid #ccc;"></view>
+
+    <view class="form-item">
+      <view class="key">更新时间段开始</view>
+      <picker class="value" mode="date" name='更新时间段开始' id="更新时间段开始" bindchange="bindDateChange" bindtap="onTap">
+        <label class="value-label">{{updateTimeStartDate}}</label>
+        <text class='iconfont icon-13 select-icon'></text>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <view class="key">更新时间段结束</view>
+      <picker class="value" mode="date" name='更新时间段结束' id="更新时间段结束" bindchange="bindDateChange" bindtap="onTap">
+        <label class="value-label">{{updateTimeEndDate}}</label>
+        <text class='iconfont icon-13 select-icon'></text>
+      </picker>
+    </view>
+
+    <view style="width:100%; height:20rpx;"></view>
+
+  </view>
+
+  <view class='row-1'>
+    <view class="title">产品标签</view>
+
+    <view class="item-a" wx:for="{{product_tag_filter}}" wx:for-item="index" wx:key="index" wx:for-index="tagKey">
+      <text class='key'>{{tagKey}}：</text>
+      <input cursor-spacing="50" class="value" type="text" data-tagname="{{tagKey}}" value="{{product_tag_filter[tagKey]}}" bindfocus="onFocusProductTag" bindinput="productDebouncedHandleSearch" />
+      <view wx-if='{{productTagKeyFocus===tagKey}}' class="suggest-value-list">
+        <view class="suggestion-box">
+          <scroll-view scroll-y="{{true}}" style="height: 200rpx;">
+            <view class='tag' wx:for="{{product_suggest_value_list}}" wx:for-item="tagValue" wx:key="index" wx:for-index="index" catchtap="onProductTagValueSelect" data-tagname="{{tagKey}}" data-tagvalue="{{tagValue}}">{{tagValue}}</view>
+          </scroll-view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+
+  <view style="width:100%; height:40rpx;"></view>
+
+
+  <button class="search-btn" type="primary" form-type="submit" style="margin-bottom:20rpx;">搜索</button>
+  <button class="clear-btn" form-type="reset">清空搜索条件</button>
+</form>
+
+<!-- loading遮罩 -->
+<loading wx:if="{{isRequestIng}}"></loading>
+<!--回到首页按钮-->
+<back-to-main position="{{positionStr}}" tabBarUrl="{{tabBarUrl}}"></back-to-main>

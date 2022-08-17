@@ -1,0 +1,9 @@
+/* 返回顶部 */
+@import "../../static/wxss/font1.wxss";
+
+.goTop {
+  display: block;
+  position: fixed;
+  font-size: 60rpx;
+  z-index: 999;
+}

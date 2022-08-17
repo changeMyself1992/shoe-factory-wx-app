@@ -1,0 +1,46 @@
+.row {
+  padding: 0 20rpx;
+  background-color: #fff;
+  padding-bottom: 50rpx;
+}
+
+.value {
+  background-color: #fbfbfb;
+  border: 2rpx solid #ccc;
+  width: 500rpx;
+  height: 50rpx;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  line-height: 50rpx;
+}
+
+.value-a {
+  width: 500rpx;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.value-a .checkbox{
+  margin: 10rpx 0;
+  box-sizing: border-box;
+  flex: 0 0 50%;
+}
+
+.title {
+  height: 60rpx;
+  border-bottom: 1px solid #ccc;
+  line-height: 60rpx;
+  font-weight: 700;
+  margin-bottom: 40rpx;
+}
+
+.item-a {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+}
+
+.row .item-a .key {
+  font-size: 26rpx;
+}

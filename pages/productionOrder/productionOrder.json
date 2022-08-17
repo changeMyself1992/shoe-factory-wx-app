@@ -1,0 +1,14 @@
+{
+  "backgroundTextStyle": "dark",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTitleText": "生产单列表",
+  "navigationBarTextStyle": "black",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "live-nav": "/components/live-nav/live-nav",
+    "loading": "/components/loading/loading",
+    "back-to-top": "/components/back-to-top/back-to-top",
+    "search_box": "/components/search_box/search_box",
+    "product-order-item": "./components/product-order-item/product-order-item"
+  }
+}

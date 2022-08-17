@@ -1,0 +1,156 @@
+/*process-department-info********start**********/
+@import "../../../../static/wxss/font1.wxss";
+
+.process-department-info {
+  background-color: #fff;
+  border-radius: 10rpx;
+  overflow: hidden;
+  padding-bottom: 40rpx;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.process-department-info .title {
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 0 50rpx;
+  width: 100%;
+  margin-bottom: 30rpx;
+}
+.process-department-info .title.active{
+  background-color: #4169e1;
+  color: #fff;
+}
+.process-department-info .title.disable{
+  background-color: #bababa;
+  color: #333;
+}
+
+.process-department-info .title .text-1 {
+  font-size: 40rpx;
+  font-weight: 700;
+  margin-right: 10rpx;
+  position: relative;
+  float: left;
+}
+
+.process-department-info .title .text-2 {
+  float: left;
+}
+
+.process-department-info .title .text-3 {
+  float: right;
+}
+
+.process-department-info .title .detail-btn {
+  color: #4169e1;
+  height: 60rpx;
+  font-size: 26rpx;
+  line-height: 60rpx;
+  float: right;
+  margin-top: 10rpx;
+}
+
+.process-department-info .process-brief-info {
+  width: 25%;
+  height: 100rpx;
+  border-right: 2rpx solid #ebebeb;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+}
+
+.process-department-info .process-brief-info .text-a {
+  width: 100%;
+  font-size: 24rpx;
+  text-align: center;
+}
+
+.process-department-info .process-brief-info .text-b {
+  width: 100%;
+  text-align: center;
+  font-size: 44rpx;
+  color: #475199;
+  line-height: 44rpx;
+}
+
+.process-department-info .process-brief-info.last {
+  border-right: none;
+}
+
+.process-department-info .process-brief-schedule-info {
+  width: 50%;
+  padding-left: 40rpx;
+}
+
+.process-department-info .process-brief-schedule-info .schedule-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-bottom: 20rpx;
+}
+
+.process-department-info .process-brief-schedule-info .schedule-item .a-tag {
+  width: 10rpx;
+  height: 10rpx;
+  border-radius: 50%;
+  position: absolute;
+  left: -8px;
+}
+
+.process-department-info .process-brief-schedule-info .schedule-item .des {
+  font-size: 22rpx;
+}
+
+.process-department-info .process-brief-schedule-info .schedule-item .sort-line {
+  width: 90rpx;
+  height: 14rpx;
+  border-radius: 14rpx;
+  margin: 0 6rpx;
+}
+.process-department-info .process-brief-schedule-info .schedule-item .long-line{
+  width: 110rpx;
+  height: 14rpx;
+  border-radius: 14rpx;
+  margin: 0 6rpx;
+}
+
+.process-department-info .process-brief-schedule-info .schedule-item .num {
+  font-size: 24rpx;
+}
+
+.process-department-info .process-brief-schedule-info .schedule-item .a-tag.today {
+  background-color: #04238b;
+}
+.process-department-info .process-brief-schedule-info .schedule-item .des.today {
+  color: #475199;
+}
+.process-department-info .process-brief-schedule-info .schedule-item .num.today {
+  color: #475199;
+}
+.process-department-info .process-brief-schedule-info .schedule-item .sort-line.today {
+  background-color: #04238b;
+}
+.process-department-info .process-brief-schedule-info .schedule-item .long-line.today{
+  background-color: #04238b;
+}
+
+.process-department-info .process-brief-schedule-info .schedule-item .a-tag.yesterday {
+  background-color: #494949;
+}
+.process-department-info .process-brief-schedule-info .schedule-item .des.yesterday {
+  /* color: #475199; */
+}
+.process-department-info .process-brief-schedule-info .schedule-item .num.yesterday {
+  /* color: #475199; */
+}
+.process-department-info .process-brief-schedule-info .schedule-item .sort-line.yesterday {
+  background-color: #494949;
+}
+.process-department-info .process-brief-schedule-info .schedule-item .long-line.yesterday{
+  background-color: #494949;
+}
+
+/*process-department-info********end**********/

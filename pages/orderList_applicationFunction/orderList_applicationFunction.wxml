@@ -1,0 +1,33 @@
+<view class='container'>
+	<!-- 搜索框 -->
+	<search_box skipLinks="{{skipLinks}}" searchCondition="{{searchCondition}}" whetherToDisplayAConditionBox="{{whetherToDisplayAConditionBox}}" bind:clearingSearchCallback="clearingSearchCallback" conditionalQueryTitle="{{conditionalQueryTitle}}"></search_box>
+
+	<view class='sort-wrap'>
+		<view class='sort-btn' bindtap="choosesort1">
+			交货日期
+      <text class="{{deliveryDateSortStyle}}"></text>
+		</view>
+		<view class='sort-btn' bindtap="choosesort2">
+			订单日期
+			<text class="{{orderDateSortStyle}}"></text>
+		</view>
+		<view class='sort-btn' bindtap="choosesort3">
+			更新时间
+			<text class="{{updateTheTimeSortStyle}}"></text>
+		</view>
+	</view>
+
+
+	<!--订单列表-->
+	<view class='module-b'>
+		<block wx:for="{{orderList}}" wx:for-item="orderInfo" wx:for-index="index" wx:key="index">
+			<order-item orderInfo="{{orderInfo}}" bind:callbackAfterDeletion="callbackAfterDeletion"></order-item>
+		</block>
+	</view>
+
+	<!-- 弹回顶部 -->
+	<back-to-top floorstatus="{{floorstatus}}"></back-to-top>
+
+	<!-- loading遮罩 -->
+	<loading wx:if="{{isRequestIng}}"></loading>
+</view>

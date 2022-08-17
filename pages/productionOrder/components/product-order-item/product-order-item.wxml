@@ -1,0 +1,48 @@
+<!-- 搜索和心动推荐里的产品元素 -->
+<view class="item" wx:key="{{product.unique_id}}" data-product="{{product}}" bindtap="itemClickThrottleHandle">
+  <view class='row-1'>
+    <view class="item-a">
+      <text class='key'>生产单编号:</text>
+      <text class='value'>{{product['生产单编号']}}</text>
+    </view>
+    <button wx:if="{{product['生产单状态']==='完成'}}" catchtap="handleToReviewThrottleHandle" type="warn" class="btn">重新评估</button>
+  </view>
+
+  <view class='row-2'>
+    <view class="tags" wx:for="{{product['对应订单']['tags']}}" wx:for-item="value" wx:for-index="key" wx:key="key">
+      <text class='key'>{{key}}:</text>
+      <text class='value'>{{value}}</text>
+    </view>
+
+    <view class="tags" wx:for="{{product['排产产品']['产品信息']['tags']}}" wx:for-item="value" wx:for-index="key" wx:key="key">
+      <text class='key'>{{key}}:</text>
+      <text class='value'>{{value}}</text>
+    </view>
+  </view>
+  <image class="img" src="{{product['展示图片']?product['展示图片']:'/static/imageC/timg.jpeg'}}" data-url="{{product['展示图片']}}" catchtap="previewImage" mode="scaleToFill"></image>
+  <!-- 产品信息 -->
+  <view class='product-info'>
+    <view class='item-3 global'>
+      <text class='key'>产品编号:</text>
+      <text class='value'>{{product['排产产品']['产品信息']['产品编号']}}</text>
+    </view>
+
+    <view class='item-6 global'>
+      <text class='key'>生产单总数:</text>
+      <text class='value'>{{product['排产产品']['排产配码数量']['总排产数']}}</text>
+    </view>
+
+    <view class='item-5 global'>
+      <text class='key'>生产单日期:</text>
+      <text class='value'>{{product['生产单时间']}}</text>
+    </view>
+
+    <view class="item-2 global">
+      <label class="a">总进度</label>
+      <progress class='b' percent="{{product.productionSchedule}}" stroke-width="8" color="#cd5e63" show-info/>
+    </view>
+
+
+  </view>
+
+</view>

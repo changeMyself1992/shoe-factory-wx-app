@@ -1,0 +1,11 @@
+.key {
+  font-size: 26rpx;
+}
+
+.form-item {
+  padding: 0;
+}
+
+.row-1 {
+  border-bottom: none;
+}

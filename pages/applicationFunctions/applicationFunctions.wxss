@@ -1,0 +1,134 @@
+/* pages/applicationFunctions/applicationFunctions.wxss */
+
+.container {
+  padding: 0 20rpx;
+}
+
+.info-card-box {
+  background-color: rgb(73, 74, 75);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.info-card-box .info-card {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: space-between;
+  padding: 30rpx 0;
+  border-right: 2rpx solid #ccc;
+}
+.info-card-box .info-card:last-child{
+  border: none;
+}
+
+.info-card-box .info-card .info-des-a {
+  color: rgb(210, 81, 65);
+  font-size: 38rpx;
+  font-weight: 700;
+  margin-bottom: 15rpx;
+}
+
+.info-card-box .info-card .info-des-b {
+  color: #fff;
+  font-size: 26rpx;
+  width: 100%;
+  text-align: center;
+}
+
+.info-card-box .info-card .sao {
+  color: #fff;
+  font-size: 38rpx;
+  font-weight: 700;
+  margin-bottom: 15rpx;
+}
+
+.card-box {
+  background-color: #fff;
+  border-radius: 24rpx;
+  margin-bottom: 20rpx;
+}
+
+.card-box .herder {
+  border-bottom: 2rpx solid #ebebeb;
+  color: #8f8d8d;
+  height: 60rpx;
+  line-height: 60rpx;
+  padding-left: 16rpx;
+}
+
+.card-box .tab-control-box {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card-box .tab-control-box .tab-control {
+  width: 33.33333%;
+  border-right: 2rpx solid #ebebeb;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  height: 200rpx;
+  align-items: center;
+  align-content: center;
+}
+
+.card-box .tab-control-box .tab-control:last-child {
+  border-right: none;
+}
+
+.card-box .tab-control-box .tab-control .icon {
+  width: 70rpx;
+  height: 70rpx;
+  margin-bottom: 20rpx;
+}
+
+.card-box .tab-control-box .tab-control .title {
+  width: 100%;
+  text-align: center;
+  color: black;
+  font-size: 30rpx;
+}
+
+
+
+/*module-c********start**********/
+
+.module-c {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.module-c .bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.box {
+  z-index: 2;
+  position: absolute;
+  width: 85%;
+  top: 100rpx;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.row-1 {
+  padding-bottom: 10rpx;
+}
+
+/*module-c********end**********/

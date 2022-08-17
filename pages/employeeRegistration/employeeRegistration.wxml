@@ -1,0 +1,3 @@
+<view class='container'>
+  <employee-operation wx:if="{{query}}" pattern="{{pattern}}" query="{{query}}"/>
+</view>

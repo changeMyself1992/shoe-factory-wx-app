@@ -1,0 +1,375 @@
+page {
+  position: relative;
+}
+
+.banben {
+  position: absolute;
+  bottom: 0;
+  font-size: 24rpx;
+  right: 10rpx;
+}
+
+/*wage-info********start**********/
+
+.wage-info {
+  background-color: #fff;
+  overflow: hidden;
+  margin-bottom: 50rpx;
+}
+
+.wage-info .title {
+  height: 80rpx;
+  background-color: #d4787e;
+  line-height: 80rpx;
+  padding: 0 50rpx;
+  color: #fff;
+}
+
+.wage-info .title .text-1 {
+  font-size: 40rpx;
+  font-weight: 700;
+  margin-right: 10rpx;
+  color: #fff;
+  position: relative;
+  float: left;
+}
+
+.wage-info .title .text-2 {
+  color: #fff;
+  float: left;
+}
+
+.wage-info .title .detail-btn {
+  color: #d4787e;
+  height: 60rpx;
+  font-size: 26rpx;
+  line-height: 60rpx;
+  float: right;
+  margin-top: 10rpx;
+}
+
+.wage-info .wage-brief-info {
+  display: flex;
+  padding: 0 50rpx;
+  justify-content: space-between;
+}
+
+.wage-info .wage-brief-info .month, .wage-info .wage-brief-info .day {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 40rpx 0;
+}
+
+.wage-info .wage-brief-info .month .text-a,
+.wage-info .wage-brief-info .day .text-a {
+  width: 100%;
+  font-size: 24rpx;
+  color: #d4787e;
+  height: 40rpx;
+  line-height: 40rpx;
+}
+
+.wage-info .wage-brief-info .month .text-b,
+.wage-info .wage-brief-info .day .text-b {
+  width: 100%;
+  color: #d4787e;
+  font-size: 66rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+}
+
+.wage-info .wage-brief-info .month .text-c,
+.wage-info .wage-brief-info .day .text-c {
+  width: 100%;
+  color: #d4787e;
+  font-size: 24rpx;
+}
+
+.wage-info .wage-brief-info .day .text-a {
+  text-align: right;
+}
+
+.wage-info .wage-brief-info .day .text-b {
+  text-align: right;
+}
+
+.wage-info .wage-brief-info .day .text-c {
+  text-align: right;
+}
+
+/*wage-info********end**********/
+
+/*personal-info********start**********/
+
+.personal-info {
+  background-color: #fff;
+  border-radius: 10rpx;
+  overflow: hidden;
+  margin-bottom: 50rpx;
+  margin: 0 30rpx;
+}
+
+.personal-info .title {
+  height: 80rpx;
+  background-color: #d4787e;
+  line-height: 80rpx;
+  padding: 0 20rpx;
+  color: #fff;
+}
+
+.personal-info .title .text-1 {
+  font-size: 40rpx;
+  font-weight: 700;
+  margin-right: 10rpx;
+  color: #fff;
+  position: relative;
+  float: left;
+}
+
+.personal-info .title .text-2 {
+  color: #fff;
+  float: left;
+}
+
+.personal-info .title .text-3 {
+  float: right;
+}
+
+.personal-info .module-a {
+  height: 220rpx;
+  overflow: hidden;
+  margin: 0 20rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2rpx solid #ccc;
+}
+
+.personal-info .module-a .info-a {
+  height: 100%;
+  width: 350rpx;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 20rpx 0;
+}
+
+.personal-info .module-a .info-a .item {
+  width: 100%;
+  display: flex;
+}
+
+.personal-info .module-a .info-a .item .left {
+  display: inline-block;
+  width: 150rpx;
+}
+
+.personal-info .module-a .info-a .item .right {
+  font-weight: 700;
+}
+
+.personal-info .module-a .avatar {
+  width: 150rpx;
+  border-radius: 50%;
+  margin-right: 80rpx;
+  margin: 0 20rpx 0 0;
+  height: 150rpx;
+  padding: 0;
+  position: relative;
+}
+.personal-info .module-a .avatar .icon{
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+}
+
+.personal-info .module-b {
+  margin: 0 20rpx;
+  border-bottom: 2rpx solid #ccc;
+}
+
+.personal-info .module-b .radio-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30rpx 0;
+  flex-wrap: wrap;
+}
+
+.personal-info .module-b .radio-group .checkbox {
+  width: 100%;
+  margin: 10rpx 0;
+}
+
+.personal-info .module-c {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 20rpx;
+  height: 160rpx;
+}
+
+.personal-info .module-c .des {
+  font-weight: 600;
+  margin-right: 60rpx;
+}
+
+.personal-info .module-c .qrCodeForRegistration {
+  width: 120rpx;
+  height: 120rpx;
+}
+
+/*personal-info********end**********/
+
+/*enterprise-list********start**********/
+
+.enterprise-list {
+  background-color: #fff;
+  border-radius: 20rpx;
+  overflow: hidden;
+  margin-bottom: 50rpx;
+}
+
+.enterprise-list .title {
+  height: 100rpx;
+  line-height: 100rpx;
+  color: #fff;
+  border-bottom: 2rpx solid #ccc;
+}
+
+.enterprise-list .title .shuxian {
+  color: #d4787e;
+}
+
+.enterprise-list .title .text {
+  font-size: 32rpx;
+  font-weight: 600;
+}
+
+.enterprise-list .title .logout-btn {
+  height: 50rpx;
+  line-height: 50rpx;
+  width: 160rpx;
+  font-size: 26rpx;
+  float: right;
+  margin-top: 25rpx;
+  margin-right: 10rpx;
+}
+
+.enterprise-list .radio-group {
+  padding: 30rpx 30rpx;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.enterprise-list .checkbox {
+  width: 100%;
+  margin-bottom: 30rpx;
+}
+
+.enterprise-list .checkbox:last-child {
+  margin-bottom: 0rpx;
+}
+
+.enterprise-list .qr-code-box {
+  display: flex;
+  justify-content: center;
+}
+
+.enterprise-list .qr-code-box .qrCodeForRegistration {
+  width: 400rpx;
+}
+
+/*enterprise-list********end**********/
+
+.scroll-view_x {
+  /* height: 400rpx; */
+  width: 100%;
+  left: 0;
+  background-color: #fff;
+  white-space: nowrap;
+}
+
+/*table********start**********/
+
+.table {
+}
+
+.tr.header {
+  display: flex;
+  width: 1530rpx;
+  justify-content: flex-start;
+}
+
+.tr.body {
+  display: flex;
+  width: 1530rpx;
+  justify-content: flex-start;
+}
+
+.tr.body:last-child {
+  border-bottom: 2rpx solid #ccc;
+}
+
+.table .item-1 {
+  width: 216rpx;
+}
+
+.table .item-2 {
+  width: 146rpx;
+}
+
+.table .item-3 {
+  width: 200rpx;
+}
+
+.table .item-4 {
+  width: 146rpx;
+}
+
+.table .item-5 {
+  width: 146rpx;
+}
+
+.table .item-6 {
+  width: 146rpx;
+}
+
+.table .item-7 {
+  width: 270rpx;
+}
+
+.table .item-8 {
+  width: 260rpx;
+}
+
+.th {
+  font-size: 26rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  color: black;
+  border-top: 2rpx solid #ccc;
+  border-right: 2rpx solid #ccc;
+}
+
+.th:first-child {
+  border-left: 2rpx solid #ccc;
+}
+
+.td {
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  font-size: 24rpx;
+  border-top: 2rpx solid #ccc;
+  border-right: 2rpx solid #ccc;
+}
+
+.td:first-child {
+  border-left: 2rpx solid #ccc;
+}
+
+/*table*********end***********/

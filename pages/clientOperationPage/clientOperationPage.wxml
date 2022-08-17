@@ -1,0 +1,61 @@
+<form bindsubmit="formSubmitThrottleHandle" bindreset="formReset">
+
+  <view class='row-1'>
+    <view class="title">客户标签</view>
+    <view class="item-a" wx:for="{{form.tags}}" wx:for-item="index" wx:key="index" wx:for-index="tagKey">
+      <text class='key'>{{tagKey}}：</text>
+      <input cursor-spacing="50" class="value {{mode==='lookOver'?'disabled':''}}" type="text" data-tagname="{{tagKey}}" value="{{form.tags[tagKey]}}" bindfocus="onFocusClientTag" bindinput="clientDebouncedHandleSearch" disabled="{{mode==='lookOver'}}" />
+      <view wx-if='{{clientTagKeyFocus===tagKey}}' class="suggest-value-list">
+        <view class="suggestion-box">
+         <scroll-view scroll-y="{{true}}" style="height: 200rpx;">
+          <view class='tag' wx:for="{{client_suggest_value_list}}" wx:for-item="tagValue" wx:key="index" wx:for-index="index" catchtap="onClientTagValueSelect" data-tagname="{{tagKey}}" data-tagvalue="{{tagValue}}">{{tagValue?tagValue:'空白标签'}}</view>
+          </scroll-view>
+        </view>
+      </view>
+    </view>
+    <view style="width:100%; border-bottom: 2rpx solid #ccc;"></view>
+  </view>
+
+  <view class='row-1'>
+    <view class="title">客户信息</view>
+
+    <view class="item-a">
+      <text class='key'><text style="color:red;">*</text>名称：</text>
+      <input cursor-spacing="50" class="value {{mode==='lookOver'?'disabled':''}}" name="名称" value="{{form['名称']}}" placeholder="请输入名称" disabled="{{mode==='lookOver'}}" bindtap="onTap"/>
+    </view>
+
+    <view class="item-a">
+      <text class='key'>地址：</text>
+      <input cursor-spacing="50" class="value {{mode==='lookOver'?'disabled':''}}" name="地址" value="{{form['地址']}}" placeholder="请输入地址" disabled="{{mode==='lookOver'}}" bindtap="onTap"/>
+    </view>
+
+    <view class="item-a">
+      <text class='key'>电话：</text>
+      <input cursor-spacing="50" class="value {{mode==='lookOver'?'disabled':''}}" name="电话" value="{{form['电话']}}" placeholder="请输入电话" disabled="{{mode==='lookOver'}}" bindtap="onTap"
+      placeholder="例:18888888888或0512-36606621"/>
+    </view>
+
+    <view class="item-a">
+      <text class='key'>备注：</text>
+      <input cursor-spacing="50" class="value {{mode==='lookOver'?'disabled':''}}"  name="备注" value="{{form['备注']}}" placeholder="请输入备注" disabled="{{mode==='lookOver'}}" bindtap="onTap"/>
+    </view>
+
+
+  </view>
+
+  <view style="width:100%; height:40rpx;"></view>
+
+
+  <button wx:if="{{mode==='addClient'}}" class="search-btn" type="primary" form-type="submit" style="margin-bottom:20rpx;">添加客户</button>
+  <button wx:if="{{mode==='addClient'}}" class="clear-btn" form-type="reset">清空条件</button>
+
+  <button wx:if="{{mode==='editClient'}}" class="search-btn" type="primary" form-type="submit" style="margin-bottom:20rpx;">确认修改</button>
+  <button wx:if="{{mode==='editClient'}}" class="clear-btn" bindtap="cancelBtnClick">取消修改</button>
+
+
+</form>
+
+<!--回到首页按钮-->
+<back-to-main position="{{positionStr}}" tabBarUrl="{{tabBarUrl}}"></back-to-main>
+<!-- loading遮罩 -->
+<loading wx:if="{{isRequestIng}}"></loading>

@@ -1,0 +1,119 @@
+<!--pages/productionOrderDetails/productionOrderDetails.wxml-->
+<view class='container'>
+  <button wx:if='{{backToTheHomePageBtnStatus}}' size='mini' bindtap="backToTheHomePage">回到首页</button>
+  <!-- 生产单子基本信息 -->
+  <view class='personal-info'>
+    <view class='title'>
+      <text class='text-2'>生产单基本信息</text>
+      <button class="batch-operation-btn"  bindtap="batchOperationThrottleHandle">同批次操作</button>
+    </view>
+
+    <view class='info'>
+      <view class='row-1-1'>
+        <image class="image" src="{{productionOrderDetails['展示图片']?productionOrderDetails['展示图片']:'/static/imageC/timg.jpeg'}}" data-url="{{productionOrderDetails['展示图片']}}" catchtap="previewImage1" mode="scaleToFill"></image>
+        <view class="row-1-info">
+          <view class='item left'>
+            <text class='key'>生产单号:</text>
+            <text class='value'>{{productionOrderDetails['生产单编号']}}</text>
+          </view>
+          <view class='item right'>
+            <text class='key'>生产单日期:</text>
+            <text class='value'>{{productionOrderDetails['生产单时间']}}</text>
+          </view>
+          <view class='item left'>
+            <text class='key'>总排产数:</text>
+            <text class='value'>{{productionOrderDetails['排产产品']['排产配码数量']['总排产数']}}</text>
+          </view>
+        </view>
+        <!-- 生产单二维码 -->
+        <image class="codeimg" data-url="{{productionOrderDetails['生产单二维码']}}" catchtap="previewImage2"  src="{{productionOrderDetails['生产单二维码']}}"></image>
+        <!-- 生产单二维码 -->
+      </view>
+      <!-- 生产单图片 -->
+      <view class='row-2'>
+        <view class='item-1 productDetail'>
+          <view>产品基本信息</view>
+          <view bindtap="viewProductDetailThrottleHandle">查看产品详情</view>
+        </view>
+
+        <view class='item'>
+          <text class='key'>产品编号:</text>
+          <text class='value'>{{productDetail['产品编号']}}</text>
+        </view>
+
+        <view class='item'>
+          <text class='key'>客户产品编号:</text>
+          <text class='value'>{{customerProductNumber}}</text>
+        </view>
+
+        <view class='item'>
+          <text class='key'>品牌:</text>
+          <text class='value'>{{brand}}</text>
+        </view>
+
+        <view class='item' wx:for="{{productDetail['tags']}}" wx:for-item="value" wx:for-index="key" wx:key="key">
+          <text class='key'>{{key}}:</text>
+          <text class='value'>{{value}}</text>
+        </view>
+
+
+      </view>
+
+      <view class='row-2'>
+        <view class='item-1'>对应订单基本信息</view>
+
+        <view class='item'>
+          <text class='key'>订单编号:</text>
+          <text class='value'>{{orderDetail['订单编号']}}</text>
+        </view>
+
+        <view class='item'>
+          <text class='key'>订单日期:</text>
+          <text class='value'>{{orderDetail['订单日期']}}</text>
+        </view>
+
+        <view class='item'>
+          <text class='key'>交货日期:</text>
+          <text class='value'>{{orderDetail['交货日期']}}</text>
+        </view>
+      </view>
+
+    </view>
+  </view>
+
+
+  <!-- 生产单工序信息 -->
+  <view class='process-info'>
+    <view wx:if="{{totalNumberOfUnconfirmedRecords>0 && theirOwnRights['生产单详情可写']}}" 
+    class='title'>工序选项(该生产单共有{{totalNumberOfUnconfirmedRecords}}条未确认记录)</view>
+    <view wx:else class='title'>工序选项</view>
+    <view class="table">
+      <block wx:for="{{processInformationComesFromProductionOrder}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+        <!-- 如果该角色有编辑生产单的权限 ，按钮上要显示数量-->
+        <button wx:if="{{theirOwnRights['生产单详情可写']}}" class="process-btn {{item['工序是否需要确认记录']?'bg-color-a':''}}" bindtap="detailsThrottleHandle" data-name="{{processInformationComesFromProductionOrder[index]['工序信息']['工序名称']}}">
+          {{item['工序信息']['工序名称']}} ({{item['员工计件配码总计数']['总完成数']}}/{{productionOrderDetails['排产产品']['排产配码数量']['总排产数']}})
+          <label class="btn-label">{{item['工序是否需要确认记录']?'工序需要确认记录':''}}</label>
+        </button>
+
+        <!-- 如果没有那就只显示一个名称 -->
+        <button wx:else class="process-btn-employees" bindtap="detailsThrottleHandle" data-name="{{processInformationComesFromProductionOrder[index]['工序信息']['工序名称']}}">
+          {{item['工序信息']['工序名称']}}
+        </button>
+      </block>
+    </view>
+    <view class="table">
+      <block wx:for="{{restProductOrderListGongXu}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+        <button class="process-btn" style="background-color: #bababa;color:#333333;" bindtap="huiSeDisable">
+          {{item['工序信息']['工序名称']}} ({{item['员工计件配码总计数']['总完成数']}}/{{productionOrderDetails['排产产品']['排产配码数量']['总排产数']}})
+        </button>
+      </block>
+    </view>
+  </view>
+
+  <!-- 标记完成生产单 拥有生产单详情可写权限才可显示 -->
+  <button wx:if="{{theirOwnRights['生产单详情可写']}}" class="complete-btn" type='primary' disabled="{{productionOrderDetails['生产单状态']==='完成'}}" bindtap="onCompleteBtnClick">标记完成生产单</button>
+
+  <!-- loading遮罩 -->
+  <loading wx:if="{{isRequestIng}}"></loading>
+
+</view>

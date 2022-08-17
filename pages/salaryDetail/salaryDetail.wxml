@@ -1,0 +1,119 @@
+<!--pages/personalSetting /personalSetting.wxml-->
+<view class='container'>
+
+	<view class="module-a">
+		<picker class="picker" mode="date" value="{{startTime}}" bindchange="bindDateChange" data-status="开始">
+			<text class="text-a">开始时间：</text>
+			<text class="text-b">{{startTime}}</text>
+			<view class="text-c">
+				<text class='iconfont icon-triangle-bottom'></text>
+			</view>
+
+		</picker>
+
+		<picker class="picker" mode="date" value="{{endTime}}" bindchange="bindDateChange" data-status="结束">
+			<text class="text-a">结束时间：</text>
+			<text class="text-b">{{endTime}}</text>
+			<view class="text-c">
+				<text class='iconfont icon-triangle-bottom'></text>
+			</view>
+
+		</picker>
+	</view>
+
+	<view class="module-b">
+		<view class="tag">累计工资：{{salaryStatistics['累计工资']}}</view>
+		<view class="tag">未确认工资：{{salaryStatistics['未确认工资']}}</view>
+		<view class="tag">已确认工资：{{salaryStatistics['已确认工资']}}</view>
+		<view class="tag">抵扣工资：{{deductionStatistics['累计抵扣金额']}}</view>
+	</view>
+
+
+	<!-- 导航栏 -->
+	<view style="margin-bottom: 10px;">
+		<live-nav liveNavData="{{liveNavData}}" bind:myevent="onSelectItemClick"></live-nav>
+	</view>
+
+
+	<view wx:if="{{curSelectIndex===0}}" class="module-c" wx:for="{{salaryList}}" wx:for-item="salaryItem" wx:for-index="index" wx:key="index">
+
+		<view class="row-0">
+			<label class="process-name">{{salaryList[index]['工序名称']}}</label>
+			<label class="time">{{salaryList[index]['记录确认时间']}}</label>
+			<label class="state {{salaryList[index]['记录确认']?'confirmed':'unconfirmed'}}">
+				{{salaryList[index]['记录确认']?'已确认':'未确认'}}
+			</label>
+		</view>
+
+		<view class="row-1">
+			<view class="tags" wx:for="{{salaryList[index]['排产产品.产品信息.tags']}}" wx:for-item="value" wx:for-index="key" wx:key="key">
+				<label class="key">{{key}}：</label>
+				<label class="value">{{value}}</label>
+			</view>
+		</view>
+
+		<view class="row-1">
+			<view class="tags" wx:for="{{salaryList[index]['对应订单.tags']}}" wx:for-item="value" wx:for-index="key" wx:key="key">
+				<label class="key">{{key}}：</label>
+				<label class="value">{{value}}</label>
+			</view>
+		</view>
+
+		<view class="row-2">
+			<view class="item">
+				<label class="key">生产单号：</label>
+				<label class="value">{{salaryList[index]['生产单编号']}}</label>
+			</view>
+			<view class="item">
+				<label class="key">单位工资：</label>
+				<label class="value">{{salaryList[index]['工序单位工资']}}</label>
+			</view>
+			<view class="item total-the-number">
+				<label class="key">总排产数：</label>
+				<label class="value">{{salaryList[index]['排产产品.排产配码数量.总排产数']}}</label>
+			</view>
+			<view class="item complete-the-number">
+				<text class="key" decode="true">完成数：&nbsp;&nbsp;X </text>
+				<label class="value">{{salaryList[index]['完成数量']}}</label>
+			</view>
+			<view class="item" id="h-40">
+				<label class="key">确认记录管理者：</label>
+				<label class="value">{{salaryList[index]['确认记录管理者姓名']}}</label>
+			</view>
+			<view class="item" id="h-40">
+				<label class="key">应发工资：</label>
+				<label class="value salary">¥{{salaryList[index]['应发工资']}}</label>
+			</view>
+		</view>
+	</view>
+
+	<view wx:if="{{curSelectIndex===1}}" class="module-c" wx:for="{{deductionList}}" wx:for-item="deductionItem" wx:for-index="index" wx:key="index">
+		<view class="row-0">
+			<label class="process-name">{{deductionItem['员工姓名']}}</label>
+			<label class="time">管理人员{{deductionItem['记录管理者姓名']}} {{deductionItem['记录输入时间']}}录入</label>
+		</view>
+		<view class="row-2">
+
+			<view class="item">
+				<label class="key">抵扣时间：</label>
+				<label class="value">{{deductionItem['记录发生时间']}}</label>
+			</view>
+			<view class="item" id="h-40">
+				<label class="key">抵扣金额：</label>
+				<label class="value salary">¥{{deductionItem['抵扣金额']}}</label>
+			</view>
+			<view class="item">
+				<label class="key">抵扣原因：</label>
+				<label class="value">{{deductionItem['工资抵扣原因']}}</label>
+			</view>
+		</view>
+	</view>
+
+
+	<!--回到首页按钮-->
+	<back-to-main position="{{positionStr}}" tabBarUrl="{{tabBarUrl}}"></back-to-main>
+	<!-- loading遮罩 -->
+	<loading wx:if="{{isRequestIng}}"></loading>
+	<!-- 弹回顶部 -->
+	<back-to-top floorstatus="{{floorstatus}}"></back-to-top>
+</view>

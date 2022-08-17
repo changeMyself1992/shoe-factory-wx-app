@@ -1,0 +1,137 @@
+/* pages/employeeRegistration/employeeRegistration.wxss */
+@import '../../static/wxss/global.wxss';
+.form-item {
+  display: flex;
+  padding: 0 30rpx;
+  height: 80rpx;
+  background-color: #fff;
+  border-top: 2rpx solid #ececec;
+  justify-content: space-between;
+}
+
+.form-item .key {
+  height: 100%;
+  color: black;
+  font-size: 32rpx;
+  line-height: 78rpx;
+}
+
+.form-item .value {
+  width: 420rpx;
+  line-height: 78rpx;
+  font-size: 32rpx;
+  height: 100%;
+}
+
+.form-item .value.upload {
+  display: flex;
+  align-items: center;
+}
+
+.form-item.textarea {
+  height: 160rpx;
+}
+
+.form-item.textarea .value {
+  padding-top: 10rpx;
+  line-height: 40rpx;
+}
+
+.placeholder {
+  height: 150rpx;
+}
+
+.form-item.bankCardPhoto {
+  height: auto;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.form-item.idCardFrontPhoto {
+  height: auto;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.form-item.idCardBackPhoto {
+  height: auto;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.card-photo-box {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.card-photo-box .bank-card-photo {
+  width: 1200rpx;
+}
+
+.form-item .id-card-back-photo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.form-item .bank-card-photo{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.id-card-front-photo .card-photo{
+  height: 200rpx;
+}
+
+.id-card-back-photo .card-photo{
+  height: 200rpx;
+}
+.bank-card-photo .card-photo{
+  height: 200rpx;
+}
+
+.form-item.process-select {
+  height: auto;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.form-item.process-select .value {
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.checkbox {
+  width: 50%;
+}
+
+.form-item.workingState {
+  height: auto;
+}
+
+.form-item.workingState .value {
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.redtext{
+  color: red;
+}
+.deletedate{
+  display: inline-block;
+width: 35rpx;
+height: 35rpx;
+border-radius: 50rpx;
+border: 1px solid #cdcdcd;
+color: #cdcdcd;
+text-align: center;
+line-height: 35rpx;
+margin-left: 20rpx;
+font-size: 20rpx;
+}

@@ -1,0 +1,2 @@
+
+<text wx:if="{{floorstatus}}" class='iconfont icon-huidaodingbu goTop' style="{{location}}" bindtap="goTop"></text>

@@ -1,0 +1,87 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": [
+			{
+				"type": "folder",
+				"value": "miniprogram_npm"
+			}
+		]
+	},
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"enhance": false,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"coverView": true,
+		"autoAudits": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": false,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		}
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.10.4",
+	"appid": "wx53915ccce1b33232",
+	"projectname": "%E5%B7%A5%E5%8E%82%E5%B0%8F%E7%A8%8B%E5%BA%8F",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": 0,
+					"name": "排场单详情",
+					"pathName": "pages/productionOrderDetails/productionOrderDetails",
+					"query": "q= https%3a%2f%2fintelligent-manufacturing.westmatrix.cn%2ftest%2fapi%2fv1%2fproduction_note%2fget_production_note_by_id%3fid%3dSCD2001017",
+					"scene": 1011
+				},
+				{
+					"id": 1,
+					"name": "扫码注册",
+					"pathName": "pages/employeeRegistration/employeeRegistration",
+					"query": "q= https%3a%2f%2fmes.westmatrix.cn%2fadd_user%3fid%3dJuZhenWeiLai",
+					"scene": 1011
+				},
+				{
+					"id": 2,
+					"name": "扫码登录",
+					"pathName": "pages/applicationFunctions/applicationFunctions",
+					"query": "q=https%3A%2F%2Fmes.westmatrix.cn%2Fwx_login%3Ftoken%3Da7bc156459fa11ea82658c8590ae6bf3",
+					"scene": null
+				}
+			]
+		}
+	}
+}

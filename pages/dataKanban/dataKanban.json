@@ -1,0 +1,15 @@
+{
+  "backgroundTextStyle": "dark",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTitleText": "数据看板",
+  "navigationBarTextStyle": "black",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "back-to-top": "/components/back-to-top/back-to-top",
+    "loading": "/components/loading/loading",
+    "wage-info": "/components/wage-info/wage-info",
+    "process-department-info-located-in-the-dataKanban": "./components/process-department-info-located-in-the-dataKanban/process-department-info-located-in-the-dataKanban",
+    "ec-canvas": "../../components/ec-canvas/ec-canvas",
+    "canvas-ring": "/components/canvas-ring/canvas-ring"
+  }
+}

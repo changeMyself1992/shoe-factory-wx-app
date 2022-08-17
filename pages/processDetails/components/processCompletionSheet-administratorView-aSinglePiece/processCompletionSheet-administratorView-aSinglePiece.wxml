@@ -1,0 +1,55 @@
+<!-- 工序完成表-管理员看到的视口-单个计件 -->
+<view class='table'>
+  <view class='header'>
+    <view class="tr">
+      <view class="th">员工完成表</view>
+    </view>
+  </view>
+
+  <view class='title'>
+    <view class='tr'>
+      <view class="td item-1">员工编号</view>
+      <view class="td item-2">姓名</view>
+      <view class="td item-3">实际完成量</view>
+      <view class="td item-4">总工资</view>
+      <view class="td item-5">组长确认</view>
+    </view>
+  </view>
+
+  <view class='body'>
+    <view class="tr" wx:for="{{processinfo['员工计件']}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+      <view class="td item-1">{{item['unique_id']}}</view>
+      <view class="td item-2">{{item['员工姓名']}}</view>
+      <view class="td item-3">
+        <input cursor-spacing="50" type="number" value="{{item['配码计数']['总完成数']}}" disabled></input>
+      </view>
+      <view class="td item-4">{{item['配码计数']['计件总额']}}</view>
+      <view class='td item-5'>
+        <!-- 如果组长已经确认过显示xxx已确认 -->
+        <button wx:if="{{item['记录确认']}}" class="entry-confirmed" disabled>{{item['确认管理者姓名']}}已确认</button>
+        <!-- 如果没有确认 显示确认按钮 -->
+        <button wx:else class="entry" bindtap="groupLeaderConfirmThrottleHandle" data-item='{{item}}'>确认</button>
+      </view>
+    </view>
+  </view>
+
+  <view class='footer'>
+    <view class="tr">
+      <view class="td item-1">
+        <text class='key'>此工序目标总数: </text>
+        <text class='value'>{{productionOrderDetails['排产产品']['排产配码数量']['总排产数']}}</text>
+      </view>
+      <view class="td item-2">
+        <text class='key'>实际完成总数: </text>
+        <text class='value'>{{processinfo['员工计件配码总计数']['总完成数']}}</text>
+      </view>
+    </view>
+    <view class="tr">
+      <view class="td item-1">
+        <text class='key'>此工序总工资: </text>
+        <text class='value'>{{totalWagesForThisProcess}}</text>
+      </view>
+    </view>
+  </view>
+
+</view>

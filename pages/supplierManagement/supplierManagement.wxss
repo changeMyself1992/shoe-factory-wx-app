@@ -1,0 +1,52 @@
+/* pages/supplierManagement/supplierManagement.wxss */
+
+.maskCash {
+  position: fixed;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 999;
+  display: flex;
+}
+
+.maskCash .maskbox {
+  margin: auto;
+  width: 80%;
+  height: 40%;
+  background-color: #fff;
+  border-radius: 10rpx;
+}
+
+.maskCash .maskbox .title {
+  height: 20%;
+text-align: center;
+color: #333333;
+font-weight: bold;
+font-size: 34rpx;
+padding-top: 20rpx;
+
+}
+
+.maskCash .maskbox .content {
+  text-align: center;
+  height: 60%;
+}
+
+.maskCash .maskbox .content image {
+  width: 270rpx;
+  height: 270rpx
+}
+
+.maskCash .maskbox .bottombtn {
+  color: #465783;
+font-size: 36rpx;
+text-align: center;
+height: 20%;
+padding-top: 20rpx;
+border-top: 1px solid #dfdfe1;
+}

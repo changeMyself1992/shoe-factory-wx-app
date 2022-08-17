@@ -1,0 +1,299 @@
+@import "../../../../app.wxss";
+@import "../../../../static/wxss/font1.wxss";
+
+.cut-off-rule {
+  width: 100%;
+  height: 10rpx;
+  background-color: rgb(74, 74, 74);
+}
+
+.box {
+  margin-top: 20rpx;
+  padding: 0 20rpx;
+}
+
+.box .header {
+  height: 50rpx;
+  line-height: 50rpx;
+}
+
+.box .header .text-a {
+  font-size: 34rpx;
+  float: left;
+}
+
+.box .header .text-b {
+  font-size: 34rpx;
+  float: right;
+}
+
+.box .header .text-c {
+  font-size: 32rpx;
+  color: #d2767f;
+  float: right;
+}
+
+.box .section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 10rpx 0;
+}
+
+.item {}
+
+.item .key {
+  font-size: 24rpx;
+}
+
+.item .value {
+  font-size: 24rpx;
+  font-weight: 700;
+}
+
+.box .section .tag-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  border-bottom: 2rpx dashed #ccc;
+  background-color: #f1f5fb;
+}
+
+.box .section .time-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  border-bottom: 2rpx dashed #ccc;
+  background-color: #f1f5fb;
+}
+
+.box .section .time-row .item {
+  width: 50%;
+}
+
+.box .section .time-row .item.text-right {
+  text-align: right;
+}
+
+.box .section .time-row .item-jindu {
+  width: 60%;
+  display: flex;
+  align-items: center;
+}
+
+.box .section .time-row .item-jindu .key {
+  width: 140rpx;
+}
+
+.box .section .time-row .item-jindu .value {
+  width: 100%;
+}
+
+/*结算状态模块********start**********/
+
+.settlement-status-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10rpx;
+  background-color: #fff;
+  align-items: center;
+  border: 2rpx dashed #ccc;
+}
+
+.settlement-status-row .item {
+  width: 48%;
+  display: flex;
+  justify-content: space-between;
+  line-height: 40rpx;
+  margin-bottom: 10rpx;
+}
+
+.settlement-status-row .item .key {
+  font-size: 28rpx;
+  white-space: nowrap;
+  margin-right: 20rpx;
+}
+
+.settlement-status-row .item .value {
+  height: 40rpx;
+  border: 2rpx solid #ccc;
+  font-size: 24rpx;
+  padding-left: 5px;
+  width: 200rpx;
+}
+
+.settlement-status-row .form-item {
+  padding: 0;
+  align-items: center;
+  border: none;
+}
+
+.settlement-status-row .form-item .key {}
+
+.settlement-status-row .form-item .key.state {
+  font-weight: 700;
+  font-size: 30rpx;
+  line-height: 80rpx;
+}
+
+.settlement-status-row .form-item .value {
+  border-radius: 4px;
+  border: 1px solid #dcdfe6;
+  height: 80%;
+  width: 280rpx;
+}
+
+/*结算状态模块********start**********/
+
+/*table********start**********/
+
+.kind-list__item {
+  width: 100%;
+  margin: 0;
+}
+
+.table {
+  margin-bottom: 20rpx;
+}
+
+.tr.header {
+  display: flex;
+  width: 100%;
+  height: 60rpx;
+  justify-content: flex-start;
+  background-color: #d2767f;
+  padding: 0;
+}
+
+.tr.header .th {
+  line-height: 60rpx;
+}
+
+.th {
+  height: 100%;
+  text-align: center;
+  color: #fff;
+  word-wrap: break-word;
+  word-break: normal;
+}
+
+.th.item-1 {
+  width: 20%;
+}
+
+.th.item-2 {
+  width: 30%;
+}
+
+.th.item-3 {
+  width: 20%;
+}
+
+.th.item-4 {
+  width: 30%;
+}
+
+.table .body {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: #fff3f4;
+}
+
+.tr.body {
+  height: 60rpx;
+  width: 50%;
+}
+
+.tr.body:nth-child(2n+1) {
+  border-right: 2rpx solid #ccc;
+}
+
+.tr.body .td {
+  height: 100%;
+  line-height: 60rpx;
+  text-align: center;
+  font-size: 24rpx;
+  background-color: #fff3f4;
+  box-sizing: border-box;
+}
+
+.tr.body .td.item-1 {
+  width: 40%;
+}
+
+.tr.body .td.item-2 {
+  width: 60%;
+  display: flex;
+  align-items: center;
+  padding: 0 20rpx;
+}
+
+.tr.body .td.item-2 input {
+  color: #d4787e;
+  border: 2rpx solid #ccc;
+  box-sizing: border-box;
+  height: 40rpx;
+}
+
+.tr.footer {
+  display: flex;
+  width: 100%;
+  height: 60rpx;
+  background-color: #ebebeb;
+  justify-content: flex-start;
+}
+
+.tr.footer .td {
+  height: 100%;
+  line-height: 60rpx;
+  text-align: center;
+  font-weight: 700;
+}
+
+.tr.footer .td.item-1 {
+  width: 40%;
+}
+
+.tr.footer .td.item-2 {
+  width: 30%;
+}
+
+/*table*********end***********/
+
+.box .btn-box {
+  display: flex;
+}
+
+.box .btn-box .btn-consent {
+  font-size: 26rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  margin: 0;
+  padding: 0 20rpx;
+}
+
+.weui-flex__item {
+  font-size: 30rpx;
+}
+
+.kind-list__item {
+  background-color: #fff3f4;
+}
+.deletedate{
+  display: inline-block;
+width: 35rpx;
+height: 35rpx;
+border-radius: 50rpx;
+border: 1px solid #cdcdcd;
+color: #cdcdcd;
+text-align: center;
+line-height: 35rpx;
+margin-left: 20rpx;
+font-size: 20rpx;
+}

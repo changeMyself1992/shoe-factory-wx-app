@@ -1,0 +1,30 @@
+<!--pages/employeeRecord/employeeRecord.wxml-->
+<view class="container">
+
+  <view class='row row-1'>
+    <view class="item-a">
+      <text class='key'>生产单编号：</text>
+      <input cursor-spacing="50" class="value" type="text" value="{{productUniqueId}}" name="{{productUniqueId}}" bindinput="productUniqueIdClick" />
+    </view>
+    <view class="item-a">
+      <text class='key'>员工姓名：</text>
+      <input cursor-spacing="50" class="value" type="text" value="{{productStaffName}}" name="{{productStaffName}}" bindinput="productStaffNameClick" />
+    </view>
+    <view class="item-a">
+      <text class='key'>员工手机：</text>
+      <input cursor-spacing="50" class="value" type="number" value="{{productStaffTel}}" name="{{productStaffTel}}" bindinput="productStaffTelClick" />
+    </view>
+    <view class="item-a">
+      <text class='key'>工序：</text>
+      <input cursor-spacing="50" class="value" type="text" value="{{productName}}" name="{{productName}}" bindinput="productNameClick" />
+    </view>
+  </view>
+
+  <button class="search-btn" type="primary" bindtap="submitThrottleHandle" style="margin-bottom:20rpx;">搜索</button>
+
+  <button class="clear-btn" bindtap="onClear">清空搜索条件</button>
+
+
+  <!-- loading遮罩 -->
+  <loading wx:if="{{isRequestIng}}"></loading>
+</view>

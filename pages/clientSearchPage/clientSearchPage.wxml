@@ -1,0 +1,50 @@
+<form bindsubmit="formSubmitThrottleHandle" bindreset="formReset">
+
+  <view class='row-1'>
+    <view class="title">客户标签</view>
+    <view class="item-a" wx:for="{{client_tag_filter}}" wx:for-item="index" wx:key="index" wx:for-index="tagKey">
+      <text class='key'>{{tagKey}}：</text>
+      <input cursor-spacing="50" class="value" type="text" data-tagname="{{tagKey}}" value="{{client_tag_filter[tagKey]}}" bindfocus="onFocusClientTag"  bindinput="clientDebouncedHandleSearch" />
+      <view wx-if='{{clientTagKeyFocus===tagKey}}' class="suggest-value-list" catchtap="">
+        <view class="suggestion-box">
+          <scroll-view scroll-y="{{true}}" style="height: 200rpx;">
+            <view class='tag' wx:for="{{client_suggest_value_list}}" wx:for-item="tagValue" wx:key="index" wx:for-index="index" catchtap="onClientTagValueSelect" data-tagname="{{tagKey}}" data-tagvalue="{{tagValue}}">{{tagValue}}</view>
+          </scroll-view>
+        </view>
+      </view>
+    </view>
+    <view style="width:100%; border-bottom: 2rpx solid #ccc;"></view>
+  </view>
+
+  <view class='row-1'>
+    <view class="title">客户信息</view>
+
+    <view class="item-a">
+      <text class='key'>名称：</text>
+      <input cursor-spacing="50" class="value" name="名称" placeholder="请输入名称" bindtap="onTap"/>
+    </view>
+
+    <view class="item-a">
+      <text class='key'>地址：</text>
+      <input cursor-spacing="50" class="value" name="地址" placeholder="请输入地址" bindtap="onTap"/>
+    </view>
+
+    <view class="item-a">
+      <text class='key'>电话：</text>
+      <input cursor-spacing="50" class="value" name="电话" placeholder="请输入电话" bindtap="onTap"/>
+    </view>
+
+
+  </view>
+
+  <view style="width:100%; height:40rpx;"></view>
+
+
+  <button class="search-btn" type="primary" form-type="submit" style="margin-bottom:20rpx;">搜索</button>
+  <button class="clear-btn" form-type="reset">清空搜索条件</button>
+</form>
+
+<!-- loading遮罩 -->
+<loading wx:if="{{isRequestIng}}"></loading>
+<!--回到首页按钮-->
+<back-to-main position="{{positionStr}}" tabBarUrl="{{tabBarUrl}}"></back-to-main>

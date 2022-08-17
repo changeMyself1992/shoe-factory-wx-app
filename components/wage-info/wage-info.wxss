@@ -1,0 +1,137 @@
+/*wage-info********start**********/
+@import "../../static/wxss/font1.wxss";
+
+.wage-info {
+  border-radius: 10rpx;
+  overflow: hidden;
+  position: relative;
+}
+
+.wage-info .bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+
+.wage-info .title {
+  position: relative;
+  height: 98rpx;
+  line-height: 80rpx;
+  padding: 0 20rpx;
+  z-index: 10;
+}
+
+.wage-info .title .icon-a {
+  width: 36rpx;
+  height: 41rpx;
+  float: left;
+  margin-top: 18rpx;
+  margin-right: 10rpx;
+}
+
+.wage-info .title .text-2 {
+  float: left;
+  font-size: 32rpx;
+}
+
+.wage-info .title .detail-btn {
+  color: #333;
+  height: 60rpx;
+  font-size: 28rpx;
+  line-height: 60rpx;
+  float: right;
+  margin-top: 12rpx;
+  background-color: transparent;
+}
+
+.wage-info .wage-brief-info {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 25rpx;
+  border: none;
+  position: relative;
+  z-index: 10;
+}
+
+.wage-info .wage-brief-info .left {
+  width: 50%;
+  border-right: 1px solid #D8E0E6;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+
+.wage-info .wage-brief-info .left .text-a {
+  width: 100%;
+  text-align: center;
+  color: #000;
+  height: 48rpx;
+  line-height: 28rpx;
+}
+
+.wage-info .wage-brief-info .left .text-b {
+  width: 100%;
+  text-align: center;
+  font-size: 50rpx;
+  height: 67rpx;
+  line-height: 50rpx;
+}
+
+.wage-info .wage-brief-info .left .text-c {
+  width: 100%;
+  text-align: center;
+  font-size: 24rpx;
+  color: #000;
+  height: 46rpx;
+  line-height: 24rpx;
+}
+
+.wage-info .wage-brief-info .right {
+  width: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+
+.wage-info .wage-brief-info .right .text-a {
+  width: 100%;
+  text-align: center;
+  color: #000000;
+  height: 48rpx;
+  line-height: 28rpx;
+}
+
+.wage-info .wage-brief-info .right .text-b {
+  width: 100%;
+  text-align: center;
+  font-size: 50rpx;
+  height: 67rpx;
+  line-height: 50rpx;
+  color: #DC5460;
+}
+
+.wage-info .wage-brief-info .right .wages {
+  width: 50%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.wage-info .wage-brief-info .right .label-a {
+  width: 100%;
+  text-align: center;
+  font-size: 24rpx;
+  color: #000000;
+}
+
+.wage-info .wage-brief-info .right .label-b {
+  width: 100%;
+  text-align: center;
+  font-size: 24rpx;
+  color: #DC5460;
+}
+
+
+/*wage-info********end**********/

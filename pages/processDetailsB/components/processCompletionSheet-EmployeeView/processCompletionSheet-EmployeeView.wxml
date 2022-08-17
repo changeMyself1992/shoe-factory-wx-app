@@ -1,0 +1,44 @@
+<!-- 工序完成表 员工看到的视口 -->
+<view class='table'>
+  <view class="tr header">
+    <view class="th item-1">尺码</view>
+    <view class="th item-2">国际</view>
+    <view class="th item-3">已完成数量</view>
+    <view class="th item-4">申请录入数量</view>
+  </view>
+
+  <block wx:for="{{processinfo['计件信息']}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+    <view class="tr body">
+      <view class="td item-1">{{item['尺码']}}</view>
+      <view class="td item-2">{{item['国标码']}}</view>
+      <view class="td item-3">{{item['完成数量']}}</view>
+      <view class="td item-4">{{item['目标数量']}}</view>
+    </view>
+  </block>
+
+  <view class="tr footer">
+    <view class="td item-1">总目标完成工资</view>
+    <view class="td item-2">{{processinfo['总目标完成工资']}}</view>
+  </view>
+
+  <view class="tr footer">
+    <view class="td item-1">总已经完成数</view>
+    <view class="td item-2">{{processinfo['总已经完成数']}}</view>
+  </view>
+
+  <view class="tr footer">
+    <view class="td item-1">总目标完成数</view>
+    <view class="td item-2">{{processinfo['总目标完成数']}}</view>
+  </view>
+
+  <view class='btn-box'>
+    <button class="entry" bindtap="entryThrottleHandle">
+      确认录入
+    </button>
+  </view>
+
+  <!-- 百分比loading -->
+  <!--title="{{'加载中...'}}"-->
+  <percentage-loading isRequestIng="{{isRequestIng}}" value="{{percentageOfProgressSubmitted}}" canvasWidth="140" 
+  valueColor="#fff" />
+</view>

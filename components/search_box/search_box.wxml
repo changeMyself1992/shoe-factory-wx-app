@@ -1,0 +1,27 @@
+<!--工资信息卡片组件-->
+<view class='search_box'>
+  <!-- 搜索框 -->
+  <view class="search_container-box">
+    <view class="search_container">
+      <text class='iconfont icon-xiazai17 letf_search' bindtap="searchThrottleHandle"></text>
+      <input cursor-spacing="50" placeholder="条件搜索" class="search_input" disabled bindtap="searchThrottleHandle" />
+      <text wx:if='{{whetherToShowScanIcon}}' class='iconfont icon-scan right_sao' bindtap='getScancode'></text>
+    </view>
+  </view>
+
+  <!-- 搜索条件 -->
+  <view wx:if='{{whetherToDisplayAConditionBox}}' class="search-condition">
+    <view class="title">
+      <text class="des">{{conditionalQueryTitle}}</text>
+      <text class='iconfont icon-xiazai14 shanchu' bindtap='whenTheSearchCriteriaButtonIsClicked'></text>
+    </view>
+
+    <block wx:for="{{searchCondition}}" wx:for-item="Value" wx:key="Key" wx:for-index="Key">
+      <view class="item" wx:if='{{Value}}'>
+        <text class='key'>{{Key}}：</text>
+        <text class='value'>{{Value}}</text>
+      </view>
+    </block>
+  </view>
+
+</view>

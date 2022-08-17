@@ -1,0 +1,34 @@
+<!--pages/warehouseImportAndExportSearchPage/warehouseImportAndExportSearchPage.wxml-->
+<form bindsubmit="formSubmit" bindreset="formReset">
+
+  <view class='row-1'>
+    <view class="title">条件搜索</view>
+
+    <view class="form-item">
+      <view class="key">更新时间段开始</view>
+      <picker class="value" mode="date" name='更新时间段开始' id="更新时间段开始" bindchange="bindDateChange">
+        <label class="value-label">{{updateTimeStart}}</label>
+        <text class='iconfont icon-13 select-icon'></text>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <view class="key">更新时间段截止</view>
+      <picker class="value" mode="date" name='更新时间段截止' id="更新时间段截止" bindchange="bindDateChange">
+        <label class="value-label">{{updateTimeEnd}}</label>
+        <text class='iconfont icon-13 select-icon'></text>
+      </picker>
+    </view>
+
+    <view style="width:100%; height:20rpx;"></view>
+
+  </view>
+
+  <button class="search-btn" type="primary" form-type="submit" style="margin-bottom:20rpx;">搜索</button>
+  <!-- <button class="clear-btn" form-type="reset">清空搜索条件</button> -->
+</form>
+
+<!-- loading遮罩 -->
+<loading wx:if="{{isRequestIng}}"></loading>
+<!--回到首页按钮-->
+<back-to-main position="{{positionStr}}" tabBarUrl="{{tabBarUrl}}"></back-to-main>

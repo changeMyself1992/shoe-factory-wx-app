@@ -1,0 +1,360 @@
+.box {
+  background-color: #fff;
+  margin-top: 20rpx;
+  padding: 0 20rpx;
+}
+
+.box .header {
+  display: flex;
+  justify-content: space-between;
+  height: 60rpx;
+  line-height: 50rpx;
+}
+
+.box .header .text-a {
+  font-size: 30rpx;
+  font-weight: 700;
+  margin-right: 10rpx;
+}
+
+.box .header .text-b {
+  flex: 1;
+  padding-top: 10rpx;
+}
+
+.box .header .text-c {
+  color: #d2767f;
+}
+
+.box .section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 10rpx 0;
+}
+
+.item {}
+
+.item .key {
+  font-size: 24rpx;
+}
+
+.item .value {
+  font-size: 24rpx;
+  font-weight: 700;
+}
+
+.box .section .tag-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4rpx;
+  flex-wrap: wrap;
+}
+
+.box .section .time-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4rpx;
+  flex-wrap: wrap;
+  /* border-bottom: 2px dashed #ccc; */
+}
+
+.box .section .time-row .item {
+  margin-bottom: 10rpx;
+}
+
+.box .section .time-row .item.text-right {
+  text-align: right;
+}
+
+.box .section .time-row .item.item-100 {
+  width: 100%;
+  display: flex;
+}
+
+.box .section .time-row .item.item-100 .key {
+  min-width: 150rpx;
+}
+
+.box .section .time-row .item.item-100 .value-box {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.box .section .time-row .item.beizhu {
+  width: 100%;
+}
+
+.box .section .a-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.box .section .a-row .item {
+  width: 60%;
+  display: flex;
+  align-items: center;
+}
+
+.box .section .a-row .item .key {
+  width: 140rpx;
+}
+
+.box .section .a-row .item .value {
+  width: 100%;
+}
+
+.box .footer {
+  height: 80rpx;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.box .footer .btn-consent {
+  font-size: 26rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  margin: 0;
+}
+
+.box .footer .btn-reject {
+  font-size: 26rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  margin: 0;
+}
+
+.zuofeibtn {
+  background-color: red;
+  color: #ffffff;
+  border-radius: 10rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  width: 100rpx;
+  text-align: center;
+}
+
+
+
+
+
+.box .section .tag-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4rpx;
+  flex-wrap: wrap;
+}
+
+.box .section .bottom {
+  width: 100%;
+  text-align: right;
+}
+
+.box .bottom .label-a {}
+
+
+
+
+
+
+
+
+
+
+
+.box {
+  background-color: #fff;
+  margin-top: 20rpx;
+  padding: 0 20rpx;
+}
+
+.box .header {
+  /* border-bottom: 2rpx solid #ccc; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10rpx 0;
+}
+
+.box .header .text-a {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 34rpx;
+  /* width: 70%; */
+}
+
+.box .header .process-select {
+  /* display: flex;
+  align-items: center; */
+  height: 60rpx;
+  display: inline-block;
+}
+
+.box .header .process-select .key {
+  margin-right: 10rpx;
+  font-weight: 700;
+}
+
+.box .header .process-select .value {
+}
+
+.box .section {
+  display: flex;
+  flex-wrap: wrap;
+  /* border-bottom: 2rpx solid #ccc; */
+  align-items: center;
+  padding: 10rpx 0;
+}
+
+.item {
+}
+
+.item .key {
+  font-size: 24rpx;
+}
+
+.item .value {
+  font-size: 24rpx;
+  font-weight: 700;
+}
+
+.box .section .tag-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4rpx;
+  flex-wrap: wrap;
+}
+
+.box .section  .time-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4rpx;
+  flex-wrap: wrap;
+}
+
+.box .section  .time-row .item {
+  /* flex: 1; */
+}
+
+.box .section  .time-row .item.text-right {
+  text-align: right;
+}
+
+.box .section  .time-row .item.beizhu {
+  width: 100%;
+}
+
+.box .section .a-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.box .section .a-row .item {
+  width: 60%;
+  display: flex;
+  align-items: center;
+}
+
+.box .section .a-row .item .key {
+  width: 140rpx;
+}
+
+.box .section .a-row .item .value {
+  width: 100%;
+}
+
+.box .footer {
+  /* height: 80rpx; */
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-bottom: 10rpx;
+}
+
+.box .footer .btn-consent {
+  font-size: 26rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  margin: 0 10rpx;
+  border-radius: 6rpx
+}
+
+.box .footer .btn-reject {
+  font-size: 26rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  margin: 0;
+}
+.bianji, .queren, .zhankai{
+  width: 60rpx;
+  height: 40rpx;
+  padding: 0 10rpx;
+}
+.bianji1{
+  width: 55rpx;
+  height: 35rpx;
+  padding: 0 10rpx;
+}
+.zhankai{
+  width: 50rpx;
+  height: 20rpx;
+}
+.baseInfo1,.baseInfo2,.baseInfo3{
+  display: flex;
+  width: 100%;
+  /* background: #ECFEF2; */
+  padding: 10rpx;
+}
+.baseInfo2{
+  border-bottom: 1px dashed #9B9B9B;
+}
+.baseInfo4{
+  padding: 10rpx;
+  width: 100%;
+}
+.baseInfo5{
+  display: flex;
+  width: 100%;
+  padding: 10rpx;
+  align-items: center;
+}
+.box .section .time-row .baseInfo5 .item1:first-child{
+  flex: 2;
+}
+.box .section .time-row .baseInfo5 .item1:last-child{
+  flex: 1.8;
+  /* display: flex;
+  align-items: center; */
+}
+.box .section .time-row .baseInfo5 .item1:last-child .value{
+  /* display: flex;
+  align-items: center; */
+}
+.zuofeiInfo{
+  width: 100%;
+  padding: 10rpx;
+  text-align: center;
+}
+.renzheng{
+  width: 28rpx;
+  height: 32rpx;
+}
+.mathstyle{
+  flex:0.7;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

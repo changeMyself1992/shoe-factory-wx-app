@@ -1,0 +1,199 @@
+<!--产品操作页 添加，编辑，查看-->
+<view class='container'>
+  <form wx:if="{{form}}" bindsubmit="formSubmitThrottleHandle" bindreset="formReset">
+    <view class='row-1'>
+      <view class="title">产品基本信息</view>
+      <view class="title">产品成本估算：{{form['成本估算']}}</view>
+
+      <view class="item-a" wx:for="{{form['tags']}}" wx:for-item="index" wx:key="index" wx:for-index="tagKey">
+        <text class='key'>{{tagKey}}：</text>
+        <input cursor-spacing="50" class="value {{mode!=='addProduct'?'disabled':''}}" type="text" data-tagname="{{tagKey}}" value="{{form['tags'][tagKey]}}" bindfocus="onFocusProductTag" bindinput="productDebouncedHandleSearch" bindtap="onTapProductTag" disabled="{{mode!=='addProduct'}}"
+        />
+        <view wx-if='{{productTagKeyFocus===tagKey}}' class="suggest-value-list">
+          <view class="suggestion-box">
+            <scroll-view scroll-y="{{true}}" style="height: 200rpx;">
+              <view class='tag' wx:for="{{product_suggest_value_list}}" wx:for-item="tagValue" wx:key="index" wx:for-index="index" catchtap="onProductTagValueSelect" data-tagname="{{tagKey}}" data-tagvalue="{{tagValue}}">{{tagValue}}</view>
+            </scroll-view>
+          </view>
+        </view>
+
+      </view>
+
+    </view>
+
+    <view class="form-item" bindtap="onTap">
+      <view class="key">产品编号</view>
+      <input cursor-spacing="50" class="value disabled" value="{{form['产品编号']}}" placeholder="编号自动生成" disabled/>
+    </view>
+
+    <view class="form-item textarea" bindtap="onTap">
+      <view class="key">产品备注</view>
+      <textarea class="value {{mode==='lookOver'?'disabled':''}}" name="产品备注" placeholder="请输入备注" value="{{form['备注']}}" disabled="{{mode==='lookOver'}}" />
+    </view>
+
+    <view class="form-item upload" bindtap="onTap">
+      <view class="key">上传产品图片</view>
+      <view class="value upload">
+        <button type='primary' size="mini" id="productIcon" bindtap="uploadImage" disabled="{{mode==='lookOver'}}">上传产品图片</button>
+      </view>
+      <view wx:if="{{form['产品图片列表'][0]}}" class='id-card-front-photo'>
+        <image class="card-photo" src="{{form['产品图片列表'][0]}}" mode="aspectFit" bindtap="previewImage" src="{{form['产品图片列表'][0]}}"></image>
+      </view>
+    </view>
+
+
+    <view class='row-2'>
+      <view class="header">
+        <label class="des">产品包含的部位和物料信息列表</label>
+      </view>
+
+      <block wx:for="{{partsList}}" wx:for-item="part" wx:for-index="index" wx:key="index">
+        <view class="part-box">
+
+          <view class="box-top">
+            <view class="part-name">
+              <text class='key'>部位名称</text>
+              <input cursor-spacing="50" class="value {{mode==='lookOver'?'disabled':''}}" type="text" data-curOperationPartIndex="{{index}}" value="{{part['部位名称']}}" bindfocus="onFocusPartName" bindinput="partNameDebouncedHandleSearch" disabled="{{mode==='lookOver'}}"
+              />
+              <view wx-if='{{partNameFocus && curOperationPartIndex===index}}' class="suggest-value-list">
+                <view class="suggestion-box">
+                  <scroll-view scroll-y="{{true}}" style="height: 200rpx;">
+                    <view class='tag' wx:for="{{part_suggest_value_list}}" wx:for-item="item" wx:key="index_a" wx:for-index="index_a" catchtap="onPartNameSelect" data-partvalue="{{item['部位名称']}}">
+                      {{item['部位名称']}}
+                    </view>
+                  </scroll-view>
+                </view>
+              </view>
+            </view>
+            <button wx:if="{{mode!=='lookOver'}}" class="clear" type='warn' data-curOperationPartIndex="{{index}}" bindtap="removePart">删除</button>
+            <button wx:if="{{mode!=='lookOver'}}" class="clear" type='warn' data-curOperationPartIndex="{{index}}" bindtap="clearPart">清空</button>
+            <button wx:if="{{mode!=='lookOver'}}" class="clear" type='primary' data-curOperationPartIndex="{{index}}" bindtap="continueAdd">添加</button>
+          </view>
+
+          <view class="material-box">
+            <view class="item-material" bindtap="onTap">
+              <view class="key">物料编号</view>
+              <input cursor-spacing="50" class="value disabled" value="{{part['使用物料']['物料编号']}}" placeholder="编号自动生成" disabled/>
+            </view>
+
+            <view class="item-material" wx:for="{{part['使用物料'].tags}}" wx:key="tagKey" wx:for-index="tagKey">
+              <view class="key">{{tagKey}}</view>
+              <input cursor-spacing="50" class="value {{mode==='lookOver'?'disabled':''}}" type="text" data-tagname="{{tagKey}}" data-tags="{{part['使用物料'].tags}}" data-curOperationPartIndex="{{index}}" value="{{part['使用物料'].tags[tagKey]}}" bindfocus="onFocusMaterialTag"
+                bindinput="materialDebouncedHandleSearch" disabled="{{mode==='lookOver'}}" />
+              <view wx-if='{{materialTagKeyFocus===tagKey && curOperationPartIndex===index}}' class="suggest-value-list">
+                <view class="suggestion-box">
+                  <scroll-view scroll-y="{{true}}" style="height: 200rpx;">
+                    <view class='tag' wx:for="{{material_suggest_value_list}}" wx:for-item="tagValue" wx:key="indexA" wx:for-index="indexA" catchtap="onMaterialTagValueSelect" data-tagname="{{tagKey}}" data-tagvalue="{{tagValue}}">{{tagValue}}</view>
+                  </scroll-view>
+                </view>
+              </view>
+
+            </view>
+
+          </view>
+
+          <!-- 如果该部位没有物料编号那么不会显示 *****start*****-->
+          <view wx:if="{{part['使用物料'].unique_id}}" class="material-info">
+            <view class="item-b">
+              <view class="key">物料数量</view>
+              <input cursor-spacing="50" class="value {{mode==='lookOver'?'disabled':''}}" type="digit" value="{{part['物料数量']}}" id="物料数量" data-curOperationPartIndex="{{index}}" bindfocus="onFocusmaterialInfo" bindblur="onBlurmaterialInfo" disabled="{{mode==='lookOver'}}"
+                bindtap="onTap" />
+            </view>
+
+            <view class="item-b">
+              <view class="key">参考市场单价</view>
+              <input cursor-spacing="50" class="value {{mode==='lookOver'?'disabled':''}}" type="digit" value="{{part['使用物料']['参考市场单价']}}" id="参考市场单价" data-curOperationPartIndex="{{index}}" bindfocus="onFocusmaterialInfo" bindblur="onBlurmaterialInfo" disabled="{{mode==='lookOver'}}"
+                bindtap="onTap" />
+            </view>
+
+            <view class="item-b">
+              <view class="key">单位</view>
+              <input cursor-spacing="50" class="value {{mode==='lookOver'?'disabled':''}}" value="{{part['使用物料']['单位']}}" id="单位" data-curOperationPartIndex="{{index}}" bindblur="onBlurmaterialInfo" disabled="{{mode==='lookOver'}}" bindtap="onTap" />
+            </view>
+
+            <view class="item-c">
+              <view class="key">备注</view>
+              <textarea class="value {{mode==='lookOver'?'disabled':''}}" placeholder="请输入备注" value="{{part['使用物料']['备注']}}" id="备注" data-curOperationPartIndex="{{index}}" bindblur="onBlurmaterialInfo" disabled="{{mode==='lookOver'}}" bindtap="onTap" />
+            </view>
+          </view>
+
+          <view wx:if="{{part['使用物料'].unique_id}}" class="supplier-box">
+            <view class="item-supplier name">
+              <view class="key">名称</view>
+              <input cursor-spacing="50" class="value {{mode==='lookOver'?'disabled':''}}" value="{{part['使用物料']['所选供应商信息']['名称']}}" data-curOperationPartIndex="{{index}}" bindfocus="onFocusSupplierName" bindinput="supplierNameDebouncedHandleSearch" disabled="{{mode==='lookOver'}}"
+                placeholder="只允许点选" />
+
+              <view wx-if='{{supplierNameFocus && curOperationPartIndex===index}}' class="suggest-value-list">
+                <view class="suggestion-box">
+                  <scroll-view scroll-y="{{true}}" style="height: 200rpx;">
+                    <block wx:for="{{part['使用物料']['供应商列表']}}" wx:for-item="supplier" wx:key="{{indexB}}" wx:for-index="indexB">
+                      <!-- 其他的 -->
+                      <view wx:if="{{!supplier['供应商物料名称']}}" class='tag' catchtap="onSupplierNameSelect" data-supplier="{{supplier}}">
+                        {{supplier['名称']}}（其他的）
+                      </view>
+                      <!-- 已有的 -->
+                      <view wx:else class='tag' catchtap="onSupplierNameSelect" data-supplier="{{supplier}}">
+                        {{supplier['名称']}}（已有的）
+                      </view>
+                    </block>
+                  </scroll-view>
+                </view>
+              </view>
+            </view>
+
+            <!-- 如果是查看模式那么不可编辑，如果不是查看模式并且不是名称,那么就要判断是否已点选了一个供应商，如果已点选 那么允许编辑***** start -->
+            <view class="item-supplier-name" bindtap="onTap">
+              <view class="key">供应商物料名称</view>
+              <input cursor-spacing="50" class="value {{mode==='lookOver'?'disabled':part['使用物料']['所选供应商信息'].unique_id?'':'disabled'}}" value="{{part['使用物料']['所选供应商信息']['供应商物料名称']}}" id="供应商物料名称" data-curOperationPartIndex="{{index}}" disabled="{{mode==='lookOver'?true:part['使用物料']['所选供应商信息'].unique_id?false:true}}" placeholder="暂无"
+                bindfocus="onFocusSupplierMaterialName" bindinput="supplierMaterialNameDebouncedHandleSearch" />
+
+              <view wx-if='{{supplierMaterialNameFocus && curOperationPartIndex===index}}' class="suggest-value-list">
+                  <view class="suggestion-box">
+                    <scroll-view scroll-y="{{true}}" style="height: 200rpx;">
+                      <view class='tag' wx:for="{{supplierMaterialName_suggest_value_list}}" wx:for-item="item" wx:key="index_a" wx:for-index="index_a" catchtap="onSupplierMaterialNameSelect" data-supplierMaterialName="{{item}}">
+                        {{item}}
+                      </view>
+                    </scroll-view>
+                  </view>
+                </view>
+
+            </view>
+
+            <view class="item-supplier" bindtap="onTap">
+              <view class="key">供应商价格</view>
+              <input cursor-spacing="50" class="value {{mode==='lookOver'?'disabled':part['使用物料']['所选供应商信息'].unique_id?'':'disabled'}}" type="digit" value="{{part['使用物料']['所选供应商信息']['供应商价格']}}" id="供应商价格" data-curOperationPartIndex="{{index}}" bindblur="onBlurSupplierInfo"
+                disabled="{{mode==='lookOver'?true:part['使用物料']['所选供应商信息'].unique_id?false:true}}" />
+            </view>
+            <view class="item-supplier textarea" bindtap="onTap">
+              <view class="key">说明</view>
+              <textarea class="value {{mode==='lookOver'?'disabled':part['使用物料']['所选供应商信息'].unique_id?'':'disabled'}}" value="{{part['使用物料']['所选供应商信息']['说明']}}" id="说明" data-curOperationPartIndex="{{index}}" bindblur="onBlurSupplierInfo" disabled="{{mode==='lookOver'?true:part['使用物料']['所选供应商信息'].unique_id?false:true}}"
+              />
+            </view>
+            <!-- 如果不是名称,那么就要判断是否已点选了一个供应商，如果已点选 那么允许编辑***** end -->
+          </view>
+
+          <!-- 如果该部位没有物料编号那么不会显示 *****end*****-->
+
+        </view>
+      </block>
+
+
+    </view>
+
+
+    <view class="btn-area">
+      <button wx:if="{{mode!=='lookOver'}}" type="primary" form-type="submit">提交</button>
+      <button wx:if="{{mode!=='lookOver'}}" form-type="reset">重置</button>
+    </view>
+
+  </form>
+
+  <!--回到首页按钮-->
+  <back-to-main position="{{positionStr}}" tabBarUrl="{{tabBarUrl}}"></back-to-main>
+
+  <!-- 弹回顶部 -->
+  <back-to-top floorstatus="{{floorstatus}}"></back-to-top>
+
+  <!-- loading遮罩 -->
+  <loading wx:if="{{isRequestIng}}"></loading>
+</view>

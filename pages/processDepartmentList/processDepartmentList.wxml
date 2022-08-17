@@ -1,0 +1,19 @@
+<view class='container'>
+
+  <!-- 部门工资详情列表 -->
+  <block wx:for="{{processDepartmentList}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+    <view class="department-salary-details">
+      <process-department-info processDepartment="{{item}}"></process-department-info>
+    </view>
+  </block>
+
+
+  <!--回到首页按钮-->
+  <!-- <back-to-main position="{{positionStr}}" tabBarUrl="{{tabBarUrl}}"></back-to-main> -->
+
+
+  <!-- 弹回顶部 -->
+  <back-to-top floorstatus="{{floorstatus}}"></back-to-top>
+
+
+</view>

@@ -1,0 +1,140 @@
+<view class="container">
+  <view class="module-a">
+    <radio-group bindchange="checkboxChange" class="radio-group">
+      <label class="checkbox" wx:for="{{timeMode}}" wx:for-item="item" wx:key="index" wx:for-index="index">
+        <radio value="{{index}}" checked="{{item.checked}}">
+          <text>{{item.name}}</text>
+        </radio>
+      </label>
+    </radio-group>
+
+    <picker class="picker {{timeMode[3].checked?'':'disabled'}}" mode="date" value="{{startTime}}" bindchange="bindDateChange" data-status="开始" disabled="{{!timeMode[3].checked}}">
+      <label class="text-a">开始时间：</label>
+      <label class="text-b">{{startTime}}</label>
+      <view class="text-c {{timeMode[3].checked?'':'disabled'}}">
+        <label class='iconfont icon-triangle-bottom'></label>
+      </view>
+
+    </picker>
+
+    <picker class="picker {{timeMode[3].checked?'':'disabled'}}" mode="date" value="{{endTime}}" bindchange="bindDateChange" data-status="结束" disabled="{{!timeMode[3].checked}}">
+      <label class="text-a">结束时间：</label>
+      <label class="text-b">{{endTime}}</label>
+      <view class="text-c {{timeMode[3].checked?'':'disabled'}}">
+        <label class='iconfont icon-triangle-bottom'></label>
+      </view>
+
+    </picker>
+  </view>
+
+  <view class="module-b">
+    <view class="tag">总人数：{{wageData['工资总人数']}}</view>
+    <view class="tag">抵扣费用总额：{{wageData['抵扣工资总额']}}</view>
+  </view>
+  <view class="module-b">
+    <view class="tags">
+      <view>工资总额</view>
+      <view>{{wageData['工资总额']}}</view>
+    </view>
+    <view class="tags">
+      <view>未确认工资</view>
+      <view>{{wageData['未确认工资总额']}}</view>
+    </view>
+    <view class="tags">
+      <view>已确认工资</view>
+      <view>{{wageData['已确认工资总额']}}</view>
+    </view>
+  </view>
+  <view class="module-b">
+    <view class="tags">
+      <view>计件总数</view>
+      <view>{{wageData['工资总计件数']}}</view>
+    </view>
+    <view class="tags">
+      <view>未确认计件数</view>
+      <view>{{wageData['未确认工资总计件数']}}</view>
+    </view>
+    <view class="tags">
+      <view>已确认计件数</view>
+      <view>{{wageData['已确认工资总计件数']}}</view>
+    </view>
+  </view>
+  <!-- 导航栏 -->
+  <live-nav liveNavData="{{liveNavData}}" width="33.333%" bind:myevent="onSelectItemClick"></live-nav>
+
+
+  <!-- 生产单子列表 -->
+  <view wx:if="{{curSelectIndex===0}}" class="list">
+    <block wx:for="{{wageData['员工工资']}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+      <staff-salary-item info="{{wageData['员工工资'][index]}}"></staff-salary-item>
+    </block>
+  </view>
+
+  <view wx:if="{{curSelectIndex===1}}" class="list">
+    <block wx:for="{{wageData['部门工资']}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+      <department-salary-item info="{{wageData['部门工资'][index]}}"></department-salary-item>
+    </block>
+  </view>
+
+  <view wx:if="{{curSelectIndex===2}}" class="list">
+    <block wx:for="{{wageData['抵扣记录']}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+      <deduction-item bind:callbackDelCostsDeletion="callbackDelCostsDeletion" info="{{wageData['抵扣记录'][index]}}"></deduction-item>
+    </block>
+  </view>
+
+  <button class="footBtn" type='primary' bindtap="addPayrollDeduction">添加抵扣费用</button>
+  <van-overlay show="{{ show }}" bind:click="onClickHide">
+    <view class="wrapper">
+      <view class="block" catchtap="preventD">
+
+        <view class="row-1">
+          <view class="item-a">
+            <text class='key'><text class="redneed">*</text>人员选择</text>
+            <input cursor-spacing="50" class="value" type="text" value="{{peopleSearchForKeywords}}" bindfocus="onFocusPeople" bindinput="peopleDebouncedHandleSearch" placeholder="只允许点选" />
+            <view wx-if='{{peopleInputFocus}}' class="suggest-value-list">
+              <view class="suggestion-box">
+                <scroll-view scroll-y="{{true}}" style="height: 200px;">
+                  <view class='tag' wx:for="{{suggest_value_list}}" wx:for-item="item" wx:key="index_a" wx:for-index="index_a" catchtap="onPeopleSelect" data-item="{{item}}">
+                    {{item['value']}}
+                    <!-- <text>item['value1']</text>
+                  <text>item['value2']</text> -->
+                  </view>
+                </scroll-view>
+              </view>
+            </view>
+          </view>
+
+          <view class="item-a" bindtap="onTap">
+            <text class='key'><text class="redneed">*</text>抵扣原因</text>
+            <input cursor-spacing="50" class="value" placeholder="请输入" value="{{deductionReason}}" bindinput="onInputDeductionReason" />
+          </view>
+
+          <view class="item-a" bindtap="onTap">
+            <text class='key'><text class="redneed">*</text>抵扣金额</text>
+            <input cursor-spacing="50" class="value" type="digit" placeholder="0" value="{{deductibleAmount}}" bindblur="onBlurDeductibleAmount" />
+          </view>
+          <view class="item-a" bindtap="onTap">
+            <text class='key'><text class="redneed">*</text>抵扣时间</text>
+            <picker class="pickerdatecosts" mode="date" value="{{datecosts}}" bindchange="bindDateCostsChange">
+              <view class="datecosts">
+                {{datecosts}}<text class='iconfont icon-13 select-icon'></text>
+              </view>
+            </picker>
+          </view>
+        </view>
+
+        <view style="display: flex; margin-top: 10px;">
+          <button type='primary' size="mini" bindtap="submitPayrollDeductionThrottleHandle">添加工资抵扣</button>
+        </view>
+
+      </view>
+    </view>
+  </van-overlay>
+
+  <!-- 弹回顶部 -->
+  <back-to-top floorstatus="{{floorstatus}}"></back-to-top>
+
+  <!-- loading遮罩 -->
+  <loading wx:if="{{isRequestIng}}"></loading>
+
+</view>

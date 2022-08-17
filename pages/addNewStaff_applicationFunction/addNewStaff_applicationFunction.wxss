@@ -1,0 +1,19 @@
+.module-a {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 20rpx;
+  height: 160rpx;
+}
+
+.module-a .des {
+  font-weight: 600;
+  margin-right: 60rpx;
+}
+
+.module-a .qrCodeForRegistration {
+  width: 120rpx;
+}
+
+.module-b {
+}

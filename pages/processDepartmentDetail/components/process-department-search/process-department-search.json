@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "back-to-top": "/components/back-to-top/back-to-top",
+    "loading": "/components/loading/loading"
+  }
+}

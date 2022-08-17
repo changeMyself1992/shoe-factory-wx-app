@@ -1,0 +1,211 @@
+/* pages/warehousePurchaseOrderImport/warehousePurchaseOrderImport.wxss */
+.key {
+  font-size: 26rpx;
+}
+
+.form-item {
+  padding: 0;
+}
+
+.row-1 {
+  border-bottom: none;
+}
+.row-1 .title {
+  line-height: 80rpx;
+  height: 80rpx;
+  margin-bottom: 20rpx;
+}
+
+.btnnav,.title{
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: space-between;
+}
+.searchBtn{
+  display: inline-block;
+  height: 56rpx;
+  border-radius: 6rpx;
+  font-size: 26rpx;
+  color: #fff;
+  line-height: 56rpx;
+  outline: none;
+  background: #0da317;
+}
+.clearBtn{
+  display: inline-block;
+  height: 56rpx;
+  border-radius: 6rpx;
+  font-size: 26rpx;
+  color: #000000;
+  line-height: 56rpx;
+  outline: none;
+  background: #ffffff;
+  margin-left: 20rpx;
+}
+.box {
+  background-color: #fff;
+  padding: 10rpx;
+margin: 10rpx;
+border-radius: 10rpx;
+}
+
+.box .header {
+  border-bottom: 2rpx solid #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70rpx;
+}
+
+.box .header .text-a {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.box .header .process-select {
+  display: flex;
+  align-items: center;
+  height: 60rpx;
+}
+
+.box .header .process-select .key {
+  margin-right: 10rpx;
+  font-weight: 700;
+}
+
+.box .header .process-select .value {
+}
+
+.box .header .text-b {
+  color: #d2767f;
+}
+
+.box .section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 10rpx 0;
+}
+
+.item {
+}
+
+.item .key {
+  font-size: 24rpx;
+}
+
+.item .value {
+  font-size: 24rpx;
+  font-weight: 700;
+}
+
+.box .section .tag-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4rpx;
+  flex-wrap: wrap;
+}
+
+.box .section  .time-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4rpx;
+  flex-wrap: wrap;
+}
+
+.box .section  .time-row .item {
+  margin: 0 20rpx;
+  display: flex;
+align-items: center;
+}
+
+.box .section  .time-row .item.text-right {
+  text-align: right;
+}
+
+.box .section  .time-row .item.beizhu {
+  width: 100%;
+}
+
+.box .section .a-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.box .section .a-row .item {
+  width: 60%;
+  display: flex;
+  align-items: center;
+}
+
+.box .section .a-row .item .key {
+  width: 140rpx;
+}
+
+.box .section .a-row .item .value {
+  width: 100%;
+}
+
+.box .footer {
+  height: 80rpx;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.box .footer .btn-consent {
+  font-size: 26rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  margin: 0;
+}
+
+.box .footer .btn-reject {
+  font-size: 26rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  margin: 0;
+}
+.choosebtn {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  margin-left: 40rpx;
+}
+
+.choosenobtn {
+  background: #ffffff;
+  border: 1px solid #bababa;
+}
+
+.choosedbtn {
+  background: #0da317;
+}
+.input{
+  background-color: #fbfbfb;
+border: 2rpx solid #ccc;
+width: 250rpx;
+height: 50rpx;
+padding: 0 20rpx;
+box-sizing: border-box;
+line-height: 50rpx;
+display: inline-block;
+}
+.textarea{
+  background-color: #fff;
+padding: 10rpx;
+margin: 20rpx;
+border-radius: 10rpx;
+}
+.textarea .value{
+padding: 10rpx 0;
+line-height: 40rpx;
+box-sizing: border-box;
+height: 130rpx;
+}

@@ -1,0 +1,46 @@
+<!--pages/applicationFunctions/applicationFunctions.wxml-->
+<view class='container'>
+	<!-- 信息记录卡片 -->
+	<view id="info-card-box" class="info-card-box">
+		<view wx:if="{{total_count_product_note_List>0}}" class="info-card" bindtap="pieceRecordThrottleHandle">
+			<label class="info-des-a">{{total_count_product_note_List}}</label>
+			<label class="info-des-b">待确认员工计件</label>
+		</view>
+		<view wx:if="{{total_count_supplier_note_List>0}}" class="info-card" bindtap="deliveryRecordThrottleHandle">
+			<label class="info-des-a">{{total_count_supplier_note_List}}</label>
+			<label class="info-des-b">待确认送货</label>
+		</view>
+		<view wx:if="{{total_count_user}}" class="info-card" bindtap="employeeAuditRecordThrottleHandle">
+			<label class="info-des-a">{{total_count_user}}</label>
+			<label class="info-des-b">待审核员工</label>
+		</view>
+		<view class="info-card" bindtap='getScancode'>
+			<text  class='iconfont icon-scan sao'></text>
+			<label class="info-des-b">扫一扫</label>
+		</view>
+	</view>
+
+	<!-- 卡片盒子 -->
+	<view class="cardBox" style="margin-top: {{marginTop}};">
+		<block wx:for="{{navigationBar}}" wx:for-item="item_a" wx:for-index="index" wx:key="index">
+			<view wx:if="{{item_a.jurisdiction}}" class="card-box">
+				<view class="herder">
+					{{item_a.title}}
+				</view>
+				<view class="tab-control-box">
+					<block wx:for="{{item_a.moduls}}" wx:for-item="item_b" wx:for-index="key_b" wx:key="key_b">
+						<view wx:if="{{item_b.jurisdiction}}" bindtap="tabControlThrottleHandle" class="tab-control" data-item="{{item_b}}">
+							<image class="icon" src="{{'../../static/imageB/'+ item_b['icon']}}"></image>
+							<text class="title">{{key_b}}</text>
+						</view>
+					</block>
+				</view>
+			</view>
+		</block>
+	</view>
+
+
+
+	<!-- loading遮罩 -->
+	<loading wx:if="{{isRequestIng}}"></loading>
+</view>

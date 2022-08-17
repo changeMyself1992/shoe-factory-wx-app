@@ -1,0 +1,40 @@
+<form bindsubmit="formSubmitThrottleHandle" bindreset="formReset">
+
+  <view class="row">
+    <view class="item-a">
+      <text class='key'>名字：</text>
+      <input cursor-spacing="50" class="value" name="姓名" placeholder="请输入姓名"/>
+    </view>
+
+    <view class="item-a">
+      <text class='key'>管理角色：</text>
+      <radio-group name="管理角色" class="value-a">
+        <label class="checkbox" wx:for="{{roleOptions}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+          <radio value="{{item.value}}" checked="{{item.checked}}" />{{item.name}}
+        </label>
+      </radio-group>
+    </view>
+
+    <view class="item-a">
+      <text class='key'>手机号：</text>
+      <input cursor-spacing="50" type="number" class="value" name="绑定手机号" placeholder="请输入手机号" />
+    </view>
+
+    <view class="item-a">
+      <text class='key'>工作状态：</text>
+      <checkbox-group class='value-a' name="工作状态">
+        <label class="checkbox" wx:for="{{workingStateOption}}" wx:for-item="item" wx:key="index" wx:for-index="index">
+          <checkbox value="{{item.name}}" checked="{{item.checked}}" />{{item.value}}
+        </label>
+      </checkbox-group>
+    </view>
+  </view>
+
+
+  <button class="search-btn" type="primary" form-type="submit" style="margin-bottom:20rpx;">搜索</button>
+
+  <button class="clear-btn" form-type="reset">清空搜索条件</button>
+</form>
+
+<!-- loading遮罩 -->
+<loading wx:if="{{isRequestIng}}"></loading>

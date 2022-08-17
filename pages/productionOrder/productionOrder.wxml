@@ -1,0 +1,24 @@
+<view class="container">
+  <!-- 搜索框 -->
+  <search_box skipLinks="{{skipLinks}}" searchCondition="{{searchCondition}}" 
+  whetherToDisplayAConditionBox="{{whetherToDisplayAConditionBox}}" bind:clearingSearchCallback="clearingSearchCallback"
+  conditionalQueryTitle="{{conditionalQueryTitle}}" whetherToShowScanIcon="{{whetherToShowScanIcon}}"></search_box>
+
+  <!-- 导航栏 -->
+  <live-nav wx:if='{{curSelectIndex!==2}}' liveNavData="{{liveNavData}}" bind:myevent="onSelectItemClick"></live-nav>
+
+
+  <!-- 生产单子列表 -->
+  <view class="product-order-list">
+    <block wx:for="{{productionOrderList}}" wx:for-item="item" wx:for-index="index" wx:key="index" >
+      <product-order-item product="{{productionOrderList[index]}}" bind:updateData="updateData"></product-order-item>
+    </block>
+  </view>
+
+  <!-- 弹回顶部 -->
+  <back-to-top floorstatus="{{floorstatus}}"></back-to-top>
+
+  <!-- loading遮罩 -->
+  <loading wx:if="{{isRequestIng}}"></loading>
+
+</view>

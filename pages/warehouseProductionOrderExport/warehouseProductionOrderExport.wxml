@@ -1,0 +1,138 @@
+<!--pages/warehouseProductionOrderExport/warehouseProductionOrderExport.wxml-->
+<!-- 生产单搜索 -->
+<view class='row-1'>
+  <view class="title">
+    <view>搜索生产单进行出库</view>
+    <view class="btnnav">
+      <button class="searchBtn" type="primary" bindtap="searchOrderNum">搜索</button>
+    </view>
+  </view>
+  <view class="item-a">
+    <text class='key'>生产单编号：</text>
+    <input cursor-spacing="50" bindinput="inputOrderNum" class="value" placeholder="请输入生产单编号" />
+  </view>
+</view>
+<!-- 物料搜索 -->
+
+<!-- 搜索物料结果展示 -->
+<view class='row-1' wx:if="{{pucharseOrderList.length>0}}">
+  <view class="title">选择生产单</view>
+</view>
+<!-- 生产单循环 -->
+<view class="box" wx:for="{{productionOrderList}}" wx:for-item="info" wx:key="index" wx:for-index="index">
+  <view class="header">
+    <checkbox-group class="value" bindchange="checkboxChange">
+      <label class="checkbox">
+        <checkbox value="{{info['生产单编号']}}" checked="{{ischeck}}" class="checkbox" />
+      </label>
+    </checkbox-group>
+    <label class="text-a">生产单编号{{info['生产单编号']}}</label>
+    <label class="text-a"> 日期{{info['生产单时间']}}</label>
+  </view>
+  <view class="section">
+    <view class="time-row">
+      <view class='item'>
+        <label class='key'>楦型：</label>
+        <label class='value'>{{info['排产产品']['产品信息'].tags['楦型']}}</label>
+      </view>
+      <view class='item'>
+        <label class='key'>款号：</label>
+        <label class='value'>{{info['排产产品']['产品信息'].tags['款号']}}</label>
+      </view>
+      <view class='item'>
+        <label class='key'>材质：</label>
+        <label class='value'>{{info['排产产品']['产品信息'].tags['材质']}}</label>
+      </view>
+      <view class='item'>
+        <label class='key'>颜色：</label>
+        <label class='value'>{{info['排产产品']['产品信息'].tags['颜色']}}</label>
+      </view>
+      <view class='item'>
+        <label class='key'>内里/垫脚：</label>
+        <label class='value'>{{info['排产产品']['产品信息'].tags['内里/垫脚']}}</label>
+      </view>
+      <view class='item'>
+        <label class='key'>产品名称：</label>
+        <label class='value'>{{info['排产产品']['产品信息'].tags['产品名称']}}</label>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 物料循环 -->
+<!-- 搜索物料结果展示 -->
+
+<!-- 物料清单展示 -->
+<view class='row-1' wx:if="{{productMaterialList.length>0}}">
+  <view class="title">物料清单</view>
+</view>
+<form bindsubmit="formSubmitInOutStock" bindreset="formReset">
+  <view class="box" wx:for="{{productMaterialList}}" wx:for-item="item" wx:key="index" wx:for-index="index" data-index="{{index}}">
+    <view class="section">
+      <view class="time-row">
+        <view class='item'>
+          <label class='key'>领取数量：</label>
+          <input class="input" value="{{item['该物料变更数量']}}" name="{{'stocknum'+index}}" placeholder="请输入领取数量" type='digit' maxlength='10'></input>
+        </view>
+        <view class='item' bindtap="deleteMaterialListItem" data-id="{{item['物料编号']}}" data-index="{{index}}">
+          <label class='key delete'>删除</label>
+        </view>
+        <view class='item'>
+          <label class='key'>物料编号：</label>
+          <label class='value'>{{item['物料编号']}}</label>
+        </view>
+        <view class='item'>
+          <label class='key'>材质：</label>
+          <label class='value'>{{item.tags['材质']}}</label>
+        </view>
+        <view class='item'>
+          <label class='key'>颜色：</label>
+          <label class='value'>{{item.tags['颜色']}}</label>
+        </view>
+        <view class='item'>
+          <label class='key'>材料类型：</label>
+          <label class='value'>{{item.tags['材料类型']}}</label>
+        </view>
+        <view class='item'>
+          <label class='key'>在库数量：</label>
+          <label class='value'>{{item['供应商信息']['仓库剩余数量']}}</label>
+        </view>
+        <view class='item'>
+          <label class='key'>物料名称：</label>
+          <label class='value'>{{item['供应商信息']['供应商物料名称']}}</label>
+        </view>
+        <view class='item'>
+          <label class='key'>单位：</label>
+          <label class='value'>{{item['单位']}}</label>
+        </view>
+        <view class='item'>
+          <label class='key'>供应商名称：</label>
+          <label class='value'>{{item['供应商信息']['名称']}}</label>
+        </view>
+        <view class='item'>
+          <label class='key'>供应商物料名称：</label>
+          <label class='value'>{{item['供应商信息']['供应商物料名称']}}</label>
+        </view>
+        <!-- <view class='item'>
+          <label class='key'>仓库剩余数量：</label>
+          <label class='value'>{{item['供应商信息']['仓库剩余数量']}}</label>
+        </view> -->
+        <view class='item'>
+          <label class='key'>更新时间：</label>
+          <label class='value'>{{item['供应商信息']['更新时间']}}</label>
+        </view>
+        <view class='item'>
+          <label class='key'>说明：</label>
+          <label class='value'>{{item['供应商信息']['说明']}}</label>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- <view class="textarea" wx:if="{{checkedSupplierList.length>0}}">
+    <view class="key">备注:</view>
+    <textarea class="value" name="备注" placeholder="物料入库备注信息"></textarea>
+  </view> -->
+  <!-- 数据展示 -->
+  <button wx:if="{{productMaterialList.length>0}}" class="search-btn" type="primary" form-type="submit">领取出库</button>
+</form>
+<!-- loading遮罩 -->
+<loading wx:if="{{isRequestIng}}"></loading>

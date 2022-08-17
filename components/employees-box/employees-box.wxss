@@ -1,0 +1,66 @@
+.employees-box {
+  background-color: #fff;
+  margin-top: 20rpx;
+  padding: 0 20rpx;
+}
+
+.employees-box .header {
+  border-bottom: 2rpx solid #ccc;
+  display: flex;
+  justify-content: space-between;
+  height: 50rpx;
+  line-height: 50rpx;
+}
+
+.employees-box .header .text-a {
+}
+
+.employees-box .header .text-b {
+  color: #d2767f;
+}
+
+.employees-box .section {
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 2rpx solid #ccc;
+  /* height: 140rpx; */
+  align-items: center;
+}
+
+.employees-box .section .item {
+  width: 50%;
+  font-size: 24rpx;
+}
+
+.employees-box .section .item .key {
+}
+
+.employees-box .section .item .value {
+  font-weight: 700;
+}
+
+.employees-box .footer {
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.employees-box .footer .btn-consent {
+  font-size: 28rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  width: 120rpx;
+  margin: 0 40rpx 0 0;
+}
+
+.employees-box .footer .btn-reject {
+  font-size: 28rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  width: 120rpx;
+  margin: 0;
+}
+.gongxu{
+  font-size: 24rpx;
+}

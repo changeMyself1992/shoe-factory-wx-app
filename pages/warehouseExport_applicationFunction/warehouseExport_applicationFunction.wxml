@@ -1,0 +1,24 @@
+<view class='container'>
+
+
+  <view id="fixedBatch" class="fixed-batch">
+    <!-- 搜索框 -->
+    <view class="search-box">
+      <search_box skipLinks="{{skipLinks}}" searchCondition="{{searchCondition}}" whetherToDisplayAConditionBox="{{whetherToDisplayAConditionBox}}" bind:clearingSearchCallback="clearingSearchCallback" conditionalQueryTitle="{{conditionalQueryTitle}}"></search_box>
+    </view>
+    <button class="btn-consent" type="primary" bindtap="handInStock">手动出库</button>
+    <button class="btn-consent" type="primary" bindtap="orderInStock">生产单出库</button>
+  </view>
+
+  <view class='module-b' style="margin-top: {{marginTop}};">
+    <block wx:for="{{warehouseEventList}}" wx:for-item="info" wx:for-index="index" wx:key="index">
+      <in-out-stock id="delivery-note-item" info="{{info}}" bind:callbackAfterOption="callbackAfterOption" bind:callbackAfterSelect="callbackAfterSelect"></in-out-stock>
+    </block>
+  </view>
+
+  <!-- 弹回顶部 -->
+  <back-to-top floorstatus="{{floorstatus}}"></back-to-top>
+
+  <!-- loading遮罩 -->
+  <loading wx:if="{{isRequestIng}}"></loading>
+</view>

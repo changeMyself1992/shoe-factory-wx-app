@@ -1,0 +1,77 @@
+/*process-department-info********start**********/
+@import "../../../../static/wxss/font1.wxss";
+
+.process-department-info {
+  background-color: #fff;
+  overflow: hidden;
+  padding-bottom: 20rpx;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  border-bottom-right-radius: 16rpx;
+  border-bottom-left-radius: 16rpx;
+}
+
+.process-department-info .title {
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 0 20rpx;
+  width: 100%;
+}
+
+.process-department-info .title .icon-a {
+  width: 40rpx;
+  height: 40rpx;
+  float: left;
+  margin-top: 20rpx;
+  margin-right: 10rpx;
+}
+
+.process-department-info .title .text-2 {
+  color: #4A4A4A;
+  float: left;
+  font-size: 32rpx;
+}
+
+.process-department-info .title .text-3 {
+  color: #4A4A4A;
+  float: right;
+  font-size: 28rpx;
+}
+
+.process-department-info .title .detail-btn {
+  color: #4169e1;
+  height: 60rpx;
+  font-size: 26rpx;
+  line-height: 60rpx;
+  float: right;
+  margin-top: 10rpx;
+}
+
+.process-department-info .process-list {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+  justify-content: space-between;
+}
+
+.process-department-info .process-list-item-active {
+  background-color: #516dcd;
+  color: #fff;
+  margin: 10rpx 20rpx;
+  padding: 12rpx;
+  border-radius: 6rpx;
+  line-height: 26rpx;
+  font-size: 26rpx;
+}
+
+.process-department-info .process-list-item-disable {
+  background-color: #EDEDED;
+  color: #9B9B9B;
+  margin: 10rpx 20rpx;
+  padding: 12rpx;
+  border-radius: 6rpx;
+  line-height: 26rpx;
+  font-size: 26rpx;
+}

@@ -1,0 +1,14 @@
+{
+  "backgroundTextStyle": "dark",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTitleText": "工序详情",
+  "navigationBarTextStyle": "black",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "loading": "/components/loading/loading",
+    "back-to-main": "/components/back-to-main/back-to-main",
+    "processCompletionSheet-EmployeeView": "./components/processCompletionSheet-EmployeeView/processCompletionSheet-EmployeeView",
+    "processCompletionSheet-administratorView-aSinglePiece": "./components/processCompletionSheet-administratorView-aSinglePiece/processCompletionSheet-administratorView-aSinglePiece",
+    "processCompletionSheet-administratorView-partnershipPiece": "./components/processCompletionSheet-administratorView-partnershipPiece/processCompletionSheet-administratorView-partnershipPiece"
+  }
+}

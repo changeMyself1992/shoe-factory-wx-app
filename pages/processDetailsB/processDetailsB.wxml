@@ -1,0 +1,78 @@
+<!--pages/processDetails/processDetails.wxml-->
+<view class='container'>
+  <!-- 产品信息 -->
+  <view class='product-info'>
+    <view class='title'>
+      <view class='item-1'>
+        <text class='key'>工序名称:</text>
+        <text class='value'>{{processDetailsSelectedForTheSameBatchOfOperation['工序信息']}}</text>
+      </view>
+      <view class='item-2'>
+        <!--配码数量(下拉列表)-->
+        <view class="kind-list__item">
+          <view class="weui-flex kind-list__item-hd {{whetherTheFolding ? 'kind-list__item-hd_show' : ''}}" bindtap="kindToggle">
+            <view class="weui-flex__item">生产单号 {{processDetailsSelectedForTheSameBatchOfOperation['生产单unique_ids'].length}}个</view>
+            <view class="weui-flex__item">展开</view>
+            <image class="kind-list__img" src="{{whetherTheFolding?'../../static/imageC/arrow_down.png':'../../static/imageC/arrow_up.png'}}" />
+          </view>
+          <view class="kind-list__item-bd {{whetherTheFolding ? 'kind-list__item-bd_show' : ''}}">
+            <view class="weui-cells {{whetherTheFolding ? 'weui-cells_show' : ''}}">
+              <view class='products'>
+                <!--下拉列表内容-->
+                <text wx:for="{{processDetailsSelectedForTheSameBatchOfOperation['生产单unique_ids']}}" wx:for-item="item" wx:for-index="index" wx:key="index">{{item}},</text>
+              </view>
+
+            </view>
+          </view>
+        </view>
+
+      </view>
+    </view>
+
+    <view class='info'>
+      <image class="img" src="{{productionOrderDetails['排产产品']['产品信息']['产品图片列表'][0]?productionOrderDetails['排产产品']['产品信息']['产品图片列表'][0]:'/static/imageC/timg.jpeg'}}" mode="widthFix"></image>
+      <view class='details'>
+        <view class='item-1'>
+          <text class='key'>产品编号:</text>
+          <text class='value'>{{productionOrderDetails['排产产品']['产品信息']['产品编号']}}</text>
+        </view>
+        <view class='item-3'>
+          <text class='key'>交货日期:</text>
+          <text class='value'>{{productionOrderDetails['对应订单']['交货日期']}}</text>
+        </view>
+        <view class='item-4'>
+          <text class='key'>本生产单总数:</text>
+          <text class='value'>{{productionOrderDetails['排产产品']['排产配码数量']['总排产数']}}</text>
+        </view>
+        <view class='item-4'>
+          <text class='key'>此工序工资:</text>
+          <text class='value'>{{processDetail['工序工资']}} 元/件</text>
+        </view>
+      </view>
+
+    </view>
+  </view>
+
+  <!--管理员看到的接口-->
+  <processCompletionSheet-administratorView wx:if="{{theirOwnRights['生产单详情可写']}}" processinfo="{{processDetail}}" bindLoadData="getSumProcessDetail" />
+  <!--员工看到的接口-->
+  <processCompletionSheet-EmployeeView wx:else processinfo="{{processDetail}}" bindLoadData="getSumProcessDetail" />
+
+  <!--回到首页按钮-->
+  <back-to-main position="{{positionStr}}" tabBarUrl="{{tabBarUrl}}"></back-to-main>
+  <!-- loading遮罩 -->
+  <loading wx:if="{{isRequestIng}}"></loading>
+
+</view>
+
+<wxs module="fn">
+  module.exports = {
+    accumulation: function(array) {
+      var count = 0;
+      for (var i = 0; i < array.length; ++i) {
+        count += Number(array[i]['完成数量'])
+      }
+      return count
+    }
+  }
+</wxs>

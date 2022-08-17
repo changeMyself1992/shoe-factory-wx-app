@@ -1,0 +1,45 @@
+<view class="box">
+
+  <view class="header">
+    <label class="text-a" style="display: flex;align-items: center;font-size: 32rpx;">{{info['名称']}}
+      <image wx:if="{{info.if_unified_match}}" class="renzheng" src="../../../../static/imageC/yes.png"></image>
+      <image wx:else class="renzheng" src="../../../../static/imageC/no.png"></image></label>
+  </view>
+
+  <view class="section">
+
+    <view class="time-row">
+      <view class='item'>
+        <label class='key'>是否关联认证：</label>
+        <label class='value'>{{info.if_unified_match?'是':'否'}}</label>
+      </view>
+      <view class='item'>
+        <label class='key'>联系电话：</label>
+        <label class='value'>{{info['联系电话']}}</label>
+      </view>
+      <view class='item'>
+        <label class='key'>地址：</label>
+        <label class='value'>{{info['地址']}}</label>
+      </view>
+      <view class='item'>
+        <label class='key'>备注：</label>
+        <label class='value'>{{info['备注']}}</label>
+      </view>
+      <view class='item' style="width:100%;">
+        <label class='key'>更新时间：</label>
+        <label class='value'>{{info['更新时间']}}</label>
+      </view>
+    </view>
+
+  </view>
+
+  <view class="footer">
+    <button class="btn-reject" type="warn" bindtap="onRejectBtnClick">删除</button>
+    <button class="btn-consent" type="primary" bindtap="onLookBtnClick">查看报价单</button>
+    <button wx:if="{{!(info.if_unified_match)}}" class="btn-consent" type="primary" bindtap="showMask">关联认证供应商</button>
+  </view>
+
+
+  <!-- loading遮罩 -->
+  <loading wx:if="{{isRequestIng}}"></loading>
+</view>

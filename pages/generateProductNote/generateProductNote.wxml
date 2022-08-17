@@ -1,0 +1,231 @@
+<!--创建生产单-->
+<view class='container'>
+  <form wx:if="{{form}}" bindsubmit="formSubmit" bindreset="formReset">
+    <view class='row-1'>
+      <view class="title">生产单基本信息</view>
+
+      <view class="item-a">
+        <view class='key'>
+          <label class="xin">* </label>
+          生产单编号：
+        </view>
+        <input cursor-spacing="50" class="value disabled" name="生产单编号" value="{{form['生产单编号']}}" placeholder="编号自动生成" disabled/>
+      </view>
+
+      <view class="item-a">
+        <view class="key">
+          <label class="xin">* </label>生产单时间：
+        </view>
+        <picker class="value disabled" mode="date" name='生产单时间' value="{{form['生产单时间']}}" bindchange="bindDateChange" disabled>
+          <label class="value-label">{{form['生产单时间']}}</label>
+          <text class='iconfont icon-13 select-icon'></text>
+        </picker>
+      </view>
+
+      <view class="item-a">
+        <view class="key">生产单备注：</view>
+        <textarea class="value textarea" name="生产单备注" placeholder="请输入备注" value="{{form['生产单备注']}}" />
+      </view>
+
+
+    </view>
+
+    <order-item-a orderInfo="{{orderDetails}}" whetherToShowTheButtonBox="{{false}}"></order-item-a>
+
+    <view class='row-2'>
+      <view class="header">
+        <label class="des">订单包含的产品列表</label>
+        <label class="des-a">产品选择</label>
+      </view>
+
+      <!--包含的产品列表模块-->
+      <radio-group class="product-box" bindchange="productRadioChange">
+
+        <view class="product" wx:for="{{includedProducts}}" wx:for-item="product" wx:for-index="index" wx:key="index">
+          <view class="title">
+            <radio class="radio" value="{{index}}" disabled="{{product['配码数量']['已经排产数量']>=product['配码数量']['总数']}}"></radio>
+            <view class="key">产品编号：</view>
+            <view class="value">{{product['产品信息']['产品编号']}}</view>
+          </view>
+
+          <view class="tag" wx:for="{{product['产品信息']['tags']}}" wx:key="tagKey" wx:for-index="tagKey">
+            <label class='key'>{{tagKey}}：</label>
+            <label class='value'>{{product['产品信息']['tags'][tagKey]}}</label>
+          </view>
+
+          <view class="tag">
+            <label class='key'>品牌：</label>
+            <label class='value'>{{product['品牌']}}</label>
+          </view>
+
+          <view class="tag">
+            <label class='key'>客户产品编号：</label>
+            <label class='value'>{{product['客户产品编号']}}</label>
+          </view>
+
+          <!--配码数量(下拉列表)-->
+          <view class="kind-list__item">
+            <view class="weui-flex kind-list__item-hd {{product['配码数量是否展开'] ? 'kind-list__item-hd_show' : ''}}" data-curOperationProcutIndex="{{index}}" bindtap="kindToggle">
+              <view class="weui-flex__item">配码数量展开</view>
+              <image class="kind-list__img" src="{{product['配码数量是否展开']?'../../static/imageC/arrow_down.png':'../../static/imageC/arrow_up.png'}}" />
+            </view>
+            <view class="kind-list__item-bd {{product['配码数量是否展开'] ? 'kind-list__item-bd_show' : ''}}">
+              <view class="weui-cells {{product['配码数量是否展开'] ? 'weui-cells_show' : ''}}">
+                <!--下拉列表内容-->
+                <view class='table'>
+                  <view class="tr header">
+                    <view class="th item-1">尺码</view>
+                    <view class="th item-2">数量</view>
+                    <view class="th item-3">尺码</view>
+                    <view class="th item-4">数量</view>
+                  </view>
+
+                  <view class="body">
+                    <block wx:for="{{product['配码数量']['配码']}}" wx:for-item="peima" wx:for-index="index_b" wx:key="index_b">
+                      <view class="tr body">
+                        <view class="td item-1">{{peima['尺码']}}</view>
+                        <view class="td item-2">
+                          <input cursor-spacing="50" class="disabled" type="number" value="{{peima['目标数量']}}" data-peiMaIndex='{{index_b}}' disabled></input>
+                        </view>
+                      </view>
+                    </block>
+                    <view class="tr body">
+                      <view class="td item-1">件数</view>
+                      <view class="td item-2">
+                        <input cursor-spacing="50" class="disabled" type="number" value="{{product['配码数量']['件数']}}" disabled></input>
+                      </view>
+                    </view>
+                  </view>
+
+                  <view class="tr footer">
+                    <view class="td item-1">总数</view>
+                    <view class="td item-2">{{product['配码数量']['总数']}}</view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+
+      </radio-group>
+
+    </view>
+
+    <view class='row-2'>
+      <view class="header">
+        <label class="des">工艺选择</label>
+      </view>
+      <checkbox-group wx:if="{{processOptions.length!==0}}" class="process-select" name='工艺选择' bindchange="processCheckboxChange">
+        <label class="checkbox" wx:for="{{processOptions}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+          <checkbox value="{{item.name}}" checked="{{item.checked}}" />{{item.value}}
+        </label>
+      </checkbox-group>
+    </view>
+
+    <view class='row-2'>
+      <view class="header">
+        <label class="des">产品分多批次排产</label>
+      </view>
+      <view wx:if="{{craftCheckList.length!==0}}">
+
+        <radio-group class="generateMode-box" bindchange="generateModeRadioChange">
+          <label class="checkbox" wx:for="{{autoGenerateModeOptions}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+            <checkbox value="{{item.name}}" checked="{{item.checked}}" />{{item.value}}
+          </label>
+        </radio-group>
+
+        <view class="number-input-box" wx:if="{{autoGenerateMode==='averageInteger'}}">
+          <label class="xin">*</label>
+          <label class="des-a">配码整数</label>
+          <input cursor-spacing="50" class="input" type="number" value="{{integerInterval}}" bindblur="handleIntegerIntervalChange" />
+        </view>
+
+        <view class="number-input-box">
+          <label class="xin">*</label>
+          <label class="des-a">批次输入</label>
+          <input cursor-spacing="50" class="input {{autoGenerateMode==='manual'?'disabled':''}}" disabled="{{autoGenerateMode==='manual'?true:false}}" type="number" value="{{productionSchedulingBatch}}" bindblur="handleBatchChange" />
+          <label class="des-b">注：最小批次{{minimumProductionSchedule}}，最大批次{{maximumProductionSchedule}}</label>
+        </view>
+
+        <view class='table-1'>
+          <view class='header'>
+            <view class="tr">
+              <view class="th">排产表填写</view>
+            </view>
+          </view>
+
+          <view class='title'>
+            <view class='tr'>
+              <view class="td  item-1">工艺步骤</view>
+              <view class="td item-2">工序工资</view>
+              <view class="td item-3">配码详情</view>
+              <view class="td item-3">总数</view>
+            </view>
+          </view>
+
+          <block wx:for="{{craftCheckList}}" wx:for-item="craft" wx:for-index="index" wx:key="index">
+            <view class='body'>
+              <view class="tr">
+                <view class="td item-1">{{craft}}</view>
+                <view class="td item-2">
+                  <input cursor-spacing="50" class="value" type="digit" value="{{salary[craft]}}" data-processName="{{craft}}" bindblur="processWageRestraint_add" />
+                </view>
+                <view class='td item-3' data-processName="{{craft}}" bindtap="peiMaNumToggle">
+                  <label class="text-a">展开修改</label>
+                  <image class="title_icon" src="{{whetherToStartProcessPersonnel?'../../static/imageC/arrow_down.png':'../../static/imageC/arrow_up.png'}}" />
+                </view>
+                <view class="td item-3">{{sizeArrangeList_add[0]['此次总排产数']}}</view>
+                <view wx:if="{{whetherToExpandTheSizeOfTheCode[craft]}}" class='td item-4'>
+                  <view class='table-2'>
+                    <view class="tr header">
+                      <view class="th item-1">尺码/国标码</view>
+                      <view class="th item-2">此次排产数/剩余未排产数</view>
+                    </view>
+
+                    <block wx:for="{{sizeArrangeList_add[0]['配码']}}" wx:for-item="peima" wx:for-index="index_b" wx:key="index_b">
+                      <view class="tr body">
+                        <view class="td item-1">{{peima['尺码']}}/{{peima['国标码']}}</view>
+                        <view class="td item-2">
+                          <input cursor-spacing="50" class="{{autoGenerateMode!=='manual'?'disabled':''}}" type="number" value="{{peima['此次排产']}}" bindblur="limitThisOutput" data-index="{{index_b}}" disabled="{{autoGenerateMode!=='manual'}}" />
+                          <label>/</label>
+                          <label>{{ peima['目标数量']-peima['已排产数量'] }}</label>
+                        </view>
+                      </view>
+                    </block>
+
+                    <view class="tr footer">
+                      <view class="td item-1">总计</view>
+                      <view class="td item-2">
+                        <input cursor-spacing="50" class="disabled" type="number" value="{{sizeArrangeList_add[0]['此次总排产数']}}" disabled />
+                        <label>/</label>
+                        <label>{{ sizeArrangeList_add[0]['剩余未排产数'] }}</label>
+                      </view>
+                    </view>
+
+                  </view>
+                </view>
+
+              </view>
+            </view>
+          </block>
+
+        </view>
+
+      </view>
+    </view>
+
+    <view class="btn-box">
+      <button form-type="submit" disabled="{{!selectedProductAndArrange}}">添加排产信息</button>
+    </view>
+
+  </form>
+
+  <!--回到首页按钮-->
+  <back-to-main position="{{positionStr}}" tabBarUrl="{{tabBarUrl}}"></back-to-main>
+
+  <!-- 弹回顶部 -->
+  <back-to-top floorstatus="{{floorstatus}}"></back-to-top>
+
+  <!-- loading遮罩 -->
+  <loading wx:if="{{isRequestIng}}"></loading>
+</view>

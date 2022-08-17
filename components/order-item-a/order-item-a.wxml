@@ -1,0 +1,54 @@
+<view class="box">
+
+  <view class="header">
+    <label class="text-a">{{orderInfo['订单编号']}}</label>
+    <label class="text-b">{{orderInfo['订单状态']}}</label>
+  </view>
+
+  <view class="section">
+
+    <view class="tag-row">
+      <view class='item' wx:for="{{orderInfo['tags']}}" wx:for-item="Value" wx:key="Key" wx:for-index="Key">
+        <text class='key'>{{Key}}：</text>
+        <text class='value'>{{Value}}</text>
+      </view>
+    </view>
+
+    <view class="time-row">
+      <view class='item'>
+        <label class='key'>订单日期：</label>
+        <label class='value'>{{orderInfo['订单日期']}}</label>
+      </view>
+      <view class='item text-right'>
+        <label class='key'>交货日期：</label>
+        <label class='value'>{{orderInfo['交货日期']}}</label>
+      </view>
+    </view>
+
+    <view class="time-row">
+      <view class='item'>
+        <label class='key'>目标总数：</label>
+        <label class='value'>{{productCount}}</label>
+      </view>
+      <view class='item text-right'>
+        <label class='key'>排产度：</label>
+        <label class='value'>{{haveCompletedSeveral}}/{{productCount}}</label>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{whetherToShowTheButtonBox}}" class="footer">
+    <button wx:if="{{whetherOrNotFinished}}" class="btn-consent" type="primary" disabled="{{true}}">已经完成排产</button>
+    <button wx:else class="btn-consent" type="primary" data-employees="{{orderInfo}}" bindtap="arrangeThrottleHandle">点击进行排产</button>
+  </view>
+
+
+  <!-- loading遮罩 -->
+  <loading wx:if="{{isRequestIng}}"></loading>
+</view>
+
+<wxs module="utils">
+  module.exports.format = function(value) {
+    return Number((parseFloat(value) * 100).toFixed(2))
+  }
+</wxs>

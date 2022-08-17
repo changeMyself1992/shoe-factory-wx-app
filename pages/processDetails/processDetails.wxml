@@ -1,0 +1,89 @@
+<!--pages/processDetails/processDetails.wxml-->
+<view class='container'>
+  <!-- 产品信息 -->
+  <view class='product-info'>
+    <view class='title'>
+      <view class='item-1'>
+        <text class='key'>工序名称:</text>
+        <text class='value'>{{processinfo['工序信息']['工序名称']}}</text>
+      </view>
+      <view class='item-2'>
+        <text class='key'>生产单号:</text>
+        <text class='value'>{{productionOrderDetails['生产单编号']}}</text>
+      </view>
+    </view>
+
+    <view class='info'>
+      <image class="img" src="{{productionOrderDetails['排产产品']['产品信息']['产品图片列表'][0]?productionOrderDetails['排产产品']['产品信息']['产品图片列表'][0]:'/static/imageC/timg.jpeg'}}" mode="widthFix"></image>
+      <view class='details'>
+        <view class='item-1'>
+          <text class='key'>产品编号:</text>
+          <text class='value'>{{productionOrderDetails['排产产品']['产品信息']['产品编号']}}</text>
+        </view>
+        <view class='item-3'>
+          <text class='key'>交货日期:</text>
+          <text class='value'>{{productionOrderDetails['对应订单']['交货日期']}}</text>
+        </view>
+        <view class='item-4'>
+          <text class='key'>本生产单总数:</text>
+          <text class='value'>{{productionOrderDetails['排产产品']['排产配码数量']['总排产数']}}</text>
+        </view>
+        <view class='item-4'>
+          <text class='key'>此工序工资:</text>
+          <text class='value'>{{processinfo['工序工资']}} 元/件</text>
+        </view>
+      </view>
+
+    </view>
+  </view>
+
+  <!--员工完成信息 拥有 生产单详情可写权限 才会展示这个模块-->
+  <view wx:if="{{theirOwnRights['生产单详情可写']}}" class='employee-completion-info-table'>
+    <view class="piece-btn-box">
+      <!--type 不支持三元表达式 只能这么写-->
+      <button wx:if="{{incentiveMode==='aSinglePiece'}}" type="primary" bindtap="onASinglePieceBtnClick">计件记录</button>
+      <button wx:else bindtap="onASinglePieceBtnClick">计件记录</button>
+
+
+      <button wx:if="{{incentiveMode==='partnershipPiece'}}" type="primary" bindtap="onPartnershipPieceBtnClick">合伙计件记录</button>
+      <button wx:else bindtap="onPartnershipPieceBtnClick">合伙计件记录</button>
+    </view>
+
+    <!--员工完成表 如果是员工计件模式才会显示这个表-->
+    <view wx:if="{{incentiveMode==='aSinglePiece'}}">
+      <processCompletionSheet-administratorView-aSinglePiece processinfo="{{processinfo}}" productionOrderDetails="{{productionOrderDetails}}" 
+      totalWagesForThisProcess="{{totalWagesForThisProcess}}" bindLoadData="loadData" />
+    </view>
+
+    <!--员工完成表 如果是合伙计件模式才会显示这个表-->
+    <view wx:if="{{incentiveMode==='partnershipPiece'}}">
+      <processCompletionSheet-administratorView-partnershipPiece processinfo="{{processinfo}}" productionOrderDetails="{{productionOrderDetails}}" bindLoadData="loadData" bindonASinglePieceBtnClick="onASinglePieceBtnClick" />
+    </view>
+
+  </view>
+
+  <!--没有生产单详情可写权限，展示这个表，工序完成表-员工看到的视口  -->
+  <view wx:else>
+    <processCompletionSheet-EmployeeView processinfo="{{processinfo}}" productionOrderDetails="{{productionOrderDetails}}" isExists="{{isExists}}" bindLoadData="loadData" />
+  </view>
+
+  <!--回到首页按钮-->
+  <back-to-main position="{{positionStr}}" tabBarUrl="{{tabBarUrl}}"></back-to-main>
+  <!--回到首页按钮-->
+  <back-to-main position="{{positionStr}}" tabBarUrl="{{tabBarUrl}}"></back-to-main>
+  <!-- loading遮罩 -->
+  <loading wx:if="{{isRequestIng}}"></loading>
+
+</view>
+
+<wxs module="fn">
+  module.exports = {
+    accumulation: function(array) {
+      var count = 0;
+      for (var i = 0; i < array.length; ++i) {
+        count += Number(array[i]['完成数量'])
+      }
+      return count
+    }
+  }
+</wxs>

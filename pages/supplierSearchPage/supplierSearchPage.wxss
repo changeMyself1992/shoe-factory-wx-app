@@ -1,0 +1,23 @@
+/* pages/supplierSearchPage/supplierSearchPage.wxss */
+.key {
+  font-size: 26rpx;
+}
+
+.form-item {
+  padding: 0;
+}
+
+.row-1 {
+  border-bottom: none;
+}
+.form-item {
+  padding: 0;
+  height: auto;
+}
+
+.form-item .group {
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}

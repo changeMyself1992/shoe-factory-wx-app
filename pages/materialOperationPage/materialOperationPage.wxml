@@ -1,0 +1,136 @@
+<!--订单操作页 添加，编辑，查看-->
+<view class='container'>
+  <form wx:if="{{form}}" bindsubmit="formSubmit" bindreset="formReset">
+    <view class='row-1'>
+      <view class="title">物料基本信息</view>
+      <view class="item-a" wx:for="{{form['tags']}}" wx:for-item="index" wx:key="index" wx:for-index="tagKey">
+        <text class='key'>{{tagKey}}：</text>
+        <input cursor-spacing="50" class="{{utils.inputClassA(mode)}}" type="text" data-tagname="{{tagKey}}" value="{{form['tags'][tagKey]}}" bindfocus="onFocusMaterialTag" bindinput="materialDebouncedHandleSearch" placeholder="请选择或输入" disabled="{{mode==='lookOver'}}" />
+
+        <view wx-if='{{materialTagKeyFocus===tagKey}}' class="suggest-value-list" catchtap="">
+          <view class="suggestion-box">
+            <scroll-view scroll-y="{{true}}" style="height: 200rpx;">
+              <view class='tag' wx:for="{{material_suggest_value_list}}" wx:for-item="tagValue" wx:key="index" wx:for-index="index" catchtap="onmaterialTagValueSelect" data-tagname="{{tagKey}}" data-tagvalue="{{tagValue}}">{{tagValue}}</view>
+            </scroll-view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="form-item" bindtap="onTap">
+      <view class="key">物料编号</view>
+      <input cursor-spacing="50" class="value disabled" value="{{form['物料编号']}}" placeholder="编号自动生成" disabled/>
+    </view>
+
+    <view class="form-item">
+      <view class="key">单位(必选)</view>
+      <input cursor-spacing="50" class="{{utils.inputClassA(mode)}}" id="单位" value="{{form['单位']}}" placeholder="请输入单位" disabled="{{mode==='lookOver'}}" bindblur="onBlurMaterialBaseInfo" bindtap="onTap" />
+    </view>
+
+    <view class="form-item" bindtap="onTap">
+      <view class="key">仓库剩余数量</view>
+      <input cursor-spacing="50" class="value disabled" value="{{form['仓库剩余数量']}}" disabled/>
+    </view>
+
+    <view class="form-item textarea">
+      <view class="key">备注</view>
+      <textarea class="{{utils.inputClassA(mode)}}" id="备注" placeholder="请输入物料备注" value="{{form['备注']}}" disabled="{{mode==='lookOver'}}" bindblur="onBlurMaterialBaseInfo" bindtap="onTap" />
+    </view>
+
+    <view class='row-2'>
+      <view class="header">
+        <label class="des">供应商列表</label>
+      </view>
+
+      <block wx:for="{{form['供应商列表']}}" wx:for-item="supplier" wx:for-index="index" wx:key="index">
+        <view class="supplier-box">
+          <button wx:if="{{mode!=='lookOver'}}" class="clear" type='warn' data-curOperationsupplierIndex="{{index}}" bindtap="removeSupplierFromList">删除</button>
+
+          <view class="item-supplier supplierName">
+            <view class="key">供应商名称</view>
+            <input cursor-spacing="50" class="{{utils.inputClassA(mode)}}" placeholder="建议点选" data-curOperationSupplierIndex="{{index}}" value="{{supplier['名称']}}" bindfocus="onFocusSupplierTag" bindinput="supplierDebouncedHandleSearch" disabled="{{mode==='lookOver'}}" />
+            <view wx-if='{{supplierTagKeyFocus && curOperationSupplierIndex===index}}' class="suggest-value-list">
+              <view class="suggestion-box">
+                <scroll-view scroll-y="{{true}}" style="height: 200rpx;">
+                  <view class='tag' wx:for="{{supplier_suggest_value_list}}" wx:for-item="tagValue" wx:key="indexA" wx:for-index="indexA" catchtap="onSupplierTagValueSelect" data-tagvalue="{{tagValue}}">{{tagValue}}</view>
+                </scroll-view>
+              </view>
+            </view>
+
+          </view>
+
+          <view class="item-supplier supplierName" bindtap="onTap">
+            <view class="key">供应商id</view>
+            <input cursor-spacing="50" class="value disabled" value="{{supplier.unique_id}}" disabled />
+          </view>
+
+          <view class="item-supplier supplierName" bindtap="onTap">
+            <view class="key">更新时间</view>
+            <input cursor-spacing="50" class="value disabled" value="{{supplier['更新时间']}}" disabled />
+          </view>
+
+          <!-- 必须拥有unique_id,并且不是查看模式，才允许输入 ******start-->
+          <view class="item-supplier">
+            <view class="key">供应商价格</view>
+            <input cursor-spacing="50" class="value {{mode==='lookOver'?'disabled':supplier.unique_id?'':'disabled'}}" type="digit" value="{{supplier['供应商价格']}}" id="供应商价格" data-curOperationSupplierIndex="{{index}}" bindblur="onBlurSupplierInfo" disabled="{{mode==='lookOver'?true:supplier.unique_id?false:true}}"
+              bindtap="onTap" />
+          </view>
+
+          <view class="item-supplier">
+            <view class="key">仓库剩余数量</view>
+            <input cursor-spacing="50" class="value {{(mode==='lookOver' || mode==='editMaterial')?'disabled':supplier.unique_id?'':'disabled'}}" type="digit" value="{{supplier['仓库剩余数量']}}" id="仓库剩余数量" data-curOperationSupplierIndex="{{index}}" bindblur="onBlurSupplierInfo" disabled="{{(mode==='lookOver' || mode==='editMaterial')?true:supplier.unique_id?false:true}}"
+              bindtap="onTap" />
+              <!-- PC仓库剩余数量不可编辑 -->
+          </view>
+
+          <view class="item-supplier">
+            <view class="key">供应商物料名称</view>
+            <input cursor-spacing="50" class="value {{mode==='lookOver'?'disabled':supplier.unique_id?'':'disabled'}}" value="{{supplier['供应商物料名称']}}" id="供应商物料名称" data-curOperationSupplierIndex="{{index}}" bindblur="onBlurSupplierInfo" disabled="{{mode==='lookOver'?true:supplier.unique_id?false:true}}"
+              bindtap="onTap" />
+          </view>
+
+          <view class="item-supplier textarea">
+            <view class="key">说明</view>
+            <textarea class="value {{mode==='lookOver'?'disabled':supplier.unique_id?'':'disabled'}}" value="{{supplier['说明']}}" id="说明" data-curOperationSupplierIndex="{{index}}" bindblur="onBlurSupplierInfo" disabled="{{mode==='lookOver'?true:supplier.unique_id?false:true}}"
+              bindtap="onTap" />
+          </view>
+          <!-- 必须拥有unique_id,并且不是查看模式，才允许输入 ******end-->
+        </view>
+      </block>
+
+      <!-- 继续添加供应商按钮 -->
+      <view class="add-product-btn" wx-if="{{mode!=='lookOver'}}">
+        <button type="primary" bindtap="addSupplier">继续添加供应商</button>
+      </view>
+    </view>
+
+    <view class="btn-area">
+      <button wx:if="{{mode!=='lookOver'}}" type="primary" form-type="submit" loading="{{loading}}">提交</button>
+      <button wx:if="{{mode!=='lookOver'}}" form-type="reset">重置</button>
+    </view>
+
+  </form>
+
+  <!--回到首页按钮-->
+  <back-to-main position="{{positionStr}}" tabBarUrl="{{tabBarUrl}}"></back-to-main>
+
+  <!-- 弹回顶部 -->
+  <back-to-top floorstatus="{{floorstatus}}"></back-to-top>
+
+  <!-- loading遮罩 -->
+  <loading wx:if="{{isRequestIng}}"></loading>
+</view>
+
+
+<wxs module="utils">
+  var inputClassA = function(mode) {
+    if (mode === 'lookOver') {
+      return 'value disabled';
+    } else {
+      return 'value';
+    }
+  }
+  module.exports = {
+    inputClassA: inputClassA
+  }
+</wxs>

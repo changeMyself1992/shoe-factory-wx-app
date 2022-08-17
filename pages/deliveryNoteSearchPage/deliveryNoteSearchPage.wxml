@@ -1,0 +1,93 @@
+<form bindsubmit="formSubmitThrottleHandle" bindreset="formReset">
+
+	<view class='row-1'>
+		<view class="title">条件搜索</view>
+
+		<view class="item-a">
+			<text class='key'>货号：</text>
+			<input cursor-spacing="50" class="value" name="货号" placeholder="请输入货号" />
+		</view>
+
+		<view class="item-a">
+			<text class='key'>送货单位经手人手机：</text>
+			<input cursor-spacing="50" class="value" type="number" name="送货单位经手人手机" maxlength="11" />
+		</view>
+
+		<view class="item-a">
+			<text class='key'>收货单位经手人手机：</text>
+			<input cursor-spacing="50" class="value" type="number" name="收货单位经手人手机" maxlength="11" />
+		</view>
+
+		<view class="item-a">
+			<view class="key">名称及规格</view>
+			<input cursor-spacing="50" class="value" name="名称及规格" />
+			<!-- 自动补全功能先去掉<input cursor-spacing="50" class="value" value="{{nameAndSpecification}}" name="名称及规格" bindfocus="onFocusNameAndSpecification" bindblur="onBlurNameAndSpecification" bindinput="nameAndSpecificationDebouncedHandleSearch" />
+      <view wx-if='{{nameAndSpecificationFocus}}' class="suggest-value-list">
+        <view class="suggestion-box">
+          <label class='tag' wx:for="{{nameAndSpecificationList}}" wx:for-item="invoice" wx:key="{{indexA}}" wx:for-index="indexA" data-name="{{invoice['名称及规格']}}" catchtap="onNameAndSpecificationSelect">{{invoice['名称及规格']}}</label>
+        </view>
+      </view> -->
+		</view>
+
+		<view style="width:100%; border-bottom: 2rpx solid #ccc;"></view>
+
+		<view class="form-item">
+			<view class="key">记录时间_起</view>
+			<picker class="value" mode="date" name='记录时间_下限' id="记录时间_下限" bindchange="bindDateChange">
+				<label class="value-label">{{recordTime_floor}}</label>
+				<text class='iconfont icon-13 select-icon'></text>
+			</picker>
+		</view>
+
+		<view class="form-item">
+			<view class="key">记录时间_止</view>
+			<picker class="value" mode="date" name='记录时间_上限' id="记录时间_上限" bindchange="bindDateChange">
+				<label class="value-label">{{recordTime_upper}}</label>
+				<text class='iconfont icon-13 select-icon'></text>
+			</picker>
+		</view>
+    <!-- 送货单状态搜索 -->
+		<view class="form-item" wx:if="{{curSelectIndex==0}}">
+			<view class="key">交易状态</view>
+			<checkbox-group class="value group" name="交易状态">
+				<label class="checkbox" wx:for="{{transactionStatusOptions0}}" wx:key="index" >
+					<checkbox value="{{item.name}}" checked="{{item.checked}}" />{{item.value}}
+				</label>
+			</checkbox-group>
+		</view>
+    <!-- 退货单单状态搜索 -->
+    <view class="form-item" wx:elif="{{curSelectIndex==1}}">
+			<view class="key">交易状态</view>
+			<checkbox-group class="value group" name="交易状态">
+				<label class="checkbox" wx:for="{{transactionStatusOptions1}}" wx:key="index" >
+					<checkbox value="{{item.name}}" checked="{{item.checked}}" />{{item.value}}
+				</label>
+			</checkbox-group>
+		</view>
+    <!-- 现结单状态搜索 -->
+    <view class="form-item" wx:elif="{{curSelectIndex==2}}">
+			<view class="key">交易状态</view>
+			<checkbox-group class="value group" name="交易状态">
+				<label class="checkbox" wx:for="{{transactionStatusOptions2}}" wx:key="index" >
+					<checkbox value="{{item.name}}" checked="{{item.checked}}" />{{item.value}}
+				</label>
+			</checkbox-group>
+		</view>
+
+
+
+
+		<view style="width:100%; height:20rpx;"></view>
+	</view>
+
+	<view style="width:100%; height:40rpx;"></view>
+
+
+	<button class="search-btn" type="primary" form-type="submit" style="margin-bottom:20rpx;">搜索</button>
+	<button class="clear-btn" form-type="reset">清空搜索条件</button>
+</form>
+
+<!-- loading遮罩 -->
+<loading wx:if="{{isRequestIng}}"></loading>
+<!--回到首页按钮-->
+<back-to-main position="{{positionStr}}" tabBarUrl="{{tabBarUrl}}"></back-to-main>

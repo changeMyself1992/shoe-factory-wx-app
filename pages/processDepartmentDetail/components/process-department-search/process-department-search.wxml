@@ -1,0 +1,103 @@
+<!-- 部门信息搜索组件 -->
+<view class="item">
+
+  <view class="module-a">
+    <picker class="picker" mode="date" value="{{startTime}}" bindchange="bindDateChange" data-status="开始" bindtap="onTap">
+      <text class="text-a">开始时间：</text>
+      <text class="text-b">{{startTime}}</text>
+      <view class="text-c">
+        <text class='iconfont icon-triangle-bottom'></text>
+      </view>
+
+    </picker>
+
+    <picker class="picker" mode="date" value="{{endTime}}" bindchange="bindDateChange" data-status="结束" bindtap="onTap">
+      <text class="text-a">结束时间：</text>
+      <text class="text-b">{{endTime}}</text>
+      <view class="text-c">
+        <text class='iconfont icon-triangle-bottom'></text>
+      </view>
+
+    </picker>
+  </view>
+
+  <view class="kind-list__item">
+    <view class="weui-flex kind-list__item-hd {{item.open ? 'kind-list__item-hd_show' : ''}}" bindtap="kindToggle">
+      <view class="weui-flex__item">{{item.name}}</view>
+      <image class="kind-list__img" src="{{item.open?'../../../../static/imageC/arrow_down.png':'../../../../static/imageC/arrow_up.png'}}" />
+    </view>
+    <view class="kind-list__item-bd {{item.open ? 'kind-list__item-bd_show' : ''}}">
+      <view class="weui-cells {{item.open ? 'weui-cells_show' : ''}}">
+
+        <view class="shaixuan-box">
+          <view class="header">
+            <button type="primary" loading="{{loading}}" bindtap="emptyFilter">清空筛选条件</button>
+          </view>
+
+
+          <view class='row row-1'>
+            <view class="title">其他信息筛选</view>
+            <view class="item-a">
+              <text class='key'>生产单编号：</text>
+              <input cursor-spacing="50" class="value" value="{{productUniqueId}}" bindinput="productUniqueIdDebouncedHandleSearch" bindtap="onTap"/>
+            </view>
+            <view class="item-a">
+              <text class='key'>单价排序：</text>
+              <view class="value-a">
+                <radio-group class="radio-group" data-des="单价排序" bindchange="radioChange" bindtap="onTap">
+                  <label class="radio" wx:for="{{items_1}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+                    <radio value="{{item.name}}" checked="{{item.checked}}" />{{item.value}}
+                  </label>
+                </radio-group>
+              </view>
+            </view>
+
+            <view class="item-a">
+              <text class='key'>总件数排序：</text>
+              <view class="value-a">
+                <radio-group class="radio-group" data-des="总件数排序" bindchange="radioChange" bindtap="onTap">
+                  <label class="radio" wx:for="{{items_2}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+                    <radio value="{{item.name}}" checked="{{item.checked}}" />{{item.value}}
+                  </label>
+                </radio-group>
+              </view>
+            </view>
+
+            <view class="item-a">
+              <text class='key'>总金额排序：</text>
+              <view class="value-a">
+                <radio-group class="radio-group" data-des="总金额排序" bindchange="radioChange" bindtap="onTap">
+                  <label class="radio" wx:for="{{items_3}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+                    <radio value="{{item.name}}" checked="{{item.checked}}" />{{item.value}}
+                  </label>
+                </radio-group>
+              </view>
+            </view>
+
+          </view>
+
+          <view class='row row-2'>
+            <view class="title">产品信息筛选</view>
+
+            <view class="item-a" wx:for="{{product_tag_filter}}" wx:for-item="index" wx:key="index" wx:for-index="tagKey">
+              <text class='key'>{{tagKey}}：</text>
+              <input cursor-spacing="50" class="value" type="text" data-tagname="{{tagKey}}" value="{{product_tag_filter[tagKey]}}" bindfocus="onFocusProductTag" bindinput="productDebouncedHandleSearch" />
+              <view wx-if='{{productTagKeyFocus===tagKey}}' class="suggest-value-list">
+                <view class="suggestion-box">
+                  <scroll-view scroll-y="{{true}}" style="height: 200rpx;">
+                    <view class='tag' wx:for="{{product_suggest_value_list}}" wx:for-item="tagValue" wx:key="index" wx:for-index="index" catchtap="onProductTagValueSelect" data-tagname="{{tagKey}}" data-tagvalue="{{tagValue}}">{{tagValue}}</view>
+                  </scroll-view>
+                </view>
+              </view>
+            </view>
+
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+  <!-- loading遮罩 -->
+  <loading wx:if="{{isRequestIng}}"></loading>
+</view>

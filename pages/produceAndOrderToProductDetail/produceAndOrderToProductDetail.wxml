@@ -1,0 +1,120 @@
+<!--pages/produceAndOrderToProductDetail/produceAndOrderToProductDetail.wxml-->
+<!--产品操作页 添加，编辑，查看-->
+<view class='container'>
+  <form bindsubmit="formSubmitThrottleHandle" bindreset="formReset">
+    <view class='row-1'>
+      <view class="title">产品基本信息</view>
+      <view wx:if="{{isBoolean}}" class="title">产品成本估算：{{form['成本估算']}}</view>
+
+      <view class="item-a" wx:for="{{form['tags']}}" wx:for-item="index" wx:key="index" wx:for-index="tagKey">
+        <text class='key'>{{tagKey}}：</text>
+        <input cursor-spacing="50" class="value disabled" type="text" value="{{form['tags'][tagKey]}}" disabled />
+      </view>
+
+    </view>
+
+    <view class="form-item">
+      <view class="key">产品编号</view>
+      <input cursor-spacing="50" class="value disabled" value="{{form['产品编号']}}" placeholder="编号自动生成" disabled/>
+    </view>
+
+    <view class="form-item textarea">
+      <view class="key">产品备注</view>
+      <textarea class="value disabled" name="产品备注" placeholder="请输入备注" value="{{form['备注']}}" disabled />
+    </view>
+
+    <view class="form-item upload">
+      <view class="key">上传产品图片</view>
+      <view wx:if="{{form['产品图片列表'][0]}}" class='id-card-front-photo'>
+        <image class="card-photo" src="{{form['产品图片列表'][0]}}" mode="widthFix"></image>
+      </view>
+    </view>
+
+
+    <view class='row-2'>
+      <view class="header">
+        <label class="des">产品包含的部位和物料信息列表</label>
+      </view>
+
+      <block wx:for="{{form['部位详情']}}" wx:for-item="part" wx:for-index="index" wx:key="index">
+        <view class="part-box">
+
+          <view class="box-top">
+            <view class="part-name">
+              <text class='key'>部位名称</text>
+              <input cursor-spacing="50" class="value disabled" type="text" value="{{part['部位名称']}}" disabled />
+            </view>
+          </view>
+
+          <view class="material-box">
+            <view class="item-material" bindtap="onTap">
+              <view class="key">物料编号</view>
+              <input cursor-spacing="50" class="value disabled" value="{{part['使用物料']['物料编号']}}" placeholder="编号自动生成" disabled/>
+            </view>
+
+            <view class="item-material" wx:for="{{part['使用物料'].tags}}" wx:key="tagKey" wx:for-index="tagKey">
+              <view class="key">{{tagKey}}</view>
+              <input cursor-spacing="50" class="value disabled" type="text" value="{{part['使用物料'].tags[tagKey]}}" disabled />
+            </view>
+          </view>
+
+          <!-- 如果该部位没有物料编号那么不会显示 *****start*****-->
+          <view wx:if="{{part['使用物料'].unique_id}}" class="material-info">
+            <view class="item-b">
+              <view class="key">物料数量</view>
+              <input cursor-spacing="50" class="value disabled" type="digit" value="{{part['物料数量']}}" disabled />
+            </view>
+            <view wx:if="{{isBoolean}}" class="item-b">
+              <view class="key">参考市场单价</view>
+              <input cursor-spacing="50" class="value disabled" type="digit" value="{{part['使用物料']['参考市场单价']}}" disabled />
+            </view>
+            <view class="item-b">
+              <view class="key">单位</view>
+              <input cursor-spacing="50" class="value disabled" type="digit" value="{{part['使用物料']['单位']}}" disabled />
+            </view>
+            <view class="item-b">
+              <view class="key">备注</view>
+              <input cursor-spacing="50" class="value disabled" type="digit" value="{{part['使用物料']['备注']}}" disabled />
+            </view>
+          </view>
+
+          <view wx:if="{{isBoolean && (part['使用物料'].unique_id)}}" class="supplier-box">
+            <view class="item-supplier name">
+              <view class="key">名称</view>
+              <input cursor-spacing="50" class="value disabled" value="{{part['使用物料']['所选供应商信息']['名称']}}" disabled placeholder="只允许点选" />
+            </view>
+
+            <view class="item-supplier-name" bindtap="onTap">
+              <view class="key">供应商物料名称</view>
+              <input cursor-spacing="50" class="value disabled" value="{{part['使用物料']['所选供应商信息']['供应商物料名称']}}" disabled placeholder="暂无" />
+            </view>
+            <view class="item-supplier-name" bindtap="onTap">
+              <view class="key">供应商价格</view>
+              <input cursor-spacing="50" class="value disabled" value="{{part['使用物料']['所选供应商信息']['供应商价格']}}" disabled placeholder="暂无" />
+            </view>
+            <view class="item-supplier-name" bindtap="onTap">
+              <view class="key">说明</view>
+              <input cursor-spacing="50" class="value disabled" value="{{part['使用物料']['所选供应商信息']['说明']}}" disabled placeholder="暂无" />
+            </view>
+
+          </view>
+
+          <!-- 如果该部位没有物料编号那么不会显示 *****end*****-->
+
+        </view>
+      </block>
+
+
+    </view>
+
+  </form>
+
+  <!--回到首页按钮-->
+  <back-to-main position="{{positionStr}}" tabBarUrl="{{tabBarUrl}}"></back-to-main>
+
+  <!-- 弹回顶部 -->
+  <back-to-top floorstatus="{{floorstatus}}"></back-to-top>
+
+  <!-- loading遮罩 -->
+  <loading wx:if="{{isRequestIng}}"></loading>
+</view>

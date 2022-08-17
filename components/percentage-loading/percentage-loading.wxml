@@ -1,0 +1,6 @@
+<!-- 百分比loading -->
+<view wx:if="{{isRequestIng}}" class="percentage-loading">
+  <view class="bg"></view>
+  <image class="img" mode="widthFix" src="../../static/imageC/loading-a.gif"></image>
+  <progress class="progress" active-mode="forwards"  percent="{{value}}" active />
+</view>

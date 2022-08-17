@@ -1,0 +1,30 @@
+<!--pages/supplierManagement/supplierManagement.wxml-->
+<view class='container'>
+  <!-- 搜索框 -->
+  <search_box skipLinks="{{skipLinks}}" searchCondition="{{searchCondition}}" whetherToDisplayAConditionBox="{{whetherToDisplayAConditionBox}}" bind:clearingSearchCallback="clearingSearchCallback" conditionalQueryTitle="{{conditionalQueryTitle}}"></search_box>
+
+  <!--列表-->
+  <view class='module-b'>
+    <block wx:for="{{suplierList}}" wx:for-item="info" wx:for-index="index" wx:key="index">
+      <item info="{{info}}" bind:callbackAfterDeletion="callbackAfterDeletion"></item>
+    </block>
+  </view>
+
+
+  <!-- 关联码弹窗 -->
+  <view wx:if="{{maskCash}}" class="maskCash">
+    <view class="maskbox">
+      <view class="title">关联码</view>
+      <view class="content"><image src="{{codeimg}}"></image></view>
+      <view class="bottombtn" catchtap="cancleMask">确认</view>
+    </view>
+  </view>
+  <!-- 关联码弹窗 -->
+
+
+  <!-- 弹回顶部 -->
+  <back-to-top floorstatus="{{floorstatus}}"></back-to-top>
+
+  <!-- loading遮罩 -->
+  <loading wx:if="{{isRequestIng}}"></loading>
+</view>

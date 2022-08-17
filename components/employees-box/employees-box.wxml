@@ -1,0 +1,43 @@
+<view class="employees-box">
+
+  <view class="header">
+    <label class="text-a">申请时间：{{employees['更新时间']}}</label>
+    <label class="text-b">{{employees['工作状态']}}</label>
+  </view>
+
+  <view class="section">
+    <view class='item'>
+      <label class='key'>姓名:</label>
+      <label class='value'>{{employees['个人信息']['姓名']}}</label>
+    </view>
+    <view class='item'>
+      <label class='key'>手机号:</label>
+      <label class='value'>{{employees['绑定手机号']}}</label>
+    </view>
+    <view class='item'>
+      <label class='key'>角色:</label>
+      <label class='value'>{{employees['管理角色']}}</label>
+    </view>
+    <view class='item'>
+      <label class='key'>性别:</label>
+      <label class='value'>{{employees['个人信息']['性别']}}</label>
+    </view>
+    <view class='item' style="width:100%;">
+      <label class='key'>出生日期:</label>
+      <label class='value'>{{!employees['个人信息']['出生日期']?'':employees['个人信息']['出生日期']}}</label>
+    </view>
+    <view class='item' style="width:100%;">
+      <label class='key'>负责工序:</label>
+      <label class='value'><text class="gongxu" wx:for="{{employees['负责工序']}}" wx:for-item="item" wx:for-index="index" wx:key="index">{{item}},</text></label>
+    </view>
+  </view>
+
+  <view class="footer">
+    <button class="btn-consent" type="primary" data-employees="{{employees}}" bindtap="editBtnThrottleHandle">编辑</button>
+    <button class="btn-reject" type="warn" data-employees="{{employees}}" bindtap="onRejectBtnClick">删除</button>
+  </view>
+
+
+   <!-- loading遮罩 -->
+  <loading wx:if="{{isRequestIng}}"></loading>
+</view>

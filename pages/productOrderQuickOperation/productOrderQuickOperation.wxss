@@ -1,0 +1,148 @@
+/* pages/productOrderQuickOperation/productOrderQuickOperation.wxss */
+
+.container{
+  margin-top: 70rpx;
+}
+.product-order-list {
+  margin: 20rpx;
+  margin-bottom: 200rpx;
+}
+/* 底部按钮 */
+.btnArr{
+position: fixed;
+width: 100%;
+height: 90rpx;
+line-height: 90rpx;
+text-align: center;
+display: flex;
+align-items: center;
+justify-items: center;
+z-index: 100;
+bottom: 0;
+
+}
+.btnArr span:nth-child(1),.btnArr span:nth-child(2){
+  flex: 1;
+  background: #4a4a4a;
+  color: #ffffff;
+  font-size: 32rpx;
+  display: flex;
+align-items: center;
+justify-content: center;
+}
+.btnArr .bor{
+  position: relative;
+  display: flex;
+align-items: center;
+justify-content: center;
+}
+.btnArr .bor::after{
+  content: "";
+  display: inline-block;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  height: 60%;
+  width: 1px;
+  background-color: #ffffff;
+}
+.btnArr span:nth-child(3){
+  flex: 1;
+  background: #0DA317;
+  color: #ffffff;
+  font-size: 32rpx;
+}
+.onAllCheck{
+  background: #CDCDCD !important;
+  color: #ffffff !important;
+}
+.page{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  text-align: center;
+  height: 70rpx;
+  line-height: 70rpx;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #ffffff;
+  z-index: 10000;
+  box-shadow: 0 0 10rpx 10rpx #f1f2f3;
+}
+.page view{
+  flex: 1;
+}
+.lickCheckboxOn{
+  display: inline-block;
+  width: 44rpx;
+  height: 44rpx;
+  background: #0DA317;
+  border-radius: 4rpx;
+  position: relative;
+}
+.lickCheckboxOn::after{
+  content: "";
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 15rpx;
+  height: 30rpx;
+  border-color: #ffffff;
+  border-style: solid;
+  border-width: 0 6rpx 6rpx 0;
+  transform: rotate(45deg);
+}
+.lickCheckboxOff{
+  display: inline-block;
+  width: 44rpx;
+  height: 44rpx;
+  border: 1px solid #ffffff;
+  border-radius: 4rpx;
+}
+.tips{
+  position: fixed;
+  bottom: 90rpx;
+  left: 0;
+  display: inline-block;
+  height: 60rpx;
+  width: 100%;
+  line-height: 60rpx;
+  background-color: #ffffff;
+  font-size: 26rpx;
+  padding-left: 30rpx;
+  /* box-shadow: 0 0 10rpx 10rpx #f1f2f3; */
+  border-top: 1px solid #eeeeee;
+}
+.tipsProgress{
+position: fixed;
+margin: auto;
+bottom: 0;
+left: 0;
+right: 0;
+top: 0;
+display: inline-block;
+width: 100%;
+background: rgba(0,0,0,0.5);
+z-index: 1000;
+height: 70rpx;
+line-height: 70rpx;
+padding: 100% 5%;
+text-align: center;
+}
+.tipsProgress view{
+  color: #ffffff;
+  font-size: 32rpx;
+}
+.bold{
+  font-weight: bold;
+}
+.green{
+  color: #0DA317;
+}

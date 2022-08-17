@@ -1,0 +1,209 @@
+<view class="box" wx:if="{{info['供应商名称']!='未知'}}">
+  <view class="header">
+    <view style="flex:3;display: flex;align-items: center;">
+      <view wx:if="{{info['流水单类型']=='送货单'&&activeAffirmBtn}}" class="process-select">
+        <checkbox-group class="value" bindchange="checkboxChange">
+          <label class="checkbox" wx:for="{{delivery}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+            <checkbox value="{{item.value}}" checked="{{item.checked}}" />
+          </label>
+        </checkbox-group>
+      </view>
+      <label class="text-a" style="display: flex;align-items: center;">{{info['供应商名称']}}
+                <image wx:if="{{info.if_unified_match}}" class="renzheng" src="../../../../static/imageC/yes.png"></image>
+                <image wx:else class="renzheng" src="../../../../static/imageC/no.png"></image></label>
+    </view>
+    <view style="flex:1;display: flex;align-items: center;justify-content:flex-end;">
+      <label wx:if="{{info['交易状态']=='未确认'&&activeAffirmBtn}}" style="color:#A8AE15" class="text-a">未确认</label>
+      <label wx:elif="{{info['交易状态']=='未确认'&&!waitingAffirmBtn}}" style="color:#A8AE15" class="text-a">等待供应商确认</label>
+      <label wx:elif="{{info['交易状态']=='已确认'}}" style="color:#18AD19" class="text-a">已确认</label>
+      <label wx:elif="{{info['交易状态']=='已结算'}}" style="color:#06258B" class="text-a">已结算</label>
+      <label wx:elif="{{info['交易状态']=='待作废'}}" style="color:#FF6F00" class="text-a">待作废</label>
+      <label wx:elif="{{info['交易状态']=='已作废'}}" style="color:#E22010" class="text-a">已作废</label>
+      <label wx:elif="{{info['交易状态']=='待退货'}}" style="color:#A8AE15" class="text-a">待退货</label>
+      <label wx:elif="{{info['交易状态']=='已退货'}}" style="color:#18AD19" class="text-a">已退货</label>
+      <label wx:elif="{{info['交易状态']=='未结算'}}" style="color:#A8AE15" class="text-a">未结算</label>
+      <image wx:if="{{info['流水单类型']=='送货单'&&activeAffirmBtn}}" class="queren" src="../../../../static/imageC/queren.png" bindtap="affirmThrottleHandle" />
+      <image wx:if="{{info['交易状态']=='未结算'}}" class="queren" src="../../../../static/imageC/queren.png" bindtap="cashStateOrder" />
+    </view>
+  </view>
+  <view class="section">
+    <view class="time-row" wx:if="{{info['交易状态']=='已作废'}}">
+      <view style="background: #FFEDEE" class="zuofeiInfo" bindtap="openZuofei">
+        <text>{{unfold==info.unique_id?'折叠':'展开'}}</text>
+        <image class="zhankai" src="{{unfold==info.unique_id?'../../../../static/imageC/arrow_down.png':'../../../../static/imageC/arrow_up.png'}}" />
+      </view>
+      <block wx:if="{{unfold==info.unique_id}}">
+        <view style="width:100%;background: #FFEDEE">
+          <view class="baseInfo1">
+            <view class='item' style="flex:2;">
+              <label class='key'>名称及规格：</label>
+              <label class='value'>{{info['名称及规格']}}</label>
+            </view>
+            <view class='item' style="flex:1;">
+              <label class='key'>货号：</label>
+              <label class='value'>{{info['货号']}}</label>
+            </view>
+          </view>
+          <view class="baseInfo2">
+            <view class='item'>
+              <label class='key'>单价</label>
+              <label class='value'>（{{info['单价']}}元/{{info['单位']}}）</label>
+            </view>
+            <view class='item mathstyle'>
+              <label class='key'>x</label>
+              <label class='key'>数量<text style="font-weight: bold;font-size: 24rpx;">（{{info['数量']}}）</text></label>
+              <label class='value'>=</label>
+            </view>
+            <view class='item' style="text-align: right;">
+              <label class='key'>总价</label>
+              <label class='value'>（{{info['总价格']}}元）</label>
+            </view>
+          </view>
+          <view class="baseInfo4">
+            <view class='item'>
+              <label class='key'>送货人姓名(电话)：</label>
+              <label class='value'>{{info['送货人姓名']}}{{info['送货单位经手人手机']==''?'':'('}}{{info['送货单位经手人手机']}}{{info['送货单位经手人手机']==''?'':')'}}</label>
+            </view>
+          </view>
+          <view class="baseInfo4" style="padding:0 10rpx;">
+            <view class='item'>
+              <label class='key'>收货人姓名(电话)：</label>
+              <label class='value'>{{info['收货人姓名']}}{{info['收货单位经手人手机']==''?'':'('}}{{info['收货单位经手人手机']}}{{info['收货单位经手人手机']==''?'':')'}}</label>
+            </view>
+          </view>
+          <view class="baseInfo3">
+            <view class='item'>
+              <label class='key'>供应商电话：</label>
+              <label class='value'>{{info['供应商联系电话']}}</label>
+            </view>
+            <view class='item'>
+              <label class='key'>货单编号：</label>
+              <label class='value'>{{info.unique_id}}</label>
+            </view>
+          </view>
+          <view class="baseInfo5">
+            <view class='item item1'>
+              <label class='key'>记录时间：</label>
+              <label class='value'>{{info['记录时间']}}</label>
+            </view>
+            <view class='item item1'>
+              <label class='key'>备注：</label>
+              <label class='value'>
+                {{info['备注']}}
+                <image wx:if="{{info['流水单类型']=='送货单'}}" class="bianji" src="../../../../static/imageC/bianji.png" bindtap="editThrottleHandle" />
+              </label>
+            </view>
+          </view>
+          <!-- <view class="baseInfo1">
+          </view> -->
+        </view>
+      </block>
+    </view>
+    <view wx:else class="time-row">
+      <view style="width:100%;background:{{info['交易状态']=='未确认'?'#FEFFEA':info['交易状态']=='已确认'?'#ECFEF2':info['交易状态']=='已结算'?'#F1F5FB':info['交易状态']=='待作废'?'#FFF3EA':info['交易状态']=='待退货'?'#FEFFEA':info['交易状态']=='未结算'?'#FEFFEA':'#ECFEF2'}}">
+        <view class="baseInfo1">
+          <view class='item' style="flex:2;">
+            <label class='key'>名称及规格：</label>
+            <label class='value'>{{info['名称及规格']}}</label>
+          </view>
+          <view class='item' style="flex:1;">
+            <label class='key'>货号：</label>
+            <label class='value'>{{info['货号']}}</label>
+          </view>
+        </view>
+        <view class="baseInfo2">
+          <view class='item'>
+            <label class='key'>单价</label>
+            <label class='value'>（{{info['单价']}}元/{{info['单位']}}）</label>
+          </view>
+          <view class='item mathstyle'>
+            <label class='key'>x</label>
+            <label class='key'>数量<text style="font-weight: bold;font-size: 24rpx;">（{{info['数量']}}）</text></label>
+            <label class='value'>=</label>
+          </view>
+          <view class='item' style="text-align: right;">
+            <label class='key'>总价</label>
+            <label class='value'>（{{info['总价格']}}元）</label>
+          </view>
+        </view>
+        <block wx:if="{{info['流水单类型']=='现结单'}}">
+          <view class="baseInfo4">
+            <view class='item'>
+              <label class='key'>付款人姓名(电话)：</label>
+              <label class='value'>{{info['付款人姓名']}}{{info['付款人手机']==''?'':'('}}{{info['付款人手机']}}{{info['付款人手机']==''?'':')'}}</label>
+            </view>
+          </view>
+          <view class="baseInfo4" style="padding:0 10rpx;">
+            <view class='item'>
+              <label class='key'>收货人姓名(电话)：</label>
+              <label class='value'>{{info['收货人姓名']}}{{info['收货单位经手人手机']==''?'':'('}}{{info['收货单位经手人手机']}}{{info['收货单位经手人手机']==''?'':')'}}</label>
+            </view>
+          </view>
+        </block>
+        <block wx:else>
+          <view class="baseInfo4">
+            <view class='item'>
+              <label class='key'>送货人姓名(电话)：</label>
+              <label class='value'>{{info['送货人姓名']}}{{info['送货单位经手人手机']==''?'':'('}}{{info['送货单位经手人手机']}}{{info['送货单位经手人手机']==''?'':')'}}</label>
+            </view>
+          </view>
+          <view class="baseInfo4" style="padding:0 10rpx;">
+            <view class='item'>
+              <label class='key'>收货人姓名(电话)：</label>
+              <label class='value'>{{info['收货人姓名']}}{{info['收货单位经手人手机']==''?'':'('}}{{info['收货单位经手人手机']}}{{info['收货单位经手人手机']==''?'':')'}}</label>
+            </view>
+          </view>
+        </block>
+        <view class="baseInfo3">
+          <view class='item'>
+            <label class='key'>供应商电话：</label>
+            <label class='value'>{{info['供应商联系电话']}}</label>
+          </view>
+          <view class='item'>
+            <label class='key'>货单编号：</label>
+            <label class='value'>{{info.unique_id}}</label>
+          </view>
+        </view>
+        <view class="baseInfo5">
+          <view class='item item1'>
+            <label class='key'>记录时间：</label>
+            <label class='value'>{{info['记录时间']}}</label>
+          </view>
+          <view class='item item1'>
+            <label class='key'>备注：</label>
+            <label class='value'>{{info['备注']}}
+                <image wx:if="{{info['流水单类型']=='送货单'}}" class="bianji1" src="../../../../static/imageC/bianji.png" bindtap="editThrottleHandle" /></label>
+          </view>
+        </view>
+        <!-- <view class="baseInfo1">
+        </view> -->
+      </view>
+    </view>
+  </view>
+
+  <view class="footer">
+    <!-- 送货单功能都为图标操作了 -->
+    <!-- <button style="margin-right: 10rpx;" class="btn-reject" type="warn" bindtap="onRejectBtnClick">作废送货单</button>
+    <button style="margin-right: 10rpx;" class="btn-consent" type="primary" bindtap="settleThrottleHandle">结算送货单</button> -->
+    <!-- <button wx:if="{{info['流水单类型']=='送货单'}}" style="margin-right: 10rpx;" class="btn-consent" type="primary" bindtap="editThrottleHandle">编辑送货单</button> -->
+    <!-- <button wx:if="{{info['流水单类型']=='送货单'&&displayAffirmBtn}}" disabled="{{!activeAffirmBtn}}" class="btn-consent" type="primary" bindtap="affirmThrottleHandle">确认送货单</button> -->
+
+    <!-- 退货单功能 -->
+    <button wx:if="{{displayReturnBtn}}" disabled="{{!activeReturnBtn}}" class="btn-consent" type="primary" bindtap="sureReturnThrottleHandle">{{waitingReturnBtn?'等待供应商端确认':'确认退货单'}}</button>
+    <button wx:if="{{displayDelReturnBtn}}" disabled="{{!activeDelReturnBtn}}" class="btn-consent" type="warn" bindtap="delReturnThrottleHandle">作废退货单</button>
+    <button wx:if="{{displaySureDelReturnBtn}}" disabled="{{!activeSureDelReturnBtn}}" class="btn-consent" type="warn" bindtap="sureDelReturnThrottleHandle">{{waitingSureDelReturnBtn?'等待供应商端作废':'确认作废退货单'}}</button>
+
+    <!-- 现结单功能 -->
+    <button wx:if="{{displayDelCashBtn}}" disabled="{{!activeDelCashBtn}}" class="btn-consent" type="warn" bindtap="delCashThrottleHandle">作废现结单</button>
+  </view>
+
+
+  <!-- loading遮罩 -->
+  <loading wx:if="{{isRequestIng}}"></loading>
+</view>
+
+<wxs module="utils">
+  module.exports.format = function(value) {
+    return Number((parseFloat(value) * 100).toFixed(2))
+  }
+</wxs>

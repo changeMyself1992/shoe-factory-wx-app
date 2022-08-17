@@ -1,0 +1,142 @@
+<view class="cut-off-rule">
+</view>
+<view class="box">
+
+  <view class="header">
+    <label class="text-a">{{orderInfo['订单编号']}}</label>
+    <label class="text-c">{{utils.format(orderInfo['订单完成百分比'])}}% ({{orderInfo['订单状态']}})</label>
+    <label class="text-b">进度：</label>
+  </view>
+
+  <view class="section">
+
+    <view class="time-row">
+      <view class='item'>
+        <label class='key'>订单日期：</label>
+        <label class='value'>{{orderInfo['订单日期']}}</label>
+      </view>
+      <view class='item text-right'>
+        <label class='key'>交货日期：</label>
+        <label class='value'>{{orderInfo['交货日期']}}</label>
+      </view>
+
+      <!-- <view class="item-jindu">
+        <label class="key">总进度</label>
+        <progress class="value" percent="{{utils.format(orderInfo['订单完成百分比'])}}" stroke-width="8" color="#cd5e63" show-info/>
+      </view> -->
+
+    </view>
+
+    <view wx:if="{{orderTag}}" class="tag-row">
+      <view class='item' wx:for="{{orderTag}}" wx:for-item="value" wx:key="index" wx:for-index="index">
+        <text class='key'>{{value}}：</text>
+        <text class='value'>{{orderInfo['tags_'+value]}}</text>
+      </view>
+    </view>
+
+    <view wx:if="{{productTag}}" class="tag-row">
+      <view class='item' wx:for="{{productTag}}" wx:for-item="value" wx:key="index" wx:for-index="index">
+        <text class='key'>{{value}}：</text>
+        <text class='value'>{{orderInfo['包含的产品_产品信息_tags_'+value]}}</text>
+      </view>
+    </view>
+
+    <!--配码数量(下拉列表)-->
+    <view class="kind-list__item">
+      <view class="weui-flex kind-list__item-hd {{orderInfo['配码数量是否展开'] ? 'kind-list__item-hd_show' : ''}}" bindtap="kindToggle">
+        <view class="weui-flex__item">配码总数 {{orderInfo['包含的产品_配码数量_总数']}}</view>
+        <view class="weui-flex__item">展开</view>
+        <image class="kind-list__img" src="{{orderInfo['配码数量是否展开']?'../../../../static/imageC/arrow_down.png':'../../../../static/imageC/arrow_up.png'}}" />
+      </view>
+      <view class="kind-list__item-bd {{orderInfo['配码数量是否展开'] ? 'kind-list__item-bd_show' : ''}}">
+        <view class="weui-cells {{orderInfo['配码数量是否展开'] ? 'weui-cells_show' : ''}}">
+          <!--下拉列表内容-->
+          <view class='table'>
+            <view class="tr header">
+              <view class="th item-1">尺码</view>
+              <view class="th item-2">数量</view>
+              <view class="th item-3">尺码</view>
+              <view class="th item-4">数量</view>
+            </view>
+
+            <view class="body">
+              <block wx:for="{{shoesSize}}" wx:for-item="peima" wx:for-index="index_b" wx:key="index_b">
+                <view class="tr body">
+                  <view class="td item-1">{{peima}}</view>
+                  <view class="td item-2">
+                    <input cursor-spacing="50" class="disabled" type="number" value="{{orderInfo[peima]}}" data-peiMaIndex='{{index_b}}' disabled></input>
+                  </view>
+                </view>
+              </block>
+            </view>
+          </view>
+
+        </view>
+      </view>
+    </view>
+
+    <view class="settlement-status-row">
+
+      <view class="form-item">
+        <view class="key state">结算状态：</view>
+        <picker class="value {{orderInfo['结算状态是否可编辑']?'':'disabled'}}" mode="selector" id="结算状态" value="{{statusIndex}}" range="{{statusOptions}}" bindchange="editThrottleHandle" disabled="{{orderInfo['结算状态是否可编辑']?false:true}}">
+          <label class="value-label">{{orderInfo['包含的产品_结算情况_结算状态']}}</label>
+          <label class="select-des">请选择 ></label>
+        </picker>
+      </view>
+
+      <view class="btn-box">
+        <button wx:if="{{!orderInfo['结算状态是否可编辑']}}" class="btn-consent" type="primary" bindtap="handleEdit">编辑</button>
+        <button wx:elif="{{orderInfo['结算状态是否可编辑'] && theSettlementStatusEditableRows===1}}" class="btn-consent" type="primary" bindtap="submitThrottleHandle">提交</button>
+        <button wx:elif="{{orderInfo['结算状态是否可编辑'] && theSettlementStatusEditableRows>1}}" class="btn-consent" type="primary" bindtap="submitAllThrottleHandle">全部提交</button>
+        <button style="margin-left:5rpx;" wx:if="{{orderInfo['结算状态是否可编辑'] && theSettlementStatusEditableRows>=1}}" class="btn-consent" type="primary" bindtap="cancelQuxiao">取消</button>
+      </view>
+
+      <view class='item'>
+        <label class='key'>产品单价：</label>
+        <input placeholder="0" cursor-spacing="50" class="value {{orderInfo['结算状态是否可编辑']?'':'disabled'}}" type="digit" value="{{orderInfo['包含的产品_结算情况_产品单价']}}" id="产品单价" bindblur="onEditSettlementInfo" disabled="{{orderInfo['结算状态是否可编辑']?false:true}}" />
+      </view>
+      <view class='item'>
+        <label class='key'>发货数量：</label>
+        <input placeholder="0" cursor-spacing="50" class="value {{orderInfo['结算状态是否可编辑']?'':'disabled'}}" type="digit" value="{{orderInfo['包含的产品_结算情况_发货数量']}}" id="发货数量" bindblur="onEditSettlementInfo" disabled="{{orderInfo['结算状态是否可编辑']?false:true}}" />
+      </view>
+      <view class='item'>
+        <label class='key'>产品应收款：</label>
+        <input placeholder="0" cursor-spacing="50" class="value {{orderInfo['结算状态是否可编辑']?'':'disabled'}}" type="digit" value="{{orderInfo['包含的产品_结算情况_产品订单应收']}}" id="产品订单应收" bindblur="onEditSettlementInfo" disabled="{{orderInfo['结算状态是否可编辑']?false:true}}" />
+      </view>
+      <view class='item'>
+        <label class='key'>产品实收款：</label>
+        <input placeholder="0" cursor-spacing="50" class="value {{orderInfo['结算状态是否可编辑']?'':'disabled'}}" type="digit" value="{{orderInfo['包含的产品_结算情况_产品订单实收']}}" id="产品订单实收" bindblur="onEditSettlementInfo" disabled="{{orderInfo['结算状态是否可编辑']?false:true}}" />
+      </view>
+
+      <view class="form-item">
+        <view class="key">发货时间：</view>
+        <picker class="value {{orderInfo['结算状态是否可编辑']?'':'disabled'}}" mode="date" value="{{orderInfo['包含的产品_结算情况_发货时间']}}" id="发货时间" bindchange="onEditSettlementInfo" disabled="{{orderInfo['结算状态是否可编辑']?false:true}}">
+          <label class="value-label">{{orderInfo['包含的产品_结算情况_发货时间']}}<text class="deletedate" wx:if="{{(orderInfo['结算状态是否可编辑'])&&(orderInfo['包含的产品_结算情况_发货时间']!=='')}}" catchtap="deletedateclick">X</text></label>
+          <text class='iconfont icon-13 select-icon'></text>
+        </picker>
+      </view>
+
+      <view class="form-item">
+        <view class="key">备注：</view>
+        <input cursor-spacing="50" class="value {{orderInfo['结算状态是否可编辑']?'':'disabled'}}" id="备注" placeholder="请输入备注" value="{{orderInfo['包含的产品_结算情况_备注']}}" bindblur="onEditSettlementInfo" disabled="{{orderInfo['结算状态是否可编辑']?false:true}}" />
+      </view>
+
+
+
+    </view>
+
+  </view>
+
+
+
+
+  <!-- loading遮罩 -->
+  <loading wx:if="{{isRequestIng}}"></loading>
+</view>
+
+<wxs module="utils">
+  module.exports.format = function(value) {
+    return Number((parseFloat(value) * 100).toFixed(2))
+  }
+</wxs>

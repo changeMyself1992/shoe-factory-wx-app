@@ -1,0 +1,274 @@
+.key {
+  font-size: 26rpx;
+}
+
+/*********row-2**********************start**************/
+
+.row-2 {
+  margin-top: 40rpx;
+  padding-bottom: 120rpx;
+  background-color: #ccc;
+}
+
+.row-2 .header {
+  display: flex;
+  justify-content: space-between;
+  height: 80rpx;
+  align-items: center;
+  background-color: #fff;
+  border-bottom: 2rpx solid #ccc;
+  padding: 0 20rpx;
+}
+
+.row-2 .header .des {
+  font-weight: 700;
+}
+
+.row-2 .add-product-btn {
+  height: 80rpx;
+}
+
+.row-2 .add-product-btn button {
+  height: 100%;
+  width: 136px;
+  font-size: 28rpx;
+  line-height: 80rpx;
+  color: #fff;
+  margin-bottom: 30rpx;
+}
+
+.supplier-box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  padding: 20rpx 20rpx 10rpx 20rpx;
+  background-color: #fff;
+  margin-bottom: 10rpx;
+}
+
+.supplier-box .clear {
+  font-size: 24rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  margin: 0 0 10rpx 0;
+}
+
+.supplier-box .item-supplier {
+  width: 48%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10rpx;
+  align-items: center;
+}
+
+.supplier-box .item-supplier .key {
+  font-size: 24rpx;
+  white-space: nowrap;
+  margin-right: 20rpx;
+}
+
+.supplier-box .item-supplier .value {
+  height: 40rpx;
+  border: 2rpx solid #ccc;
+  font-size: 24rpx;
+  padding-left: 5px;
+}
+
+.supplier-box .item-supplier.supplierName {
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.supplier-box .item-supplier.supplierName .value {
+  width: 75%;
+}
+
+.supplier-box .item-supplier.textarea {
+  width: 100%;
+}
+
+.supplier-box .item-supplier.textarea .value {
+  height: 100rpx;
+}
+
+.supplier-box .item-supplier .suggest-value-list {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.supplier-box .item-supplier .suggest-value-list .suggestion-box {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  position: relative;
+  margin: 5px 0;
+  -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  border: 1px solid #e4e7ed;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+.supplier-box .item-supplier .suggest-value-list .suggestion-box .tag {
+  width: 100%;
+  line-height: 50rpx;
+  height: 50rpx;
+  padding-left: 30rpx;
+}
+
+/*********row-2**********************end**************/
+
+/*table********start**********/
+
+.table {
+  margin-bottom: 20rpx;
+}
+
+.tr.header {
+  display: flex;
+  width: 100%;
+  height: 60rpx;
+  justify-content: flex-start;
+  background-color: #ebebeb;
+  padding: 0;
+}
+
+.tr.header .th {
+  line-height: 60rpx;
+}
+
+.th {
+  height: 100%;
+  text-align: center;
+  color: black;
+  word-wrap: break-word;
+  word-break: normal;
+}
+
+.th.item-1 {
+  width: 20%;
+}
+
+.th.item-2 {
+  width: 30%;
+}
+
+.th.item-3 {
+  width: 20%;
+}
+
+.th.item-4 {
+  width: 30%;
+}
+
+.table .body {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.tr.body {
+  height: 60rpx;
+  width: 50%;
+}
+
+.tr.body:nth-child(2n+1) {
+  border-right: 2rpx solid #ccc;
+}
+
+.tr.body .td {
+  height: 100%;
+  line-height: 60rpx;
+  text-align: center;
+  font-size: 24rpx;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+.tr.body .td.item-1 {
+  width: 40%;
+}
+
+.tr.body .td.item-2 {
+  width: 60%;
+  display: flex;
+  align-items: center;
+  padding: 0 20rpx;
+}
+
+.tr.body .td.item-2 input {
+  color: #d4787e;
+  border: 2rpx solid #ccc;
+  box-sizing: border-box;
+  height: 40rpx;
+}
+
+.tr.footer {
+  display: flex;
+  width: 100%;
+  height: 60rpx;
+  background-color: #ebebeb;
+  justify-content: flex-start;
+}
+
+.tr.footer .td {
+  height: 100%;
+  line-height: 60rpx;
+  text-align: center;
+  font-weight: 700;
+}
+
+.tr.footer .td.td.item-1 {
+  width: 40%;
+}
+
+.tr.footer .td.td.item-2 {
+  width: 30%;
+}
+
+.tr.footer .td.td.item-3 {
+  width: 30%;
+}
+
+.tr.footer .td.td.item-4 {
+  width: 40%;
+}
+
+.tr.footer .td.td.item-5 {
+  width: 60%;
+}
+
+/*table*********end***********/
+
+.btn-area {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  display: flex;
+}
+
+.btn-area button {
+  margin: 0;
+  border-radius: 0;
+}
+
+.btn-area button::after {
+  border: none;
+}
+
+.btn-area button:first-child {
+  width: 60%;
+}
+
+.btn-area button:last-child {
+  width: 40%;
+}

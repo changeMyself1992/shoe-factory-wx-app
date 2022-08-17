@@ -1,0 +1,9 @@
+<!-- 导航栏 -->
+
+<scroll-view scroll-x="true" class="live-nav">
+  <block wx:for="{{liveNavData}}" wx:for-item="ip" wx:for-index="index" wx:key="index">
+    <view style="width:{{width}}" class="{{ip.isSelect?'tab_item_s':'tab_item_n'}}" bindtap="onItemClick" data-item="{{ip}}">
+      <text class='navname'>{{ip.c_name}}</text>
+    </view>
+  </block>
+</scroll-view>

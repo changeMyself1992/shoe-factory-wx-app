@@ -1,0 +1,17 @@
+{
+  "backgroundTextStyle": "dark",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTitleText": "员工工资",
+  "navigationBarTextStyle": "black",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "live-nav": "/components/live-nav/live-nav",
+    "loading": "/components/loading/loading",
+    "van-overlay": "/components/overlay/index",
+    "back-to-top": "/components/back-to-top/back-to-top",
+    "staff-salary-item": "./components/staff-salary-item/staff-salary-item",
+    "department-salary-item": "./components/department-salary-item/department-salary-item",
+    "deduction-item": "./components/deduction-item/deduction-item"
+   
+  }
+}

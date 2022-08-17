@@ -1,0 +1,61 @@
+<view class="box">
+
+  <view class="header">
+    <label class="text-a">{{info['员工姓名']}}{{info['员工手机']}}</label>
+    <label class="text-a">{{info['工作状态']}}</label>
+  </view>
+
+  <view class="section">
+
+    <view class="tag-row">
+      <view class='item' wx:for="{{info['tags']}}" wx:for-item="Value" wx:key="Key" wx:for-index="Key">
+        <text class='key'>{{Key}}：</text>
+        <text class='value'>{{Value}}</text>
+      </view>
+    </view>
+
+    <view class="time-row">
+      <view class='item'>
+        <label class='key'>累计工资：</label>
+        <label class='value'>{{info['累计工资']}}</label>
+      </view>
+      <view class='item'>
+        <label class='key'>已确认工资：</label>
+        <label class='value'>{{info['已确认工资']}}</label>
+      </view>
+      <view class='item'>
+        <label class='key'>未确认工资：</label>
+        <label class='value'>{{info['未确认工资']}}</label>
+      </view>
+      <view class='item'>
+        <label class='key'>计件总数：</label>
+        <label class='value'>{{info['累计计件数量']}}</label>
+      </view>
+      <view class='item'>
+        <label class='key'>已确认计件：</label>
+        <label class='value'>{{info['已确认计件数量']}}</label>
+      </view>
+      <view class='item'>
+        <label class='key'>未确认计件：</label>
+        <label class='value'>{{info['未确认计件数量']}}</label>
+      </view>
+      <view class='item item-100'>
+        <label class='key'>负责工序：</label>
+        <view class="value-box">
+          <label class='value' wx:for="{{info['负责工序']}}" wx:for-item="item" wx:key="index" wx:for-index="index">
+            {{item}}，
+          </label>
+        </view>
+      </view>
+    </view>
+
+  </view>
+
+  <!-- <view class="footer">
+    <button class="btn-consent" type="primary" bindtap="onLookBtnClick">查看详情</button>
+  </view> -->
+
+
+  <!-- loading遮罩 -->
+  <loading wx:if="{{isRequestIng}}"></loading>
+</view>

@@ -1,0 +1,38 @@
+<!--部门统计卡片组件-->
+<view class="process-department-info">
+  <view class="title {{processDepartment['是否和自身绑定']?'active':'disable'}}">
+    <label class='iconfont icon-gongzi text-1'></label>
+    <label class='text-2'>{{ processDepartment['部门名称'] }} 部门统计</label>
+    <label class='text-3' bindtap="processDepartmentDetailThrottleHandle">详情 ></label>
+  </view>
+
+  <view class="process-brief-info">
+    <label class="text-a">今日上班人数</label>
+    <label class="text-b">{{processDepartment['今日上班人数']}}</label>
+  </view>
+
+  <view class="process-brief-info last">
+    <label class="text-a">昨日上班人数</label>
+    <label class="text-b">{{processDepartment['昨日上班人数']}}</label>
+  </view>
+
+  <view class="process-brief-schedule-info">
+    <view class="schedule-item">
+      <view class="a-tag today"></view>
+      <label class="des today">今日完成总数</label>
+      <view wx-if="{{processDepartment['今日完成总数']<processDepartment['昨日完成总数']}}" class='sort-line today'></view>
+      <view wx:elif="{{processDepartment['今日完成总数']>=processDepartment['昨日完成总数']}}" class='long-line today'></view>
+      <label class="num today">{{processDepartment['今日完成总数']}}</label>
+    </view>
+
+    <view class="schedule-item">
+      <view class="a-tag yesterday"></view>
+      <label class="des yesterday">昨日完成总数</label>
+      <view wx-if="{{processDepartment['昨日完成总数']<processDepartment['今日完成总数']}}" class='sort-line yesterday'></view>
+      <view wx:elif="{{processDepartment['昨日完成总数']>=processDepartment['今日完成总数']}}" class='long-line yesterday'></view>
+      <label class="num yesterday">{{processDepartment['昨日完成总数']}}</label>
+    </view>
+  </view>
+
+
+</view>

@@ -1,0 +1,61 @@
+<view class="container">
+
+  <view class='row row-1'>
+    <view class="item-a">
+      <text class='key'>生产单编号：</text>
+      <input cursor-spacing="50" class="value" value="{{productUniqueId}}" bindinput="onInputProductUniqueId" bindtap="onTap" />
+    </view>
+    <view class="item-a">
+      <text class='key'>生产单状态：</text>
+      <checkbox-group class='value-a' bindchange="checkboxChange" bindtap="onTap">
+        <label class="checkbox" wx:for="{{array}}" wx:for-item="item" wx:key="index" wx:for-index="index">
+          <checkbox value="{{item.name}}" checked="{{item.checked}}" />{{item.value}}
+        </label>
+      </checkbox-group>
+    </view>
+  </view>
+
+  <view class='row row-2'>
+    <view class="title">订单信息搜索</view>
+
+    <view class="item-a" wx:for="{{order_tag_filter}}" wx:for-item="index" wx:key="index" wx:for-index="tagKey">
+
+      <text class='key'>{{tagKey}}：</text>
+      <input cursor-spacing="50" class="value" type="text" data-tagname="{{tagKey}}" value="{{order_tag_filter[tagKey]}}" bindfocus="onFocusOrderTag" bindinput="orderDebouncedHandleSearch" />
+      <view wx-if='{{orderTagKeyFocus===tagKey}}' class="suggest-value-list">
+        <view class="suggestion-box">
+          <scroll-view scroll-y="{{true}}" style="height: 200rpx;">
+            <view class='tag' wx:for="{{order_suggest_value_list}}" wx:for-item="tagValue" wx:key="index" wx:for-index="index" catchtap="onOrderTagValueSelect" data-tagname="{{tagKey}}" data-tagvalue="{{tagValue}}">{{tagValue}}</view>
+          </scroll-view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+
+  <view class='row row-2'>
+    <view class="title">产品信息搜索</view>
+
+    <view class="item-a" wx:for="{{product_tag_filter}}" wx:for-item="index" wx:key="index" wx:for-index="tagKey">
+      <text class='key'>{{tagKey}}：</text>
+      <input cursor-spacing="50" class="value" type="text" data-tagname="{{tagKey}}" value="{{product_tag_filter[tagKey]}}" bindfocus="onFocusProductTag" bindinput="productDebouncedHandleSearch" />
+      <view wx-if='{{productTagKeyFocus===tagKey}}' class="suggest-value-list">
+        <view class="suggestion-box">
+          <scroll-view scroll-y="{{true}}" style="height: 200rpx;">
+            <view class='tag' wx:for="{{product_suggest_value_list}}" wx:for-item="tagValue" wx:key="index" wx:for-index="index" catchtap="onProductTagValueSelect" data-tagname="{{tagKey}}" data-tagvalue="{{tagValue}}">{{tagValue}}</view>
+          </scroll-view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+
+
+  <button class="search-btn" type="primary" bindtap="submitThrottleHandle" style="margin-bottom:20rpx;">搜索</button>
+
+  <button class="clear-btn" bindtap="onClear">清空搜索条件</button>
+
+
+  <!-- loading遮罩 -->
+  <loading wx:if="{{isRequestIng}}"></loading>
+</view>

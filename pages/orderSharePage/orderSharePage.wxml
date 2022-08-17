@@ -1,0 +1,11 @@
+<!--pages/orderSharePage/orderSharePage.wxml-->
+<!-- <image style="width:100vw;height:100vh" src="../../static/imageC/bgfor.jpeg"></image> -->
+<canvas canvas-id="myCanvas" style="width:{{canvasWidth}}px;height:{{canvasHeight}}px" class='canvas' />
+<view class="bgfor" bindtap='save'>
+  <!-- <image class="bgfor" src="../../static/imageC/bgbottom.png"></image> -->
+  <!-- <view class="btn">保存到相册</view> -->
+  <view class="save">
+    <text>保存到相册</text>
+    <image class="xiazai" src="../../static/imageC/xiazai.png"></image>
+  </view>
+</view>

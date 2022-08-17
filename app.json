@@ -1,0 +1,120 @@
+{
+  "pages": [
+    "pages/initialize/initialize",
+    "pages/applicationFunctions/applicationFunctions",
+    "pages/productionOrder/productionOrder",
+    "pages/dataKanban/dataKanban",
+    "pages/personalSetting/personalSetting",
+    "pages/addNewStaff_applicationFunction/addNewStaff_applicationFunction",
+    "pages/personnelList_applicationFunction/personnelList_applicationFunction",
+    "pages/personnelListSearchPage/personnelListSearchPage",
+    "pages/personnelEditPage/personnelEditPage",
+    "pages/orderList_applicationFunction/orderList_applicationFunction",
+    "pages/orderSearchPage/orderSearchPage",
+    "pages/orderOperationPage/orderOperationPage",
+    "pages/login/login",
+    "pages/workStatusFail/workStatusFail",
+    "pages/productionOrderDetails/productionOrderDetails",
+    "pages/sameBatchOperationProductNote/sameBatchOperationProductNote",
+    "pages/productionNoteDetailList/productionNoteDetailList",
+    "pages/processDetails/processDetails",
+    "pages/processDetailsB/processDetailsB",
+    "pages/employeeRegistration/employeeRegistration",
+    "pages/salaryDetail/salaryDetail",
+    "pages/productNoteSearchPage/productNoteSearchPage",
+    "pages/processDepartmentDetail/processDepartmentDetail",
+    "pages/processDepartmentList/processDepartmentList",
+    "pages/rightsManagement_applicationFunction/rightsManagement_applicationFunction",
+    "pages/roleOperationPage/roleOperationPage",
+    "pages/clientList_applicationFunction/clientList_applicationFunction",
+    "pages/clientSearchPage/clientSearchPage",
+    "pages/clientOperationPage/clientOperationPage",
+    "pages/arrangedOrderList_applicationFunction/arrangedOrderList_applicationFunction",
+    "pages/generateProductNote/generateProductNote",
+    "pages/productList_applicationFunction/productList_applicationFunction",
+    "pages/productSearchPage/productSearchPage",
+    "pages/productOperationPage/productOperationPage",
+    "pages/warehouseList_applicationFunction/warehouseList_applicationFunction",
+    "pages/materialSearchPage/materialSearchPage",
+    "pages/materialOperationPage/materialOperationPage",
+    "pages/warehouseImport_applicationFunction/warehouseImport_applicationFunction",
+    "pages/warehouseExport_applicationFunction/warehouseExport_applicationFunction",
+    "pages/warehouseHandMoveImportAndExport/warehouseHandMoveImportAndExport",
+    "pages/warehousePurchaseOrderImport/warehousePurchaseOrderImport",
+    "pages/warehouseProductionOrderExport/warehouseProductionOrderExport",
+    "pages/warehouseImportAndExportDetail/warehouseImportAndExportDetail",
+    "pages/warehouseImportAndExportSearchPage/warehouseImportAndExportSearchPage",
+    "pages/orderSettle_applicationFunction/orderSettle_applicationFunction",
+    "pages/supplierDeliveryNote_applicationFunction/supplierDeliveryNote_applicationFunction",
+    "pages/deliveryNoteSearchPage/deliveryNoteSearchPage",
+    "pages/deliveryNoteOperationPage/deliveryNoteOperationPage",
+    "pages/salarySettle_applicationFunction/salarySettle_applicationFunction",
+    "pages/purchaseOrderOperationPage/purchaseOrderOperationPage",
+    "pages/purchaseOrderAddPage/purchaseOrderAddPage",
+    "pages/purchaseOrderList/purchaseOrderList",
+    "pages/purchaseOrderSearch/purchaseOrderSearch",
+    "pages/returnSupplierNote/returnSupplierNote",
+
+    "pages/cashMoneySupplierNote/cashMoneySupplierNote",
+
+    "pages/productOrderQuickOperation/productOrderQuickOperation",
+    "pages/employeeRecord/employeeRecord",
+    "pages/registrationTrial/registrationTrial",
+
+    "pages/supplierManagement/supplierManagement",
+    "pages/supplierSearchPage/supplierSearchPage",
+    "pages/supplierOperationPage/supplierOperationPage",
+    "pages/supplierPriceList/supplierPriceList",
+    "pages/orderSharePage/orderSharePage",
+    "pages/factoryLinkSupplier/factoryLinkSupplier",
+    "pages/produceAndOrderToProductDetail/produceAndOrderToProductDetail"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "backgroundColor": "#fafafa",
+    "borderStyle": "white",
+    "selectedColor": "#b4282d",
+    "color": "#666",
+    "list": [
+      {
+        "pagePath": "pages/applicationFunctions/applicationFunctions",
+        "iconPath": "static/imageA/ic_menu_yygn_nor.png",
+        "selectedIconPath": "static/imageA/ic_menu_yygn_pressed.png",
+        "text": "应用功能"
+      },
+      {
+        "pagePath": "pages/productionOrder/productionOrder",
+        "iconPath": "static/imageA/ic_menu_scjd_nor.png",
+        "selectedIconPath": "static/imageA/ic_menu_scjd_pressed.png",
+        "text": "生产进度"
+      },
+      {
+        "pagePath": "pages/dataKanban/dataKanban",
+        "iconPath": "static/imageA/ic_menu_sjkb_nor.png",
+        "selectedIconPath": "static/imageA/ic_menu_sjkb_pressed.png",
+        "text": "数据看板"
+      },
+      {
+        "pagePath": "pages/personalSetting/personalSetting",
+        "iconPath": "static/imageA/ic_menu_grsz_nor.png",
+        "selectedIconPath": "static/imageA/ic_menu_grsz_pressed.png",
+        "text": "个人设置"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 20000,
+    "downloadFile": 10000
+  },
+  "debug": true,
+  "navigateToMiniProgramAppIdList": [
+    "wx32540bd863b27570"
+  ],
+  "sitemapLocation": "sitemap.json"
+}

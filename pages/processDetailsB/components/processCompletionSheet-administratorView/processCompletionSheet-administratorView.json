@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "percentage-loading": "/components/percentage-loading/percentage-loading"
+  }
+}

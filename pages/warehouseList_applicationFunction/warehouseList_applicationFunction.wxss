@@ -1,0 +1,21 @@
+/* pages/clientList_applicationFunction/clientList_applicationFunction.wxss */
+.footBtn{
+  position: fixed;
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  display: flex;
+  align-items: center;
+  z-index: 999;
+  bottom: 0;
+  left: 0;
+}
+.footBtn span{
+  flex: 1;
+}
+.footBtn .button{
+  background: #0DA317;
+  font-size: 32rpx;
+  color: #FFFFFF;
+  text-align: center;
+}

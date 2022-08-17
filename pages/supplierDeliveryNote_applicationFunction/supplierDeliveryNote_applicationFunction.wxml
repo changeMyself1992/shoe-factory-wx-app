@@ -1,0 +1,51 @@
+<view class='container'>
+
+
+  <view id="fixedBatch" class="fixed-batch">
+    <!-- 搜索框 -->
+    <view class="search-box">
+      <search_box skipLinks="{{skipLinks}}" searchCondition="{{searchCondition}}" whetherToDisplayAConditionBox="{{whetherToDisplayAConditionBox}}" bind:clearingSearchCallback="clearingSearchCallback" conditionalQueryTitle="{{conditionalQueryTitle}}"></search_box>
+    </view>
+
+      <!-- 导航栏 -->
+    <view class="search-box">
+      <live-nav wx:if='{{curSelectIndex!==3}}' width="33.3%" liveNavData="{{liveNavData}}" bind:myevent="onSelectItemClick"></live-nav>
+    </view>
+
+    <!-- <view class="switch-view">
+      <label class="des">全选</label>
+      <switch class="switch" checked="{{isSwitch}}" bindchange="switchclick"></switch>
+    </view> -->
+    <!-- <button class="btn-consent" type="primary" bindtap="settleThrottleHandle" disabled="{{multipleSelection.length===0}}">批量结算</button> -->
+    <!-- <button class="btn-consent" type="primary" bindtap="affirmThrottleHandle" disabled="{{multipleSelection.length===0}}">批量确认</button>
+    <button class="btn-consent" type="primary" bindtap="addThrottleHandle">添加退货单</button> -->
+  </view>
+
+  <!--物料列表-->
+  <view class='module-b' style="margin-top: {{marginTop}};padding-bottom:80rpx;">
+    <block wx:for="{{deliveryNoteList}}" wx:for-item="info" wx:for-index="index" wx:key="index">
+      <item id="delivery-note-item" info="{{info}}" bind:callbackAfterOption="callbackAfterOption" bind:callbackAfterSelect="callbackAfterSelect"></item>
+    </block>
+  </view>
+
+  <!-- 底部操作栏 -->
+  <view class="footBtn">
+  <span wx:if="{{curSelectIndex==0}}" bindtap="affirmThrottleHandle" class="{{multipleSelection.length===0?'off':'on'}}">批量确认</span>
+  <span class="tuihuo" wx:elif="{{curSelectIndex==1}}" bindtap="addThrottleHandle">添加退货单</span>
+  <span class="tuihuo" wx:elif="{{curSelectIndex==2}}" bindtap="addCashMoneyThrottleHandle">添加现结单</span>
+</view>
+
+    <!-- 现结单结算弹窗 -->
+    <!-- <view wx:if="{{maskCash}}" class="maskCash">
+      <view class="maskbox">
+        <view class="title">请选择人员</view>
+      </view>
+    </view> -->
+    <!-- 现结单结算弹窗 -->
+
+  <!-- 弹回顶部 -->
+  <back-to-top floorstatus="{{floorstatus}}"></back-to-top>
+
+  <!-- loading遮罩 -->
+  <loading wx:if="{{isRequestIng}}"></loading>
+</view>

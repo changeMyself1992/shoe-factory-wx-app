@@ -1,0 +1,27 @@
+.key {
+  font-size: 26rpx;
+}
+
+.form-item {
+  padding: 0;
+  height: auto;
+}
+
+.form-item .group {
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.row-1 {
+  border-bottom: none;
+}
+
+.row-1 .item-a .key {
+  margin: 0;
+}
+
+.row-1 .item-a .value {
+  width: 60%;
+}

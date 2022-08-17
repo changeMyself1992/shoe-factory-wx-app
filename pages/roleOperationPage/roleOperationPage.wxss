@@ -1,0 +1,46 @@
+/* pages/roleOperationPage/roleOperationPage.wxss */
+
+.form-item {
+  padding: 10rpx 20rpx;
+  border: none;
+}
+
+.form-item .key {
+  line-height: 60rpx;
+}
+
+.form-item .value {
+  border: 2rpx solid #ccc;
+  width: 600rpx;
+  font-size: 28rpx;
+  padding-left: 10rpx;
+}
+
+.form-item-a {
+  padding: 80rpx 20rpx 80rpx 20rpx;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.form-item-a .key {
+  width: 200rpx;
+}
+
+.form-item-a .page-box {
+  width: 100%;
+}
+
+.form-item-a .page-box .checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 20rpx;
+  justify-content: space-between;
+}
+
+.form-item-a .page-box .checkbox-group .checkbox {
+  font-size: 26rpx;
+  margin: 0 20rpx 10rpx 20rpx;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}

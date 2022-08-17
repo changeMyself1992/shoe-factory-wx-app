@@ -1,0 +1,43 @@
+/* pages/orderList/orderList.wxss */
+.container{
+  background-color: #fff;
+}
+.module-b {
+  margin-bottom: 180rpx;
+}
+
+.module-b .header {
+  /* display: flex; */
+  padding: 0 30rpx;
+  /* justify-content: space-between; */
+}
+
+.module-b .header .title {
+  font-weight: 700;
+  width: 100%;
+  font-size: 32rpx;
+}
+
+.module-b .header .tag-box {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  /* height: 70px; */
+  padding: 5rpx;
+}
+
+.module-b .header .tag {
+  background-color: #ecf5ff;
+  display: inline-block;
+  height: 32px;
+  padding: 0 10px;
+  line-height: 30px;
+  font-size: 28rpx;
+  color: #409eff;
+  border: 1px solid #d9ecff;
+  border-radius: 4px;
+  box-sizing: border-box;
+  white-space: nowrap;
+  margin: 5rpx 0;
+}
